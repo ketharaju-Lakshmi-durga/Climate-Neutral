@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form id="fleetForm">
+        <label for="vehicleDescription">Vehicle Description</label>
+        <input type="text" id="vehicleDescription" name="vehicleDescription">
+
+        <label for="vehicleType">Vehicle Type</label>
+        <select id="vehicleType" name="vehicleType">
+            <option value="car">Car</option>
+            <option value="truck">Truck</option>
+            
+        </select>
+
+        <label for="vehicleQuantity">Vehicle Quantity</label>
+        <input type="number" id="vehicleQuantity" name="vehicleQuantity">
+
+        <label for="fuelSource">Fuel Source</label>
+        <input type="text" id="fuelSource" name="fuelSource">
+
+        <label for="annualMileage">Annual Mileage</label>
+        <input type="number" id="annualMileage" name="annualMileage">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('fleetForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var vehicleDescription = document.getElementById('vehicleDescription').value;
+            var vehicleType = document.getElementById('vehicleType').value;
+            var vehicleQuantity = document.getElementById('vehicleQuantity').value;
+            var fuelSource = document.getElementById('fuelSource').value;
+            var annualMileage = document.getElementById('annualMileage').value;
+
+            console.log('Vehicle Description: ' + vehicleDescription);
+            console.log('Vehicle Type: ' + vehicleType);
+            console.log('Vehicle Quantity: ' + vehicleQuantity);
+            console.log('Fuel Source: ' + fuelSource);
+            console.log('Annual Mileage: ' + annualMileage);
+        });
+    </script>
+</body>
+</html>
