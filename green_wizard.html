@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greening Options Wizard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div>
+        <h3>Fleet Vehicle</h3>
+        <h3>Green Option</h3>
+    </div>
+    <form id="greeningOptionForm">
+
+        <label for="Dynamic Condition 1">Dynamic Condition 1</label>
+        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
+            <option value="Replace w/ EV Vehicle">Replace w/ EV Vehicle</option>
+            <option value="E85 Ethanol Usage">E85 Ethanol Usage</option>
+        </select>
+
+        <label for="Dynamic Condition 2">Dynamic Condition 2</label>
+        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
+            <option value="Replace w/ EV Vehicle">Replace w/ EV Car</option>
+            <option value="E85 Ethanol Usage">Replace w/ Biofuel Car E85</option>
+        </select>
+
+
+        <label for="Dynamic Condition 3">Dynamic Condition 3</label>
+        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
+            <option value="Replace w/ EV Light Duty Truck">Replace w/ EV Light Duty Truck</option>
+            <option value="Replace w/ Biofuel E85 Light Duty Truck">Replace w/ Biofuel E85 Light Duty Truck</option>
+            <option value="Right Size to Car">Right Size to Car</option>
+            <option value="Right Size to Biofuel Car">Right Size to Biofuel Car</option>
+        </select>
+
+        <label for="Dynamic Condition 4">Dynamic Condition 4</label>
+        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
+            <option value="Replace w/ EV Light Duty Truck">E85 Biofuel Usage</option>
+            <option value="Replace w/ Biofuel E85 Light Duty Truck">Replace w/ EV Light Duty Truck</option>
+            <option value="Right Size to Car">Right Size to Car</option>
+            <option value="Right Size to Biofuel Car">Right Size to Biofuel Car</option>
+        </select>
+
+        <label for="Dynamic Condition 5">Dynamic Condition 5</label>
+        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
+            <option value="Replace w/ EV Light Duty Truck">E85 Biofuel Usage</option>
+            <option value="Replace w/ Biofuel E85 Light Duty Truck">Replace w/ EV Light Duty Truck</option>
+            <option value="Right Size to Car">Right Size to Car</option>
+            <option value="Right Size to Biofuel Car">Right Size to Biofuel Car</option>
+        </select>
+
+        <label for="Dynamic Condition 6">Dynamic Condition 6</label>
+        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
+            <option value="B20 Diesel Usage">B20 Diesel Usage</option>
+            <option value="Replace w/ EV Light Duty Truck">Replace w/ EV Light Duty Truck</option>
+            <option value="Replace w/ Biofuel E85 Light Duty Truck">Replace w/ Biofuel E85 Light Duty Truck</option>
+            <option value="Right Size to Car">Right Size to Car</option>
+            <option value="Right Size to Biofuel E85 Car">Right Size to Biofuel E85 Car</option>
+        </select>
+    </form>
+
+    <script>
+        document.getElementById('fleetForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var vehicleDescription = document.getElementById('vehicleDescription').value;
+            var vehicleType = document.getElementById('vehicleType').value;
+        })
+    </script>
+</body>
+
+</html>
