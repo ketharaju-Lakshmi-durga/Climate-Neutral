@@ -7,13 +7,26 @@
 
 <body>
     <form id="fleetForm">
+        <label for="Province">Province</label>
+        <select id="Province" name="Province">
+            <option value="Alberta">Alberta</option>
+            <option value="British Columbia">British Columbia</option>
+            <option value="Ontario">Ontario</option>
+            <option value="New Foundland & Labrador">New Foundland & Labrador</option>
+            <option value="Prince Edaward Island">Prince Edaward Island</option>
+            <option value="Nova Scotia">Nova Scotia</option>
+            <option value="New Brunswick">New Brunswick</option>
+            <option value="Quebec">Quebec</option>
+            <option value="Manitoba">Manitoba</option>
+            <option value="Saskatchewan">Saskatchewan</option>
+        </select>
+
         <label for="vehicleDescription">Vehicle Description</label>
         <input type="text" id="vehicleDescription" name="vehicleDescription">
 
         <label for="vehicleType">Vehicle Type</label>
         <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
             <option value="LightDutyTruck">Light Duty Truck</option>
-            <option value="HeavyDutyTruck">Heavy Duty Truck</option>
             <option value="Car">Car</option>
         </select>
 
@@ -86,6 +99,7 @@
             var vehicleQuantity = document.getElementById('vehicleQuantity').value;
             var flexfuel = document.getElementById('flex_fuel').value;
             var fuelType = document.getElementById('fuelType').value;
+            var Province = document.getElementById('Province').value;
 
             // Create a new row for the table
             var newRow = document.createElement('tr');
@@ -108,6 +122,7 @@
             document.getElementById('entryTableBody').appendChild(newRow);
 
             // Reset the form fields to default values
+            document.getElementById('Province').value = '';
             document.getElementById('vehicleDescription').value = '';
             document.getElementById('vehicleType').value = 'Light Duty Truck';
             document.getElementById('year').value = '';
@@ -137,6 +152,7 @@
                     FuelType: cells[7].innerText,
                     FlexFuel: cells[8].innerText,
                     VehicleQuantity: cells[9].innerText,
+            
                 };
 
                 formData.push(rowData);
