@@ -1,74 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greening Options Wizard</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .fleet-entry {
+            margin-bottom: 20px;
+        }
+
+        .green-options-dropdown {
+            width: 45%;
+            margin-left: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 
 <body>
-    <form id="greeningOptionForm">
+    <h1>Fleet Vehicle</h1>
 
-        <h3>Fleet Vehicle</h3>
-        <h3>Green Option</h3>
-
-        <label for="Dynamic Condition 1">Dynamic Condition 1</label>
-        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
-            <option value="Replace w/ EV Vehicle">Replace w/ EV Vehicle</option>
-            <option value="E85 Ethanol Usage">E85 Ethanol Usage</option>
-        </select>
-
-        <label for="Dynamic Condition 2">Dynamic Condition 2</label>
-        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
-            <option value="Replace w/ EV Vehicle">Replace w/ EV Car</option>
-            <option value="E85 Ethanol Usage">Replace w/ Biofuel Car E85</option>
-        </select>
-
-
-        <label for="Dynamic Condition 3">Dynamic Condition 3</label>
-        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
-            <option value="Replace w/ EV Light Duty Truck">Replace w/ EV Light Duty Truck</option>
-            <option value="Replace w/ Biofuel E85 Light Duty Truck">Replace w/ Biofuel E85 Light Duty Truck</option>
-            <option value="Right Size to Car">Right Size to Car</option>
-            <option value="Right Size to Biofuel Car">Right Size to Biofuel Car</option>
-        </select>
-
-        <label for="Dynamic Condition 4">Dynamic Condition 4</label>
-        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
-            <option value="Replace w/ EV Light Duty Truck">E85 Biofuel Usage</option>
-            <option value="Replace w/ Biofuel E85 Light Duty Truck">Replace w/ EV Light Duty Truck</option>
-            <option value="Right Size to Car">Right Size to Car</option>
-            <option value="Right Size to Biofuel Car">Right Size to Biofuel Car</option>
-        </select>
-
-        <label for="Dynamic Condition 5">Dynamic Condition 5</label>
-        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
-            <option value="Replace w/ EV Light Duty Truck">E85 Biofuel Usage</option>
-            <option value="Replace w/ Biofuel E85 Light Duty Truck">Replace w/ EV Light Duty Truck</option>
-            <option value="Right Size to Car">Right Size to Car</option>
-            <option value="Right Size to Biofuel Car">Right Size to Biofuel Car</option>
-        </select>
-
-        <label for="Dynamic Condition 6">Dynamic Condition 6</label>
-        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type">
-            <option value="B20 Diesel Usage">B20 Diesel Usage</option>
-            <option value="Replace w/ EV Light Duty Truck">Replace w/ EV Light Duty Truck</option>
-            <option value="Replace w/ Biofuel E85 Light Duty Truck">Replace w/ Biofuel E85 Light Duty Truck</option>
-            <option value="Right Size to Car">Right Size to Car</option>
-            <option value="Right Size to Biofuel E85 Car">Right Size to Biofuel E85 Car</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
+    <div id="fleetContainer">
+        <!-- Content will be added dynamically based on user input -->
+    </div>
 
     <script>
-        document.getElementById('fleetForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+        // Retrieve the form data from localStorage
+        var formData = JSON.parse(localStorage.getItem('formData'));
 
-            var vehicleDescription = document.getElementById('vehicleDescription').value;
-            var vehicleType = document.getElementById('vehicleType').value;
-        })
+        // Display or use the formData as needed
+        console.log(formData);
+
+        // Get the container for fleet entries
+        var fleetContainer = document.getElementById('fleetContainer');
+
+        // Loop through form data to create entries
+        for (var j = 0; j < formData.length; j++) {
+            // Create a div for each fleet entry
+            var fleetEntry = document.createElement('div');
+            fleetEntry.classList.add('fleet-entry');
+
+            // Create HTML content for fleet details
+            var fleetDetailsHTML = '<h2>Fleet Details</h2>';
+            fleetDetailsHTML += '<p><strong>' + formData[j].Description + '</strong></p>';
+            fleetDetailsHTML += '<p>Vehicle Type: ' + formData[j].VehicleType + '</p>';
+            fleetDetailsHTML += '<p>Year: ' + formData[j].Year + '</p>';
+            fleetDetailsHTML += '<p>Make: ' + formData[j].Make + '</p>';
+            fleetDetailsHTML += '<p>Model: ' + formData[j].Model + '</p>';
+            fleetDetailsHTML += '<p>Annual VKT: ' + formData[j].AnnualVKT + '</p>';
+            fleetDetailsHTML += '<p>Annual Fuel: ' + formData[j].AnnualFuel + '</p>';
+            fleetDetailsHTML += '<p>Fuel Type: ' + formData[j].FuelType + '</p>';
+            fleetDetailsHTML += '<p>Flex Fuel: ' + formData[j].FlexFuel + '</p>';
+            fleetDetailsHTML += '<p>Vehicle Quantity: ' + formData[j].VehicleQuantity + '</p>';
+            fleetDetailsHTML += '<hr>';
+
+            // Add the HTML content to the fleet entry
+            fleetEntry.innerHTML = fleetDetailsHTML;
+
+            // Append the fleet entry to the container
+            fleetContainer.appendChild(fleetEntry);
+
+            // Get the dropdown element for each fleet entry
+            var greenOptionsDropdown = document.createElement('select');
+            greenOptionsDropdown.classList.add('green-options-dropdown');
+            greenOptionsDropdown.name = 'greenOptions';
+            greenOptionsDropdown.id = 'greenOptions' + j;
+
+            // Populate the green options based on conditions
+            var conditions = {
+                "CarYesGasoline": ['Replace w/ EV Vehicle', 'E85 Ethanol Usage'],
+                "CarNoGasoline": ['Replace w/ EV Car', 'Replace w/ Biofuel Car E85'],
+                "LightDutyTruckNoGasoline": ['Replace w/ EV Light Duty Truck', 'Replace w/ Biofuel E85 Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel Car'],
+                "LightDutyTruckYesGasoline": ['E85 Biofuel Usage', 'Replace w/ EV Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel Car'],
+                "LightDutyTruckNoDiesel": ['Replace w/ EV Light Duty Truck', 'Replace w/ Biofuel E85 Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel E85 Car'],
+                "LightDutyTruckYesDiesel": ['B20 Diesel Usage', 'Replace w/ EV Light Duty Truck', 'Replace w/ Biofuel E85 Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel E85 Car']
+            };
+
+            var vehicleType = formData[j].VehicleType;
+            var flexFuel = formData[j].FlexFuel;
+            var fuelType = formData[j].FuelType;
+
+            var key = vehicleType + (flexFuel.toLowerCase() === 'yes' ? 'Yes' : 'No') + fuelType;
+
+            var greenOptions = conditions[key] || [];
+
+            // Add a default option
+            var defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.text = 'Select Green Option';
+            greenOptionsDropdown.appendChild(defaultOption);
+
+            // Add green options dynamically
+            for (var i = 0; i < greenOptions.length; i++) {
+                var option = document.createElement('option');
+                option.value = greenOptions[i];
+                option.text = greenOptions[i];
+                greenOptionsDropdown.appendChild(option);
+            }
+
+            // Append the green options dropdown to the fleet entry
+            fleetEntry.appendChild(greenOptionsDropdown);
+        }
     </script>
 </body>
 
