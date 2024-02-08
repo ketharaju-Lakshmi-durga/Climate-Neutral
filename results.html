@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Results</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Results</h1>
+
+    <!-- Container for the Total Emissions chart -->
+    <div class="chart-container">
+        <canvas id="totalEmissionsChart"></canvas>
+    </div>
+
+    <!-- Container for the Emissions Intensity chart -->
+    <div class="chart-container">
+        <canvas id="emissionsIntensityChart"></canvas>
+    </div>
+
+    <!-- Container for the Avg Emissions Intensity Fleet chart -->
+    <div class="chart-container">
+        <canvas id="avgEmissionsIntensityFleetChart"></canvas>
+    </div>
+
+    <script>
+        // Retrieve the form data from localStorage
+        var formData = JSON.parse(localStorage.getItem('formData'));
+
+        // Calculate emissions and build chart data
+        var chartData = {
+            labels: [],
+            totalEmissions: [],
+            emissionsIntensity: [],
+            avgEmissionsIntensityFleet: []
+        };
+
+        for (var i = 0; i < formData.length; i++) {
+            var annualFuelConsumption = formData[i].AnnualFuel;
+            var annualVKT = formData[i].AnnualVKT;
+            var fuelType = formData[i].FuelType;
+            var vehicleQuantity = formData[i].vehicleQuantity;
+            var fuelEmissionsCoefficient;
+
+            // Determine fuel emissions coefficient based on fuel type
+            switch (fuelType) {
+                case 'Gasoline':
+                    fuelEmissionsCoefficient = 2299;
+                    break;
+                case 'E10 Gasoline':
+                    fuelEmissionsCoefficient = 2071;
+                    break;
+                case 'Diesel':
+                    fuelEmissionsCoefficient = 2730;
+                    break;
+                // Add more cases for other fuel types if needed
+                default:
+                    fuelEmissionsCoefficient = 0; // Default value if fuel type not recognized
+            }
+
+            var annualEmissions = annualFuelConsumption * fuelEmissionsCoefficient;
+            var emissionsIntensity = annualEmissions / annualVKT;
+            var avgEmissionsIntensityFleet = emissionsIntensity * vehicleQuantity;
+
+            // Add data to chartData
+            chartData.labels.push(formData[i].Description);
+            chartData.totalEmissions.push(annualEmissions);
+            chartData.emissionsIntensity.push(emissionsIntensity);
+            chartData.avgEmissionsIntensityFleet.push(avgEmissionsIntensityFleet);
+        }
+
+        // Display Total Emissions chart
+        var totalEmissionsCtx = document.getElementById('totalEmissionsChart').getContext('2d');
+        var totalEmissionsChart = new Chart(totalEmissionsCtx, {
+            type: 'bar',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Total Emissions (gCO2e)',
+                    data: chartData.totalEmissions,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Display Emissions Intensity chart
+        var emissionsIntensityCtx = document.getElementById('emissionsIntensityChart').getContext('2d');
+        var emissionsIntensityChart = new Chart(emissionsIntensityCtx, {
+            type: 'bar',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Emissions Intensity (gCO2e/km)',
+                    data: chartData.emissionsIntensity,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        
+//AVERAGE EMISSIONS NOT WORKING
+
+
+
+
+        // Display Avg Emissions Intensity Fleet chart
+        var avgEmissionsIntensityFleetCtx = document.getElementById('avgEmissionsIntensityFleetChart').getContext('2d');
+        var avgEmissionsIntensityFleetChart = new Chart(avgEmissionsIntensityFleetCtx, {
+            type: 'bar',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Avg Emissions Intensity Fleet (gCO2e/km)',
+                    data: chartData.avgEmissionsIntensityFleet,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
