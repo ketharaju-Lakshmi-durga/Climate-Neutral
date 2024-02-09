@@ -36,8 +36,12 @@
 <body>
     <h1>Fleet Vehicle</h1>
 
+
+
     <div id="fleetContainer">
         <!-- Content will be added dynamically based on user input -->
+       
+
     </div>
 
     <script>
@@ -58,23 +62,15 @@
 
             // Create HTML content for fleet details
             var fleetDetailsHTML = '<h2>Fleet Details</h2>';
-            fleetDetailsHTML += '<p><strong>' + formData[j].Description + '</strong></p>';
-            fleetDetailsHTML += '<p>Vehicle Type: ' + formData[j].VehicleType + '</p>';
-            fleetDetailsHTML += '<p>Year: ' + formData[j].Year + '</p>';
-            fleetDetailsHTML += '<p>Make: ' + formData[j].Make + '</p>';
-            fleetDetailsHTML += '<p>Model: ' + formData[j].Model + '</p>';
-            fleetDetailsHTML += '<p>Annual VKT: ' + formData[j].AnnualVKT + '</p>';
-            fleetDetailsHTML += '<p>Annual Fuel: ' + formData[j].AnnualFuel + '</p>';
-            fleetDetailsHTML += '<p>Fuel Type: ' + formData[j].FuelType + '</p>';
-            fleetDetailsHTML += '<p>Flex Fuel: ' + formData[j].FlexFuel + '</p>';
-            fleetDetailsHTML += '<p>Vehicle Quantity: ' + formData[j].VehicleQuantity + '</p>';
+            fleetDetailsHTML += '<p><strong>' + formData[j].Description + "-"+formData[j].VehicleType+"-"+formData[j].Year+"-"+formData[j].Make+"-"+formData[j].Model+"-"+'</strong></p>';
+         
             fleetDetailsHTML += '<hr>';
 
             // Add the HTML content to the fleet entry
             fleetEntry.innerHTML = fleetDetailsHTML;
 
             // Append the fleet entry to the container
-            fleetContainer.appendChild(fleetEntry);
+           fleetContainer.appendChild(fleetEntry);
 
             // Get the dropdown element for each fleet entry
             var greenOptionsDropdown = document.createElement('select');

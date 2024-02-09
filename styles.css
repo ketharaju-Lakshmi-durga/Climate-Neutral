@@ -1,5 +1,6 @@
 /* Generate CSS code for index.html and green_wizard.html */
 /* Path: styles.css */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #0c1c81;
@@ -9,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto;
 }
 
 label {
@@ -20,7 +21,7 @@ label {
 
 input,
 select {
-    width: 100%;
+    width: 70%;
     height: 30px;
     margin-top: 5px;
     padding: 4px;
@@ -31,7 +32,7 @@ select {
 
 button {
     margin-top: 20px;
-    width: 100%;
+    width: 30%;
     height: 40px;
     padding: 10px;
     font-size: medium;
@@ -51,4 +52,7 @@ form {
     /* Create a two-column grid */
     gap: 2rem;
     /* Add some space between the elements */
+}
+#wrapper{
+    min-height: auto;
 }
