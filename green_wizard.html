@@ -1,53 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <style>
-        body {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Vehicle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+     <style>
+        body, html {
+            font-family: 'Poppins', sans-serif; /* Use your preferred font */
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #0c1c81, #2d479e);
+}
+
+        header {
+            background-color: #333;
+            padding-top: 20px;
+    padding-bottom: 1px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+        /* body {
             font-family: Arial, sans-serif;
             margin: 20px;
-        }
+            background: linear-gradient(to right, #0c1c81, #2d479e);
+        } */
 
-        h1, h2 {
+        h1,
+        h2 {
             text-align: center;
+            color: #333;
         }
 
         .fleet-entry {
             margin-bottom: 20px;
-            
-         
         }
 
         .green-options-dropdown {
             width: 45%;
             margin-left: 20px;
-        
         }
 
         select {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
         }
 
         p {
             margin: 5px 0;
+            color: #555;
         }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 15px 0;
+        }
+        .fleetContainer {
+    display: flex;
+    flex-wrap: wrap; /* Wrap content to the next row */
+    justify-content: space-between; /* Add space between the stacks */
+    max-width: 800px;
+    margin: 20px auto;
+}
+        footer {
+            background-color: #333;
+    padding: 10px;
+    text-align: center;
+    
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    
+}
+
     </style>
 </head>
 
 <body>
-    <h1>Fleet Vehicle</h1>
-
-
+    <header>
+        <h1>Climate Neutral</h1>
+        <!-- Add any other header content here -->
+    </header>
+   
 
     <div id="fleetContainer">
+        <div class="row" id="row1"></div>
         <!-- Content will be added dynamically based on user input -->
-       
-
     </div>
     <button><a href=result.html>Result</a></button>
 
+    <button onclick="redirectToResults()">Submit</button>
+    <footer>
+        <p>&copy; 2024 Climate Neutral. All rights reserved.</p>
+        <!-- Add any other footer content here -->
+    </footer>
     <script>
         // Retrieve the form data from localStorage
         var formData = JSON.parse(localStorage.getItem('formData'));
@@ -61,28 +141,42 @@
         // Loop through form data to create entries
         for (var j = 0; j < formData.length; j++) {
             // Create a div for each fleet entry
+            var fleetEntry = createFleetEntry(formData[j], j);
+
+            // Append the fleet entry to the container
+            fleetContainer.appendChild(fleetEntry);
+        }
+
+        // Function to create fleet entry HTML
+        function createFleetEntry(data, index) {
             var fleetEntry = document.createElement('div');
             fleetEntry.classList.add('fleet-entry');
 
             // Create HTML content for fleet details
-            var fleetDetailsHTML=''
-            fleetDetailsHTML += '<p><strong>' + formData[j].Description + "-"+formData[j].VehicleType+"-"+formData[j].Year+"-"+formData[j].Make+"-"+formData[j].Model+'</strong></p>';
+            var fleetDetailsHTML = '<h2>Fleet Details</h2>';
+            fleetDetailsHTML += '<p><strong>' + formData[j].Description + "-"+formData[j].VehicleType+"-"+formData[j].Year+"-"+formData[j].Make+"-"+formData[j].Model+"-"+'</strong></p>';
          
-           <!-- fleetDetailsHTML += '<hr>';-->
+            fleetDetailsHTML += '<hr>';
 
             // Add the HTML content to the fleet entry
             fleetEntry.innerHTML = fleetDetailsHTML;
 
-            // Append the fleet entry to the container
-           fleetContainer.appendChild(fleetEntry);
-
             // Get the dropdown element for each fleet entry
+            var greenOptionsDropdown = createGreenOptionsDropdown(data);
+
+            // Append the green options dropdown to the fleet entry
+            fleetEntry.appendChild(greenOptionsDropdown);
+
+            return fleetEntry;
+        }
+
+        // Function to create green options dropdown
+        function createGreenOptionsDropdown(data) {
             var greenOptionsDropdown = document.createElement('select');
             greenOptionsDropdown.classList.add('green-options-dropdown');
             greenOptionsDropdown.name = 'greenOptions';
             greenOptionsDropdown.id = 'greenOptions' + j;
 
-            // Populate the green options based on conditions
             var conditions = {
                 "CarYesGasoline": ['Replace w/ EV Vehicle', 'E85 Ethanol Usage'],
                 "CarNoGasoline": ['Replace w/ EV Car', 'Replace w/ Biofuel Car E85'],
@@ -93,15 +187,19 @@
             };
 
             var vehicleType = formData[j].VehicleType;
-            console.log(vehicleType)
-            console.log(formData[j].AnnualVKT)
             var flexFuel = formData[j].FlexFuel;
             var fuelType = formData[j].FuelType;
 
             var key = vehicleType + (flexFuel.toLowerCase() === 'yes' ? 'Yes' : 'No') + fuelType;
 
             var greenOptions = conditions[key] || [];
-
+            
+            if (greenOptions.length === 0) {
+        var defaultOption = document.createElement('option');
+        defaultOption.value = 'NoGreenOption';
+        defaultOption.text = 'No Green Option Available';
+        greenOptionsDropdown.appendChild(defaultOption);
+    }
             // Add a default option
             var defaultOption = document.createElement('option');
             defaultOption.value = '';
@@ -118,7 +216,6 @@
 
             // Append the green options dropdown to the fleet entry
             fleetEntry.appendChild(greenOptionsDropdown);
-            
         }
     </script>
 </body>
