@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
+<title>Climate Neutral :: Index</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <header>
+        <h1>Climate Neutral</h1>
+        <!-- Add any other header content here -->
+    </header>
+    <div id="wrapper">
     <form id="fleetForm">
         <label for="Province">Province</label>
         <select id="Province" name="Province">
@@ -86,7 +94,11 @@
 
     <!-- Move the submit button below the table -->
     <button type="button" onclick="submitForm()">Submit</button>
-
+    </div>
+    <footer>
+        <p>&copy; 2024 Climate Neutral. All rights reserved.</p>
+        <!-- Add any other footer content here -->
+    </footer>
     <script>
         
         function addEntry() {

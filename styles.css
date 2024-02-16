@@ -1,54 +1,109 @@
-/* Generate CSS code for index.html and green_wizard.html */
-/* Path: styles.css */
+/* styles.css */
+
+header {
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
 body {
-    font-family: Arial, sans-serif;
-    background-color: #0c1c81;
-    color: #ffffff;
+    font-family: 'Poppins', sans-serif; /* Use your preferred font */
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background: linear-gradient(to right, #0c1c81, #2d479e); /* Blue gradient background */
+    color: #fff; /* Set text color to white for better visibility */
+}
+
+#wrapper {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.8); /* Glass appearance background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    opacity: 0; /* Initially set opacity to 0 for fade-in effect */
+    animation: fadeIn 1s ease-in-out forwards; /* Animation properties */
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Optional: Slide up effect */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 label {
     display: block;
-    margin-top: 20px;
-    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #333;
 }
 
+select,
 input,
-select {
+button {
     width: 100%;
-    height: 30px;
+    padding: 10px;
     margin-top: 5px;
-    padding: 4px;
-    font-size: 1em;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    border: 1px solid #999;
+    background-color: #fff;
+    box-sizing: border-box;
 }
 
 button {
-    margin-top: 20px;
-    width: 100%;
-    height: 40px;
-    padding: 10px;
-    font-size: medium;
-    background: #26b170;
+    margin-top: 10px;
+    background-color: #4caf50;
     color: #fff;
-    cursor: pointer;
+    border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-form {
-    margin: 0 auto;
-    max-width: 30em;
-    width: 70%;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* Create a two-column grid */
-    gap: 2rem;
-    /* Add some space between the elements */
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead th,
+tbody td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+thead th {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: lightblue;
+}
+
+footer {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    
+    bottom: 0;
+    width: 100%;
+    color: #fff;
 }
