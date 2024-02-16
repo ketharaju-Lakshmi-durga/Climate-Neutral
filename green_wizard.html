@@ -14,11 +14,14 @@
 
         .fleet-entry {
             margin-bottom: 20px;
+            
+         
         }
 
         .green-options-dropdown {
             width: 45%;
             margin-left: 20px;
+        
         }
 
         select {
@@ -43,6 +46,7 @@
        
 
     </div>
+    <button><a href=result.html>Result</a></button>
 
     <script>
         // Retrieve the form data from localStorage
@@ -61,10 +65,10 @@
             fleetEntry.classList.add('fleet-entry');
 
             // Create HTML content for fleet details
-            var fleetDetailsHTML = '<h2>Fleet Details</h2>';
-            fleetDetailsHTML += '<p><strong>' + formData[j].Description + "-"+formData[j].VehicleType+"-"+formData[j].Year+"-"+formData[j].Make+"-"+formData[j].Model+"-"+'</strong></p>';
+            var fleetDetailsHTML=''
+            fleetDetailsHTML += '<p><strong>' + formData[j].Description + "-"+formData[j].VehicleType+"-"+formData[j].Year+"-"+formData[j].Make+"-"+formData[j].Model+'</strong></p>';
          
-            fleetDetailsHTML += '<hr>';
+           <!-- fleetDetailsHTML += '<hr>';-->
 
             // Add the HTML content to the fleet entry
             fleetEntry.innerHTML = fleetDetailsHTML;
@@ -89,6 +93,8 @@
             };
 
             var vehicleType = formData[j].VehicleType;
+            console.log(vehicleType)
+            console.log(formData[j].AnnualVKT)
             var flexFuel = formData[j].FlexFuel;
             var fuelType = formData[j].FuelType;
 
@@ -112,6 +118,7 @@
 
             // Append the green options dropdown to the fleet entry
             fleetEntry.appendChild(greenOptionsDropdown);
+            
         }
     </script>
 </body>
