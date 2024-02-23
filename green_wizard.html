@@ -41,29 +41,15 @@ header h1 {
             text-align: center;
             color: #333;
         }
+        
 
         .fleet-entry {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    display: inline-block;
-    width: calc(25% - 20px); /* 25% width for each element with 20px margin between elements */
-    margin-left: 20px;
-    margin-right: 20px;
-    vertical-align: top;
-    box-sizing: border-box;
-}
+            margin-bottom: 20px;
+        }
 
         .green-options-dropdown {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
-            box-sizing: border-box;
+            width: 45%;
+            margin-left: 20px;
         }
 
         select {
@@ -136,6 +122,7 @@ header h1 {
         <div class="row" id="row1"></div>
         <!-- Content will be added dynamically based on user input -->
     </div>
+    <button><a href=result.html>Result</a></button>
 
     <button onclick="redirectToResults()">Submit</button>
     <footer>
@@ -168,16 +155,8 @@ header h1 {
 
             // Create HTML content for fleet details
             var fleetDetailsHTML = '<h2>Fleet Details</h2>';
-            fleetDetailsHTML += '<p><strong>' + data.Description + '</strong></p>';
-            fleetDetailsHTML += '<p>Vehicle Type: ' + data.VehicleType + '</p>';
-            fleetDetailsHTML += '<p>Year: ' + data.Year + '</p>';
-            fleetDetailsHTML += '<p>Make: ' + data.Make + '</p>';
-            fleetDetailsHTML += '<p>Model: ' + data.Model + '</p>';
-            fleetDetailsHTML += '<p>Annual VKT: ' + data.AnnualVKT + '</p>';
-            fleetDetailsHTML += '<p>Annual Fuel: ' + data.AnnualFuel + '</p>';
-            fleetDetailsHTML += '<p>Fuel Type: ' + data.FuelType + '</p>';
-            fleetDetailsHTML += '<p>Flex Fuel: ' + data.FlexFuel + '</p>';
-            fleetDetailsHTML += '<p>Vehicle Quantity: ' + data.VehicleQuantity + '</p>';
+            fleetDetailsHTML += '<p><strong>' + formData[j].Description + "-"+formData[j].VehicleType+"-"+formData[j].Year+"-"+formData[j].Make+"-"+formData[j].Model+"-"+'</strong></p>';
+         
             fleetDetailsHTML += '<hr>';
 
             // Add the HTML content to the fleet entry
@@ -192,7 +171,7 @@ header h1 {
             return fleetEntry;
         }
 
-        // Function to create green options dropdown
+        // Function to create green wizard -options dropdown
         function createGreenOptionsDropdown(data) {
             var greenOptionsDropdown = document.createElement('select');
             greenOptionsDropdown.classList.add('green-options-dropdown');
@@ -208,9 +187,9 @@ header h1 {
                 "LightDutyTruckYesDiesel": ['B20 Diesel Usage', 'Replace w/ EV Light Duty Truck', 'Replace w/ Biofuel E85 Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel E85 Car']
             };
 
-            var vehicleType = data.VehicleType;
-            var flexFuel = data.FlexFuel;
-            var fuelType = data.FuelType;
+            var vehicleType = formData[j].VehicleType;
+            var flexFuel = formData[j].FlexFuel;
+            var fuelType = formData[j].FuelType;
 
             var key = vehicleType + (flexFuel.toLowerCase() === 'yes' ? 'Yes' : 'No') + fuelType;
 
@@ -236,39 +215,9 @@ header h1 {
                 greenOptionsDropdown.appendChild(option);
             }
 
-            return greenOptionsDropdown;
+            // Append the green options dropdown to the fleet entry
+            fleetEntry.appendChild(greenOptionsDropdown);
         }
-
-       // Function to redirect to results.html
-    function redirectToResults() {
-        // Check if all green options are selected
-        var allOptionsSelected = checkGreenOptions();
-
-        // If all options are selected, redirect to results.html
-        if (allOptionsSelected) {
-            // You can customize the redirection URL as needed
-            window.location.href = 'results.html';
-        } else {
-            // Alert the user or handle the case where options are missing
-            alert('Please select green options for all fleet entries before submitting.');
-            // Alternatively, you can display an error message on the page
-            // or take any other appropriate action.
-        }
-    }
-
-    // Function to check if all green options are selected
-    function checkGreenOptions() {
-        var fleetEntries = document.getElementsByClassName('fleet-entry');
-        for (var i = 0; i < fleetEntries.length; i++) {
-            var greenOptionsDropdown = fleetEntries[i].querySelector('.green-options-dropdown');
-            if (greenOptionsDropdown.value === '') {
-                // Green option not selected for this entry
-                return false;
-            }
-        }
-        // All green options are selected
-        return true;
-    }
     </script>
 </body>
 

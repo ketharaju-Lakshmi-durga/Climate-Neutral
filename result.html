@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Neutral :: Index</title>
+   <!-- <link rel="stylesheet" href="styles.css">-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body{
+            width:40%;
+            height:30%;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Total Emissions by vehicle</h1>
+        <canvas id="emissionsChart"></canvas>
+    </div>
+    <div id="wrapper1">
+        <h1>Total Emissions by vehicle</h1>
+        <canvas id="emissionsChart"></canvas>
+    </div>
+
+    <script>
+        // Retrieve the form data from localStorage
+        var formData = JSON.parse(localStorage.getItem('formData'));
+
+        // Data for the chart
+        var labels = [];
+        var data = [];
+
+        // Loop through form data to create entries and populate chart data
+        for (var j = 0; j < formData.length; j++) {
+            // Calculate and store emissions intensity for the chart
+           // <!--Fuel Efficiency (L/km) =
+//Annual Fuel Consumption / Annual Vehicle Kilometer Traveled-->
+fuelEfficiency=parseInt(formData[j].AnnualFuel)/parseInt(formData[j].AnnualVKT)
+//Annual Emissions (gCO2e) = Annual Fuel Consumption * Fuel Emissions Coefficient
+fuelemissioncoeff=2.8;
+var annualEmissions=0;
+        annualEmissions=parseInt(formData[j].AnnualFuel)*fuelemissioncoeff;
+            labels.push(formData[j].Description);
+            data.push(annualEmissions);
+        }
+
+        // Create the chart
+        var ctx = document.getElementById('emissionsChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar', // Set the chart type to horizontal bar
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Annual Emissions (gCO2e)',
+                    data: data,
+                    backgroundColor: 'rgba(12, 28, 129, 1)',
+                    
+                    borderColor: 'rgba(12, 28, 129, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y', // Display bars horizontally
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Annual Emissions (gCO2e)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Vehicle Description'
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
