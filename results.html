@@ -19,6 +19,22 @@
             width: 80%;
             margin: 20px auto;
         }
+
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 
@@ -40,9 +56,32 @@
         <canvas id="avgEmissionsIntensityFleetChart"></canvas>
     </div>
 
+    <div class="table-container">
+        <h1>Emissions Savings Table</h1>
+        <table id="emissionsSavingsTable">
+            <thead>
+                <tr>
+                    <th>Fleet Vehicle</th>
+                    <th>Green Options</th>
+                    <th>Emission Savings (tCO2)</th>
+                    <th>% Savings</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+
     <script>
+
         // Retrieve the form data from localStorage
         var formData = JSON.parse(localStorage.getItem('formData'));
+
+        // Retrieve the green options data from local storage
+        var greenOptionsData = JSON.parse(localStorage.getItem('greenOptionsData'));
+        console.log("greenoptions", greenOptionsData);
+
 
         // Calculate emissions and build chart data
         var chartData = {
@@ -109,6 +148,8 @@
             }
         });
 
+
+
         // Display Emissions Intensity chart
         var emissionsIntensityCtx = document.getElementById('emissionsIntensityChart').getContext('2d');
         var emissionsIntensityChart = new Chart(emissionsIntensityCtx, {
@@ -131,11 +172,6 @@
                 }
             }
         });
-
-        
-//AVERAGE EMISSIONS NOT WORKING
-
-
 
 
         // Display Avg Emissions Intensity Fleet chart
@@ -160,6 +196,125 @@
                 }
             }
         });
+
+        // Check if greenOptionsData is not null
+        if (greenOptionsData) {
+            // Populate Emissions Savings Table
+            var tableBody = document.querySelector('#emissionsSavingsTable tbody');
+            for (var j = 0; j < greenOptionsData.length; j++) {
+                var row = tableBody.insertRow();
+                var descriptionCell = row.insertCell(0);
+                var greenOptionsCell = row.insertCell(1);
+                var emissionSavingsCell = row.insertCell(2);
+                var percentSavingsCell = row.insertCell(3);
+
+                // Get the current data object
+                var data = greenOptionsData[j];
+                //console.log("greenoptions", greenOptionsData[j]);
+
+                // Check if the necessary fields are defined in the data object
+                if (data && data.fleetVehicle && data.fleetVehicle.description && data.fleetVehicle.make && data.fleetVehicle.year && data.fleetVehicle.model) {
+                    // Concatenate description with additional information
+                    var descriptionText = data.description + ' ' + data.VehicleType+ ' ' + data.Make + ' ' + data.Year + ' ' + data.Model;
+
+
+                    // Populate description cell
+                    descriptionCell.textContent = descriptionText;
+                }
+
+                // Populate green options cell
+                greenOptionsCell.textContent = data.greenOptions;
+
+                // Calculate emission savings and percentage savings based on green options
+                var emissionSavings = 0; // You need to calculate these values based on your logic
+                var percentSavings = 0; // You need to calculate these values based on your logic
+
+                // Populate emission savings and percentage savings cells
+                emissionSavingsCell.textContent = emissionSavings.toFixed(2); // Emission Savings (tCO2)
+                percentSavingsCell.textContent = percentSavings.toFixed(2) + '%'; // % Savings
+            }
+        } else {
+            // Handle the case where greenOptionsData is null or empty
+            console.error('No green options data found in local storage.');
+        }
+
+        calculateSavings(formData, greenOptionsData);
+
+        function calculateSavings(formData, greenOptionsData) {
+            if (greenOptionsData && greenOptionsData.length > 0) {
+                for (var j = 0; j < greenOptionsData.length; j++) {
+                    var data = greenOptionsData[j];
+                    var annualFuelConsumption, annualVKT, fuelType, vehicleQuantity;
+                    var emissionSavings = 0;
+                    var percentSavings = 0;
+
+                    for (var i = 0; i < formData.length; i++) {
+                        if (formData[i].Description === data.description) {
+                            annualFuelConsumption = formData[i].AnnualFuel;
+                            annualVKT = formData[i].AnnualVKT;
+                            fuelType = formData[i].FuelType;
+                            vehicleQuantity = formData[i].vehicleQuantity;
+                            break;
+                        }
+                    }
+
+                    var fuelEmissionsCoefficient;
+
+                    switch (fuelType) {
+                        case 'Gasoline':
+                            fuelEmissionsCoefficient = 2299;
+                            break;
+                        case 'E10 Gasoline':
+                            fuelEmissionsCoefficient = 2071;
+                            break;
+                        case 'Diesel':
+                            fuelEmissionsCoefficient = 2730;
+                            break;
+                        default:
+                            fuelEmissionsCoefficient = 0;
+                    }
+
+                    var annualEmissions = annualFuelConsumption * fuelEmissionsCoefficient;
+                    var emissionsIntensity = annualEmissions / annualVKT;
+
+                    switch (data.greenOptions) {
+                        case 'Replace w/ EV Vehicle':
+                            var evEfficiency = 8.9;
+                            var provincialElectricityEmissionsCoefficient = 8.9;
+                            var evEmissionsIntensity = (evEfficiency / 100) * provincialElectricityEmissionsCoefficient;
+                            percentSavings = ((emissionsIntensity - evEmissionsIntensity) / emissionsIntensity) * 100;
+                            break;
+                        case 'E85 Ethanol Usage':
+                            percentSavings = 79;
+                            break;
+                        case 'B20 Diesel Usage':
+                            percentSavings = 15;
+                            break;
+                        default:
+                            percentSavings = 0;
+                            break;
+                    }
+
+                    emissionSavings = (percentSavings / 100) * annualEmissions;
+
+                    // Update table cells with calculated values
+                    var tableRows = document.querySelectorAll('#emissionsSavingsTable tbody tr');
+                    if (tableRows[j]) {
+                        var emissionSavingsCell = tableRows[j].querySelector('td.emission-savings');
+                        var percentSavingsCell = tableRows[j].querySelector('td.percent-savings');
+                        if (emissionSavingsCell && percentSavingsCell) {
+                            emissionSavingsCell.textContent = emissionSavings.toFixed(2);
+                            percentSavingsCell.textContent = percentSavings.toFixed(2) + '%';
+                        }
+                    }
+                }
+            } else {
+                console.error('No green options data found in local storage.');
+            }
+        }
+
+       
+        /*---*/
     </script>
 </body>
 
