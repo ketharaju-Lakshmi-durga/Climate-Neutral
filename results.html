@@ -16,8 +16,10 @@
         }
 
         .chart-container {
-            width: 80%;
-            margin: 20px auto;
+            width: 40%;
+            height: 40%;
+            margin: 20px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -56,7 +58,10 @@
             var annualFuelConsumption = formData[i].AnnualFuel;
             var annualVKT = formData[i].AnnualVKT;
             var fuelType = formData[i].FuelType;
-            var vehicleQuantity = formData[i].vehicleQuantity;
+            var vehicleQuantity = parseInt(formData[i].VehicleQuantity);
+            console.log("Vehicle Quantity")
+            console.log(vehicleQuantity)
+        
             var fuelEmissionsCoefficient;
 
             // Determine fuel emissions coefficient based on fuel type
