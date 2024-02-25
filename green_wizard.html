@@ -247,6 +247,7 @@ header h1 {
         // If all options are selected, redirect to results.html
         if (allOptionsSelected) {
             // You can customize the redirection URL as needed
+            saveSelectedGreenOptions();
             window.location.href = 'results.html';
         } else {
             // Alert the user or handle the case where options are missing
@@ -255,6 +256,20 @@ header h1 {
             // or take any other appropriate action.
         }
     }
+    // Function to save selected green options to localStorage
+function saveSelectedGreenOptions() {
+    var fleetEntries = document.getElementsByClassName('fleet-entry');
+    var selectedOptions = [];
+
+    for (var i = 0; i < fleetEntries.length; i++) {
+        var greenOptionsDropdown = fleetEntries[i].querySelector('.green-options-dropdown');
+        var selectedOption = greenOptionsDropdown.value;
+
+        selectedOptions.push(selectedOption);
+    }
+
+    localStorage.setItem('selectedGreenOptions', JSON.stringify(selectedOptions));
+}
 
     // Function to check if all green options are selected
     function checkGreenOptions() {
