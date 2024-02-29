@@ -1,1 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Vehicle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+     <style>
+        body, html {
+            font-family: 'Poppins', sans-serif; /* Use your preferred font */
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #0c1c81, #2d479e);
+}
+
+        header {
+            background-color: #333;
+            padding-top: 20px;
+    padding-bottom: 1px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+        /* body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to right, #0c1c81, #2d479e);
+        } */
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .fleet-entry {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: inline-block;
+    width: calc(25% - 20px); /* 25% width for each element with 20px margin between elements */
+    margin-left: 20px;
+    margin-right: 20px;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+        .green-options-dropdown {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 15px 0;
+        }
+        .fleetContainer {
+    display: flex;
+    flex-wrap: wrap; /* Wrap content to the next row */
+    justify-content: space-between; /* Add space between the stacks */
+    max-width: 800px;
+    margin: 20px auto;
+}
+        footer {
+            background-color: #333;
+    padding: 10px;
+    text-align: center;
+    
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Climate Neutral</h1>
+        <!-- Add any other header content here -->
+    </header>
+   
+
+    <div id="fleetContainer">
+        <div class="row" id="row1"></div>
+        <!-- Content will be added dynamically based on user input -->
+    </div>
+
+    <button onclick="redirectToResults()">Submit</button>
+    <footer>
+        <p>&copy; 2024 Climate Neutral. All rights reserved.</p>
+        <!-- Add any other footer content here -->
+    </footer>
+    <script>
+        // Retrieve the form data from localStorage
+        var formData = JSON.parse(localStorage.getItem('formData'));
+
+        // Display or use the formData as needed
+        console.log(formData);
+
+        // Get the container for fleet entries
+        var fleetContainer = document.getElementById('fleetContainer');
+
+        // Loop through form data to create entries
+        for (var j = 0; j < formData.length; j++) {
+            // Create a div for each fleet entry
+            var fleetEntry = createFleetEntry(formData[j], j);
+
+            // Append the fleet entry to the container
+            fleetContainer.appendChild(fleetEntry);
+        }
+
+        // Function to create fleet entry HTML
+        function createFleetEntry(data, index) {
+            var fleetEntry = document.createElement('div');
+            fleetEntry.classList.add('fleet-entry');
+
+            // Create HTML content for fleet details
+            var fleetDetailsHTML = '<h2>Fleet Details</h2>';
+            fleetDetailsHTML += '<p><strong>' + data.Description + '</strong></p>';
+            fleetDetailsHTML += '<p>Vehicle Type: ' + data.VehicleType + '</p>';
+            fleetDetailsHTML += '<p>Year: ' + data.Year + '</p>';
+            fleetDetailsHTML += '<p>Make: ' + data.Make + '</p>';
+            fleetDetailsHTML += '<p>Model: ' + data.Model + '</p>';
+            fleetDetailsHTML += '<p>Annual VKT: ' + data.AnnualVKT + '</p>';
+            fleetDetailsHTML += '<p>Annual Fuel: ' + data.AnnualFuel + '</p>';
+            fleetDetailsHTML += '<p>Fuel Type: ' + data.FuelType + '</p>';
+            fleetDetailsHTML += '<p>Flex Fuel: ' + data.FlexFuel + '</p>';
+            fleetDetailsHTML += '<p>Vehicle Quantity: ' + data.VehicleQuantity + '</p>';
+            fleetDetailsHTML += '<hr>';
+
+            // Add the HTML content to the fleet entry
+            fleetEntry.innerHTML = fleetDetailsHTML;
+
+            // Get the dropdown element for each fleet entry
+            var greenOptionsDropdown = createGreenOptionsDropdown(data);
+
+            // Append the green options dropdown to the fleet entry
+            fleetEntry.appendChild(greenOptionsDropdown);
+
+            return fleetEntry;
+        }
+
+        // Function to create green options dropdown
+        function createGreenOptionsDropdown(data) {
+            var greenOptionsDropdown = document.createElement('select');
+            greenOptionsDropdown.classList.add('green-options-dropdown');
+            greenOptionsDropdown.name = 'greenOptions';
+            greenOptionsDropdown.id = 'greenOptions' + j;
+
+            var conditions = {
+                "CarYesGasoline": ['Replace w/ EV Vehicle', 'E85 Ethanol Usage'],
+                "CarNoGasoline": ['Replace w/ EV Car', 'Replace w/ Biofuel Car E85'],
+                "LightDutyTruckNoGasoline": ['Replace w/ EV Light Duty Truck', 'Replace w/ Biofuel E85 Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel Car'],
+                "LightDutyTruckYesGasoline": ['E85 Biofuel Usage', 'Replace w/ EV Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel Car'],
+                "LightDutyTruckNoDiesel": ['Replace w/ EV Light Duty Truck', 'Replace w/ Biofuel E85 Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel E85 Car'],
+                "LightDutyTruckYesDiesel": ['B20 Diesel Usage', 'Replace w/ EV Light Duty Truck', 'Replace w/ Biofuel E85 Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel E85 Car']
+            };
+
+            var vehicleType = data.VehicleType;
+            var flexFuel = data.FlexFuel;
+            var fuelType = data.FuelType;
+
+            var key = vehicleType + (flexFuel.toLowerCase() === 'yes' ? 'Yes' : 'No') + fuelType;
+
+            var greenOptions = conditions[key] || [];
+            
+            if (greenOptions.length === 0) {
+        var defaultOption = document.createElement('option');
+        defaultOption.value = 'NoGreenOption';
+        defaultOption.text = 'No Green Option Available';
+        greenOptionsDropdown.appendChild(defaultOption);
+    }
+            // Add a default option
+            var defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.text = 'Select Green Option';
+            greenOptionsDropdown.appendChild(defaultOption);
+
+            // Add green options dynamically
+            for (var i = 0; i < greenOptions.length; i++) {
+                var option = document.createElement('option');
+                option.value = greenOptions[i];
+                option.text = greenOptions[i];
+                greenOptionsDropdown.appendChild(option);
+            }
+
+            return greenOptionsDropdown;
+        }
+
+       // Function to redirect to results.html
+    function redirectToResults() {
+        // Check if all green options are selected
+        var allOptionsSelected = checkGreenOptions();
+
+        // If all options are selected, redirect to results.html
+        if (allOptionsSelected) {
+            // You can customize the redirection URL as needed
+            saveSelectedGreenOptions();
+            window.location.href = 'results.html';
+        } else {
+            // Alert the user or handle the case where options are missing
+            alert('Please select green options for all fleet entries before submitting.');
+            // Alternatively, you can display an error message on the page
+            // or take any other appropriate action.
+        }
+    }
+    // Function to save selected green options to localStorage
+function saveSelectedGreenOptions() {
+    var fleetEntries = document.getElementsByClassName('fleet-entry');
+    var selectedOptions = [];
+
+    for (var i = 0; i < fleetEntries.length; i++) {
+        var greenOptionsDropdown = fleetEntries[i].querySelector('.green-options-dropdown');
+        var selectedOption = greenOptionsDropdown.value;
+
+        selectedOptions.push(selectedOption);
+    }
+
+    localStorage.setItem('selectedGreenOptions', JSON.stringify(selectedOptions));
+}
+
+    // Function to check if all green options are selected
+    function checkGreenOptions() {
+        var fleetEntries = document.getElementsByClassName('fleet-entry');
+        for (var i = 0; i < fleetEntries.length; i++) {
+            var greenOptionsDropdown = fleetEntries[i].querySelector('.green-options-dropdown');
+            if (greenOptionsDropdown.value === '') {
+                // Green option not selected for this entry
+                return false;
+            }
+        }
+        // All green options are selected
+        return true;
+    }
+    </script>
+</body>
+
+</html>
