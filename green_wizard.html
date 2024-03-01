@@ -239,65 +239,36 @@ header h1 {
             return greenOptionsDropdown;
         }
 
-        // Function to redirect to results.html
-        function redirectToResults() {
-            // Check if all green options are selected
-            var allOptionsSelected = checkGreenOptions();
+       // Function to redirect to results.html
+    function redirectToResults() {
+        // Check if all green options are selected
+        var allOptionsSelected = checkGreenOptions();
 
-            // If all options are selected, redirect to results.html
-            if (allOptionsSelected) {
-                // Get green options data for each fleet entry
-                // Get green options data for each fleet entry
-                var greenOptionsData = [];
-                var fleetEntries = document.getElementsByClassName('fleet-entry');
-                for (var i = 0; i < fleetEntries.length; i++) {
-                    var fleetEntry = fleetEntries[i];
-                    var description = fleetEntry.querySelector('strong').textContent;
-                    var descriptionParts = description.split(' ');
-                    var VehicleType = descriptionParts[0];
-                    var Year = descriptionParts[1];
-                    var Make = descriptionParts[2];
-                    var Model = descriptionParts.slice(3).join(' '); // Join remaining parts as model
+        // If all options are selected, redirect to results.html
+        if (allOptionsSelected) {
+            // You can customize the redirection URL as needed
+            window.location.href = 'results.html';
+        } else {
+            // Alert the user or handle the case where options are missing
+            alert('Please select green options for all fleet entries before submitting.');
+            // Alternatively, you can display an error message on the page
+            // or take any other appropriate action.
+        }
+    }
 
-                    var greenOptionsDropdown = fleetEntry.querySelector('.green-options-dropdown');
-                    var selectedOption = greenOptionsDropdown.value;
-
-                    // Construct the greenOptionsData object and push it to the array
-                    greenOptionsData.push({
-                        description: description,
-                        VehicleType: VehicleType,
-                        Year: Year,
-                        Make: Make,
-                        Model: Model,
-                        greenOptions: selectedOption
-                    });
-                }
-
-                // Store green options data in local storage
-                localStorage.setItem('greenOptionsData', JSON.stringify(greenOptionsData));
-
-                window.location.href = 'results.html';
-            } else {
-                // Alert the user or handle the case where options are missing
-                alert('Please select green options for all fleet entries before submitting.');
-                // Alternatively, you can display an error message on the page
-                // or take any other appropriate action.
+    // Function to check if all green options are selected
+    function checkGreenOptions() {
+        var fleetEntries = document.getElementsByClassName('fleet-entry');
+        for (var i = 0; i < fleetEntries.length; i++) {
+            var greenOptionsDropdown = fleetEntries[i].querySelector('.green-options-dropdown');
+            if (greenOptionsDropdown.value === '') {
+                // Green option not selected for this entry
+                return false;
             }
         }
-
-        // Function to check if all green options are selected
-        function checkGreenOptions() {
-            var fleetEntries = document.getElementsByClassName('fleet-entry');
-            for (var i = 0; i < fleetEntries.length; i++) {
-                var greenOptionsDropdown = fleetEntries[i].querySelector('.green-options-dropdown');
-                if (greenOptionsDropdown.value === '') {
-                    // Green option not selected for this entry
-                    return false;
-                }
-            }
-            // All green options are selected
-            return true;
-        }
+        // All green options are selected
+        return true;
+    }
     </script>
 </body>
 
