@@ -1,44 +1,54 @@
 /* styles.css */
 
-header {
-    background-color: #333;
-    padding: 20px;
-    text-align: center;
+nav {
+    background-color: #0000001a;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: start;
 }
 
 header h1 {
     margin: 0;
     font-size: 24px;
+    color: #333;
 }
+
 body {
-    font-family: 'Poppins', sans-serif; /* Use your preferred font */
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #0c1c81, #2d479e); /* Blue gradient background */
-    color: #fff; /* Set text color to white for better visibility */
+    /* Set text color to white for better visibility */
 }
 
 #wrapper {
-    max-width: 800px;
-    margin: 20px auto;
+    max-width: 600px;
+    margin: 20px 100px;
+    align-content: center;
+    align-items: center;
 }
 
 form {
-    background-color: rgba(255, 255, 255, 0.8); /* Glass appearance background */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Glass appearance background */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    opacity: 0; /* Initially set opacity to 0 for fade-in effect */
-    animation: fadeIn 1s ease-in-out forwards; /* Animation properties */
+    opacity: 0;
+    /* Initially set opacity to 0 for fade-in effect */
+    animation: fadeIn 1s ease-in-out forwards;
+    /* Animation properties */
 }
 
 /* Keyframes for fade-in animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-20px); /* Optional: Slide up effect */
+        transform: translateY(-20px);
+        /* Optional: Slide up effect */
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -46,7 +56,7 @@ form {
 }
 
 label {
-    display: block;
+    /* display: block; */
     margin-bottom: 5px;
     color: #333;
 }
@@ -54,7 +64,6 @@ label {
 select,
 input,
 button {
-    width: 100%;
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -82,16 +91,31 @@ table {
     margin-top: 20px;
 }
 
+#entryTable {
+    /* width: 100%; */
+    padding: auto;
+    align-self: center;
+    justify-self: center;
+    margin-top: 20px;
+    /* box-sizing: content-box; */
+}
+
 thead th,
 tbody td {
-    padding: 10px;
-    text-align: left;
+    font-size: small;
+    font-weight: normal;
+    padding-right: 10px;
+    padding-left: 10px;
     border: 1px solid #ddd;
+    text-align: center;
+    justify-content: center;
+    /* width: max-content; */
+
 }
 
 thead th {
-    background-color: #4caf50;
-    color: #fff;
+    /* background-color: #4caf50; */
+    /* color: #fff; */
 }
 
 tbody tr:nth-child(even) {
@@ -102,8 +126,69 @@ footer {
     background-color: #333;
     padding: 10px;
     text-align: center;
-    
+
     bottom: 0;
     width: 100%;
     color: #fff;
+}
+
+#fleetForm .two-fields {
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+    margin-bottom: 20px;
+
+}
+
+#fleetForm .three-fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+    margin-bottom: 20px;
+
+}
+
+#fleetForm label {
+    justify-self: end;
+    padding-right: 10px;
+}
+
+#fleetForm select,
+#fleetForm input[type="text"],
+#fleetForm input[type="number"] {
+    width: 100%;
+}
+
+#entryTable {
+    margin-top: 20px;
+}
+
+#drop-area {
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#img-view {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 2px dashed #bbb5ff;
+    background: #f7f8ff;
+}
+
+#img-view img {
+    width: 10%;
+    margin-top: 25px;
+}
+
+#img-view span {
+    font-size: small;
+    /* display: flex; */
+    color: #b3b3b3;
+    margin-bottom: 10px;
 }
