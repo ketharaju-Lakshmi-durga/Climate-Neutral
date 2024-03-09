@@ -16,6 +16,8 @@
 
 
 <body>
+    
+    
     <div id="wrapper">
         <form id="fleetForm">
             <label for="input-file" id="drop-area">
@@ -109,7 +111,7 @@
 
         </form>
         <button type="button" onclick="addEntry()">ADD</button>
-
+        <input type="button" value="Reset" onclick="resetForm()">
         <!-- Display table for selected entries -->
         <table id="entryTable" border="1">
             <thead>
@@ -124,6 +126,7 @@
                     <th>Fuel Type</th>
                     <th>Flex Fuel</th>
                     <th>Vehicle Quantity</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="entryTableBody"></tbody>
@@ -151,7 +154,7 @@
             var flexfuel = document.getElementById('flex_fuel').value;
             var fuelType = document.getElementById('fuelType').value;
             var Province = document.getElementById('Province').value;
-
+            
             // https://www.youtube.com/watch?v=5Fws9daTtIs&t=168s
             // const dropArea = document.getElementById('drop-area');
             // const inpuFile = document.getElementById('inpt-file');
@@ -183,6 +186,7 @@
                 <td>${fuelType}</td>
                 <td>${flexfuel}</td>
                 <td>${vehicleQuantity}</td>
+                <td><button onclick=editRow(this)>Edit</button> <button onclick=deleteRow(this)>Delete</button></td>
             `;
 
             // Append the row to the table body
@@ -234,6 +238,46 @@
             window.location.href = 'green_wizard.html';
 
         }
+        function resetForm() {
+            document.getElementById("fleetForm").reset();
+        }
+        function editRow(button) {
+            let row = button.parentNode.parentNode;
+        
+            let description=row.cells[0].innerText;
+            let vehicleType=row.cells[1].innerText;
+            let year=row.cells[2].innerText;
+            let make=row.cells[3].innerText;
+            let model=row.cells[4].innerText;
+            let annualVKT=row.cells[5].innerText;
+            let annualFuel=row.cells[6].innerText;
+            let fuelType=row.cells[7].innerText;
+            let  flexFuel=row.cells[8].innerText;
+            let vehicleQuantity= row.cells[9].innerText;
+            let province = document.getElementById('Province').value;
+            //let province =  document.getElementById('Province').innerText;
+
+            
+
+            
+            document.getElementById('vehicleDescription').value = description;
+            document.getElementById('vehicleType').value = vehicleType;
+            document.getElementById('year').value = year;
+            document.getElementById('make').value = make;
+            document.getElementById('model').value = model;
+            document.getElementById('annual_vkt').value = annualVKT;
+            document.getElementById('vehicleQuantity').value = vehicleQuantity;
+            document.getElementById('flex_fuel').value = flexFuel;
+            document.getElementById('annual_fuel').value = annualFuel;
+            document.getElementById('Province').value=province;
+            row.remove();
+        }
+
+        function deleteRow(button) {
+            let row = button.parentNode.parentNode;
+            row.remove();
+        }
+
     </script>
 </body>
 
