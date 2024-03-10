@@ -186,7 +186,10 @@
                 <td>${fuelType}</td>
                 <td>${flexfuel}</td>
                 <td>${vehicleQuantity}</td>
-                <td><button onclick=editRow(this)>Edit</button> <button onclick=deleteRow(this)>Delete</button></td>
+                <td style="white-space: nowrap;">
+                    <button onclick="editRow(this)" style="display: inline-block;">Edit</button>
+                    <button onclick="deleteRow(this)" style="display: inline-block;">Delete</button>
+                </td>
             `;
 
             // Append the row to the table body
@@ -243,7 +246,7 @@
         }
         function editRow(button) {
             let row = button.parentNode.parentNode;
-        
+        console.log(row)
             let description=row.cells[0].innerText;
             let vehicleType=row.cells[1].innerText;
             let year=row.cells[2].innerText;
@@ -254,12 +257,13 @@
             let fuelType=row.cells[7].innerText;
             let  flexFuel=row.cells[8].innerText;
             let vehicleQuantity= row.cells[9].innerText;
-            let province = document.getElementById('Province').value;
-            //let province =  document.getElementById('Province').innerText;
+            
+            
+            let province =  document.getElementById('Province').innerText;
 
             
 
-            
+            document.getElementById('Province').value=province;
             document.getElementById('vehicleDescription').value = description;
             document.getElementById('vehicleType').value = vehicleType;
             document.getElementById('year').value = year;
@@ -272,6 +276,7 @@
             document.getElementById('Province').value=province;
             row.remove();
         }
+        
 
         function deleteRow(button) {
             let row = button.parentNode.parentNode;
