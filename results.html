@@ -8,15 +8,37 @@
     <style>
             body {
                 font-family: Arial, sans-serif;
-                margin: 20px;
+                margin: 0;
+                padding: 0;
             }
 
-            h1,
-            h2 {
-                text-align: center;
-            }
+    nav {
+    background-color: #0000001a;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align:center;
+     }
 
-            .chart-container {
+    header h1 {
+          margin: 0;
+          font-size: 24px;
+          color:blue;
+    }
+
+        /* body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to right, #0c1c81, #2d479e);
+        } */
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+       
+        .chart-container {
                 width: 40%;
                 height: 40%;
                 margin: 20px;
@@ -76,20 +98,105 @@
                 left: 20px;
                 top: 20px;
             }
-       
+  .progress-bar-container {
+    padding: 5px 0;
+    background-color: #fff; /* or any color that matches your design */
+    max-width: 600px; /* You can adjust this as needed */
+    margin: auto; /* This centers the progress bar */
+}
 
+.progress-bar {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0; /* Removes default margin */
+}
+
+.progress-bar li {
+    position: relative;
+    flex-grow: 1;
+    text-align: center;
+    padding: 5px;
+    font-size: 0.8em; /* Smaller font size */
+    color:floralwhite;
+    background-color:blue; /* Inactive step color */
+}
+
+.progress-bar li:before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    top: -20px; /* Adjusted for smaller circle size */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    width: 20px; /* Smaller circle size */
+    height: 20px; /* Smaller circle size */
+    text-align: center;
+    line-height: 20px; /* Adjusted for smaller circle size */
+    border-radius: 50%;
+    font-size: 0.75em; /* Smaller text in circle */
+}
+
+.progress-bar li:after {
+    content: '';
+    position: absolute;
+    top: 8px; /* Adjusted for alignment with the smaller circle */
+    left: -50%; /* Starts from the middle of the circle */
+    width: 100%;
+    height: 2px; /* Thinner line to connect circles */
+    background-color: #333; /* Connects steps */
+    z-index: -1;
+}
+
+.progress-bar li:first-child:after {
+    content: none;
+}
+
+.progress-bar li.current {
+    background-color: #4caf50; /* Highlight for the current step */
+}
+
+.progress-bar li.current:before {
+    background-color: #4caf50; /* Highlight for the current step number */
+}
+
+.progress-bar li.completed {
+    background-color: #aaa; /* Color for completed steps */
+}
+
+.progress-bar li.completed:before {
+    background-color: #aaa; /* Color for completed step numbers */
+}
+
+.progress-bar li.completed:after {
+    background-color: #aaa; /* Color for completed line */
+}
     </style>
   </head>
 
   <body>
-
+    <header>
+        <nav>
+             <h1>Final results</h1>
+        </nav>
+    </header>  
       <div class="button-container">
         <button id="printButton" class="button">🖨️ Print</button>
         <button id="saveButton" class="button">💾 Save</button>
     </div>
     <button id="backButton" class="button">🔙 Back</button>
+   <div class="progress-bar-container">
+    <ol class="progress-bar">
+        <li class="completed">Input Wizard</li>
+        <li class="completed">Green Options Wizard</li>
+        <li class="current">Final Results</li>
+    </ol>
+</div>
     <div id="pdfContent">
-        <h1>Results</h1>
     <!-- Container for the Total Emissions chart -->
     <div class="chart-container">
       <canvas id="totalEmissionsChart"></canvas>
