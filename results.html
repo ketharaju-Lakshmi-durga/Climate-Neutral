@@ -1,72 +1,95 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <title>Results</title>
     <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-      }
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
 
-      h1,
-      h2 {
-        text-align: center;
-      }
+            h1,
+            h2 {
+                text-align: center;
+            }
 
-      .chart-container {
-        width: 40%;
-        height: 40%;
-        margin: 20px;
-        display: inline-block;
-      }
-      table {
-        width: 80%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        animation: fadeIn 1s forwards;
-        margin: auto;
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
+            .chart-container {
+                width: 40%;
+                height: 40%;
+                margin: 20px;
+                display: inline-block;
+            }
 
-      th,
-      td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-      }
+            table {
+                width: 80%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                opacity: 0;
+                animation: fadeIn 1s forwards;
+                margin: auto;
+            }
 
-      th,
-      td {
-        background-color: rgb(54, 191, 222);
-        text-align: center;
-      }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
 
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
+                to {
+                    opacity: 1;
+                }
+            }
 
-      tr:hover {
-        background-color: #ddd;
-      }
+            th,
+            td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+                background-color: rgb(54, 191, 222);
+                text-align: center;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            tr:hover {
+                background-color: #ddd;
+            }
+
+            .button-container {
+                text-align: right;
+                margin: 20px;
+            }
+
+            .button {
+                margin-left: 10px;
+            }
+
+            #backButton {
+                position: absolute;
+                left: 20px;
+                top: 20px;
+            }
+       
+
     </style>
   </head>
 
   <body>
-    <h1>Results</h1>
 
+      <div class="button-container">
+        <button id="printButton" class="button">🖨️ Print</button>
+        <button id="saveButton" class="button">💾 Save</button>
+    </div>
+    <button id="backButton" class="button">🔙 Back</button>
+    <div id="pdfContent">
+        <h1>Results</h1>
     <!-- Container for the Total Emissions chart -->
     <div class="chart-container">
       <canvas id="totalEmissionsChart"></canvas>
@@ -102,6 +125,7 @@
         </thead>
         <tbody id="entryTableBody"></tbody>
       </table>
+    </div>
     </div>
     <script>
               // Retrieve the form data from localStorage
@@ -410,7 +434,29 @@
                       }
                   }
               });
-          }
+        }
+        // Print button functionality
+        document.getElementById('printButton').addEventListener('click', function () {
+            window.print();
+        });
+        document.getElementById('saveButton').addEventListener('click', function () {
+            var element = document.getElementById('pdfContent');
+            var opt = {
+                margin: [10, 20, 10, 20],
+                filename: 'results.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, backgroundColor: null },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        });
+
+        // Back button functionality
+        document.getElementById('backButton').addEventListener('click', function () {
+            window.history.back();
+        });
+
     </script>
   </body>
 </html>
