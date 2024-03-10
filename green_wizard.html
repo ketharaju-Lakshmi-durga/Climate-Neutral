@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -77,7 +77,7 @@ header h1 {
         }
 
         
-        button {
+        #submitbutton {
             display: block;
             margin: 20px auto;
             padding: 10px 20px;
@@ -122,6 +122,13 @@ header h1 {
     
 }
 
+#backButton {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    margin-left: 10px;
+}
+
     </style>
 </head>
 
@@ -130,14 +137,14 @@ header h1 {
         <h1>Climate Neutral</h1>
         <!-- Add any other header content here -->
     </header>
-   
+   <button id="backButton" class="button">🔙 Back</button>
 
     <div id="fleetContainer">
         <div class="row" id="row1"></div>
         <!-- Content will be added dynamically based on user input -->
     </div>
 
-    <button onclick="redirectToResults()">Submit</button>
+    <button id="submitbutton" onclick="redirectToResults()">Submit</button>
     <footer>
         <p>&copy; 2024 Climate Neutral. All rights reserved.</p>
         <!-- Add any other footer content here -->
@@ -283,7 +290,11 @@ function saveSelectedGreenOptions() {
         }
         // All green options are selected
         return true;
-    }
+        }
+        // Back button functionality
+        document.getElementById('backButton').addEventListener('click', function () {
+            window.history.back();
+        });
     </script>
 </body>
 
