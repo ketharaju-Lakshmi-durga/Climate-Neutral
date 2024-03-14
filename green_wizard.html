@@ -1,388 +1,247 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fleet Vehicle</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-     <style>
-        body, html {
-            font-family: 'Poppins', sans-serif; /* Use your preferred font */
-            margin: 0;
-            padding: 0;
-         }
-        nav {
-            background-color: #0000001a;
-            padding-left: 20px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            text-align:center;
-           }
+    <link rel="stylesheet" type="text/css" href="greenwizard.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allerta&family=Anton&family=Black+Ops+One&family=Calistoga&family=DM+Serif+Display:ital@0;1&family=Luckiest+Guy&family=Noto+Sans+Lao+Looped:wght@100..900&family=Ojuju:wght@200..800&family=Patua+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rammetto+One&family=Rowdies:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-       header h1 {
-           margin: 0;
-           font-size: 24px;
-           color:blue;
-        }
-
-        h1,
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-         .fleet-entry {
-             background-color:#6bafca;
-             padding: 15px;
-             border-radius: 8px;
-             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-             margin-bottom: 20px;
-             display: inline-block;
-             width: calc(25% - 20px); /* 25% width for each element with 20px margin between elements */
-             margin-left: 20px;
-             margin-right: 20px;
-             vertical-align: top;
-             box-sizing: border-box;
-             color:#fff;
-         }
-         @keyframes fadeIn {
-             from { opacity: 0; transform: translateY(20px); }
-             to { opacity: 1; transform: translateY(0); }
-
-         }
-         .fleet-entry-animation {
-             animation: fadeIn 1s ease-out forwards;
-
-         }
-
-        .green-options-dropdown {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color:yellowgreen;
-            box-sizing: border-box;
-        }
-
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
-            box-sizing: border-box;
-        }
-
-        
-        #submitbutton {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        p {
-            margin: 5px 0;
-            color: #555;
-        }
-
-        hr {
-            border: 0;
-            height: 1px;
-            background: #ddd;
-            margin: 15px 0;
-        }
-        .fleetContainer {
-    display: flex;
-    flex-wrap: wrap; /* Wrap content to the next row */
-    justify-content: space-between; /* Add space between the stacks */
-    max-width: 800px;
-    margin: 20px auto;
-}
-        footer {
-            background-color: #333;
-            padding: 10px;
-            text-align: center;
-            bottom: 0;
-            width: 100%;
-            color: #fff;
-
-        }
-
-#backButton {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    margin-left: 10px;
-}
-.progress-bar-container {
-    padding: 5px 0;
-    background-color: #fff; /* or any color that matches your design */
-    max-width: 600px; /* You can adjust this as needed */
-    margin: auto; /* This centers the progress bar */
-}
-
-.progress-bar {
-    counter-reset: step;
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-evenly;
-    margin: 0; /* Removes default margin */
-}
-
-.progress-bar li {
-    position: relative;
-    flex-grow: 1;
-    text-align: center;
-    padding: 5px;
-    font-size: 0.8em; /* Smaller font size */
-    color:floralwhite;
-    background-color:blue; /* Inactive step color */
-}
-
-.progress-bar li:before {
-    counter-increment: step;
-    content: counter(step);
-    position: absolute;
-    top: -20px; /* Adjusted for smaller circle size */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    width: 20px; /* Smaller circle size */
-    height: 20px; /* Smaller circle size */
-    text-align: center;
-    line-height: 20px; /* Adjusted for smaller circle size */
-    border-radius: 50%;
-    font-size: 0.75em; /* Smaller text in circle */
-}
-
-.progress-bar li:after {
-    content: '';
-    position: absolute;
-    top: 8px; /* Adjusted for alignment with the smaller circle */
-    left: -50%; /* Starts from the middle of the circle */
-    width: 100%;
-    height: 2px; /* Thinner line to connect circles */
-    background-color: #333; /* Connects steps */
-    z-index: -1;
-}
-
-.progress-bar li:first-child:after {
-    content: none;
-}
-
-.progress-bar li.current {
-    background-color: #4caf50; /* Highlight for the current step */
-}
-
-.progress-bar li.current:before {
-    background-color: #4caf50; /* Highlight for the current step number */
-}
-
-.progress-bar li.completed {
-    background-color: #aaa; /* Color for completed steps */
-}
-
-.progress-bar li.completed:before {
-    background-color: #aaa; /* Color for completed step numbers */
-}
-
-.progress-bar li.completed:after {
-    background-color: #aaa; /* Color for completed line */
-}
-
-    </style>
-</head>
-
-<body>
+  <body>
     <header>
-        <nav>
-          <h1>Green Options Wizard</h1>
-        </nav>
+      <nav>
+        <a href="#" onclick="goBack()">
+          <img src="static/image/logo.png" alt="Logo" id="logo" />
+        </a>
+        <h1>Green Options Wizard</h1>
+      </nav>
     </header>
     <div class="progress-bar-container">
-    <ol class="progress-bar">
+      <ol class="progress-bar">
         <li class="completed">Input Wizard</li>
         <li class="current">Green Options Wizard</li>
         <li>Final Results</li>
-    </ol>
-</div>
-
-   <button id="backButton" class="button">🔙 Back</button>
-
-    <div id="fleetContainer">
-        <div class="row" id="row1"></div>
-        <!-- Content will be added dynamically based on user input -->
+      </ol>
     </div>
 
-    <button id="submitbutton" onclick="redirectToResults()">Submit</button>
+    <!-- <button id="backButton" class="button">🔙 Back</button> -->
+    <div id="wrapper">
+      <div id="fleetContainer">
+        <div class="row" id="row1"></div>
+        <!-- Content will be added dynamically based on user input -->
+      </div>
+
+      <button id="submitbutton" onclick="redirectToResults()">
+        <i class="fa-solid fa-check"></i> Submit
+      </button>
+    </div>
     <footer>
-        <p>&copy; 2024 Climate Neutral. All rights reserved.</p>
-        <!-- Add any other footer content here -->
+      <p>&copy; 2024 Climate Neutral. All rights reserved.</p>
+      <!-- Add any other footer content here -->
     </footer>
     <script>
-        // Retrieve the form data from localStorage
-        var formData = JSON.parse(localStorage.getItem('formData'));
+      function goBack() {
+        window.history.go(-1); // Go back one page
+      }
 
-        // Display or use the formData as needed
-        console.log(formData);
+      // Retrieve the form data from localStorage
+      var formData = JSON.parse(localStorage.getItem("formData"));
 
-        // Get the container for fleet entries
-        var fleetContainer = document.getElementById('fleetContainer');
+      // Display or use the formData as needed
+      console.log(formData);
 
-        // Loop through form data to create entries
-        for (var j = 0; j < formData.length; j++) {
-            // Create a div for each fleet entry
-            var fleetEntry = createFleetEntry(formData[j], j);
+      // Get the container for fleet entries
+      var fleetContainer = document.getElementById("fleetContainer");
 
-            // Append the fleet entry to the container
-            fleetContainer.appendChild(fleetEntry);
+      // Loop through form data to create entries
+      for (var j = 0; j < formData.length; j++) {
+        // Create a div for each fleet entry
+        var fleetEntry = createFleetEntry(formData[j], j);
+
+        // Append the fleet entry to the container
+        fleetContainer.appendChild(fleetEntry);
+      }
+
+      // Function to create fleet entry HTML
+      function createFleetEntry(data, index) {
+        var fleetEntry = document.createElement("div");
+        fleetEntry.classList.add("fleet-entry");
+
+        // Create HTML content for fleet details
+        var fleetDetailsHTML = "<h2>Fleet Details</h2>";
+        fleetDetailsHTML += "<p><strong>" + data.Description + "</strong></p>";
+        fleetDetailsHTML += "<p>Vehicle Type: " + data.VehicleType + "</p>";
+        fleetDetailsHTML += "<p>Year: " + data.Year + "</p>";
+        fleetDetailsHTML += "<p>Make: " + data.Make + "</p>";
+        fleetDetailsHTML += "<p>Model: " + data.Model + "</p>";
+        fleetDetailsHTML += "<p>Annual VKT: " + data.AnnualVKT + "</p>";
+        fleetDetailsHTML += "<p>Annual Fuel: " + data.AnnualFuel + "</p>";
+        fleetDetailsHTML += "<p>Fuel Type: " + data.FuelType + "</p>";
+        fleetDetailsHTML += "<p>Flex Fuel: " + data.FlexFuel + "</p>";
+        fleetDetailsHTML +=
+          "<p>Vehicle Quantity: " + data.VehicleQuantity + "</p>";
+        fleetDetailsHTML += "<hr>";
+
+        // Add the HTML content to the fleet entry
+        fleetEntry.innerHTML = fleetDetailsHTML;
+
+        // Get the dropdown element for each fleet entry
+        var greenOptionsDropdown = createGreenOptionsDropdown(data);
+
+        // Append the green options dropdown to the fleet entry
+        fleetEntry.appendChild(greenOptionsDropdown);
+
+        return fleetEntry;
+      }
+
+      // Function to create green options dropdown
+      function createGreenOptionsDropdown(data) {
+        var greenOptionsDropdown = document.createElement("select");
+        greenOptionsDropdown.classList.add("green-options-dropdown");
+        greenOptionsDropdown.name = "greenOptions";
+        greenOptionsDropdown.id = "greenOptions" + j;
+
+        var conditions = {
+          CarYesGasoline: ["Replace w/ EV Vehicle", "E85 Ethanol Usage"],
+          CarNoGasoline: ["Replace w/ EV Car", "Replace w/ Biofuel Car E85"],
+          LightDutyTruckNoGasoline: [
+            "Replace w/ EV Light Duty Truck",
+            "Replace w/ Biofuel E85 Light Duty Truck",
+            "Right Size to Car",
+            "Right Size to Biofuel Car",
+          ],
+          LightDutyTruckYesGasoline: [
+            "E85 Biofuel Usage",
+            "Replace w/ EV Light Duty Truck",
+            "Right Size to Car",
+            "Right Size to Biofuel Car",
+          ],
+          LightDutyTruckNoDiesel: [
+            "Replace w/ EV Light Duty Truck",
+            "Replace w/ Biofuel E85 Light Duty Truck",
+            "Right Size to Car",
+            "Right Size to Biofuel E85 Car",
+          ],
+          LightDutyTruckYesDiesel: [
+            "B20 Diesel Usage",
+            "Replace w/ EV Light Duty Truck",
+            "Replace w/ Biofuel E85 Light Duty Truck",
+            "Right Size to Car",
+            "Right Size to Biofuel E85 Car",
+          ],
+        };
+
+        var vehicleType = data.VehicleType;
+        var flexFuel = data.FlexFuel;
+        var fuelType = data.FuelType;
+
+        var key =
+          vehicleType +
+          (flexFuel.toLowerCase() === "yes" ? "Yes" : "No") +
+          fuelType;
+
+        var greenOptions = conditions[key] || [];
+
+        if (greenOptions.length === 0) {
+          var defaultOption = document.createElement("option");
+          defaultOption.value = "NoGreenOption";
+          defaultOption.text = "No Green Option Available";
+          greenOptionsDropdown.appendChild(defaultOption);
         }
-
-        // Function to create fleet entry HTML
-        function createFleetEntry(data, index) {
-            var fleetEntry = document.createElement('div');
-            fleetEntry.classList.add('fleet-entry');
-            fleetEntry.classList.add('fleet-entry-animation'); // Add the animation class here
-            fleetEntry.style.animationDelay = `${index * 0.2}s`; // Staggered animation delay
-
-            // Create HTML content for fleet details
-            var fleetDetailsHTML = '<h2>Fleet Details</h2>';
-            fleetDetailsHTML += '<p><strong>' + data.Description + '</strong></p>';
-            fleetDetailsHTML += '<p>Vehicle Type: ' + data.VehicleType + '</p>';
-            fleetDetailsHTML += '<p>Year: ' + data.Year + '</p>';
-            fleetDetailsHTML += '<p>Make: ' + data.Make + '</p>';
-            fleetDetailsHTML += '<p>Model: ' + data.Model + '</p>';
-            fleetDetailsHTML += '<p>Annual VKT: ' + data.AnnualVKT + '</p>';
-            fleetDetailsHTML += '<p>Annual Fuel: ' + data.AnnualFuel + '</p>';
-            fleetDetailsHTML += '<p>Fuel Type: ' + data.FuelType + '</p>';
-            fleetDetailsHTML += '<p>Flex Fuel: ' + data.FlexFuel + '</p>';
-            fleetDetailsHTML += '<p>Vehicle Quantity: ' + data.VehicleQuantity + '</p>';
-            fleetDetailsHTML += '<hr>';
-
-            // Add the HTML content to the fleet entry
-            fleetEntry.innerHTML = fleetDetailsHTML;
-
-            // Get the dropdown element for each fleet entry
-            var greenOptionsDropdown = createGreenOptionsDropdown(data);
-
-            // Append the green options dropdown to the fleet entry
-            fleetEntry.appendChild(greenOptionsDropdown);
-
-            return fleetEntry;
-        }
-
-        // Function to create green options dropdown
-        function createGreenOptionsDropdown(data) {
-            var greenOptionsDropdown = document.createElement('select');
-            greenOptionsDropdown.classList.add('green-options-dropdown');
-            greenOptionsDropdown.name = 'greenOptions';
-            greenOptionsDropdown.id = 'greenOptions' + j;
-
-            var conditions = {
-                "CarYesGasoline": ['Replace w/ EV Vehicle', 'E85 Ethanol Usage'],
-                "CarNoGasoline": ['Replace w/ EV Car', 'Replace w/ Biofuel Car E85'],
-                "LightDutyTruckNoGasoline": ['Replace w/ EV Light Duty Truck', 'Replace w/ Biofuel E85 Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel Car'],
-                "LightDutyTruckYesGasoline": ['E85 Biofuel Usage', 'Replace w/ EV Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel Car'],
-                "LightDutyTruckNoDiesel": ['Replace w/ EV Light Duty Truck', 'Replace w/ Biofuel E85 Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel E85 Car'],
-                "LightDutyTruckYesDiesel": ['B20 Diesel Usage', 'Replace w/ EV Light Duty Truck', 'Replace w/ Biofuel E85 Light Duty Truck', 'Right Size to Car', 'Right Size to Biofuel E85 Car']
-            };
-
-            var vehicleType = data.VehicleType;
-            var flexFuel = data.FlexFuel;
-            var fuelType = data.FuelType;
-
-            var key = vehicleType + (flexFuel.toLowerCase() === 'yes' ? 'Yes' : 'No') + fuelType;
-
-            var greenOptions = conditions[key] || [];
-            
-            if (greenOptions.length === 0) {
-        var defaultOption = document.createElement('option');
-        defaultOption.value = 'NoGreenOption';
-        defaultOption.text = 'No Green Option Available';
+        // Add a default option
+        var defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.text = "Select Green Option";
         greenOptionsDropdown.appendChild(defaultOption);
-    }
-            // Add a default option
-            var defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.text = 'Select Green Option';
-            greenOptionsDropdown.appendChild(defaultOption);
 
-            // Add green options dynamically
-            for (var i = 0; i < greenOptions.length; i++) {
-                var option = document.createElement('option');
-                option.value = greenOptions[i];
-                option.text = greenOptions[i];
-                greenOptionsDropdown.appendChild(option);
-            }
-
-            return greenOptionsDropdown;
+        // Add green options dynamically
+        for (var i = 0; i < greenOptions.length; i++) {
+          var option = document.createElement("option");
+          option.value = greenOptions[i];
+          option.text = greenOptions[i];
+          greenOptionsDropdown.appendChild(option);
         }
 
-       // Function to redirect to results.html
-    function redirectToResults() {
+        return greenOptionsDropdown;
+      }
+
+      // Function to redirect to results.html
+      function redirectToResults() {
         // Check if all green options are selected
         var allOptionsSelected = checkGreenOptions();
 
         // If all options are selected, redirect to results.html
         if (allOptionsSelected) {
-            // You can customize the redirection URL as needed
-            saveSelectedGreenOptions();
-            window.location.href = 'results.html';
+          // You can customize the redirection URL as needed
+          saveSelectedGreenOptions();
+          window.location.href = "results.html";
         } else {
-            // Alert the user or handle the case where options are missing
-            alert('Please select green options for all fleet entries before submitting.');
-            // Alternatively, you can display an error message on the page
-            // or take any other appropriate action.
+          // Alert the user or handle the case where options are missing
+          alert(
+            "Please select green options for all fleet entries before submitting."
+          );
+          // Alternatively, you can display an error message on the page
+          // or take any other appropriate action.
         }
-    }
-    // Function to save selected green options to localStorage
-function saveSelectedGreenOptions() {
-    var fleetEntries = document.getElementsByClassName('fleet-entry');
-    var selectedOptions = [];
+      }
+      // Function to save selected green options to localStorage
+      function saveSelectedGreenOptions() {
+        var fleetEntries = document.getElementsByClassName("fleet-entry");
+        var selectedOptions = [];
 
-    for (var i = 0; i < fleetEntries.length; i++) {
-        var greenOptionsDropdown = fleetEntries[i].querySelector('.green-options-dropdown');
-        var selectedOption = greenOptionsDropdown.value;
-
-        selectedOptions.push(selectedOption);
-    }
-
-    localStorage.setItem('selectedGreenOptions', JSON.stringify(selectedOptions));
-}
-
-    // Function to check if all green options are selected
-    function checkGreenOptions() {
-        var fleetEntries = document.getElementsByClassName('fleet-entry');
         for (var i = 0; i < fleetEntries.length; i++) {
-            var greenOptionsDropdown = fleetEntries[i].querySelector('.green-options-dropdown');
-            if (greenOptionsDropdown.value === '') {
-                // Green option not selected for this entry
-                return false;
-            }
+          var greenOptionsDropdown = fleetEntries[i].querySelector(
+            ".green-options-dropdown"
+          );
+          var selectedOption = greenOptionsDropdown.value;
+
+          selectedOptions.push(selectedOption);
+        }
+
+        localStorage.setItem(
+          "selectedGreenOptions",
+          JSON.stringify(selectedOptions)
+        );
+      }
+
+      // Function to check if all green options are selected
+      function checkGreenOptions() {
+        var fleetEntries = document.getElementsByClassName("fleet-entry");
+        for (var i = 0; i < fleetEntries.length; i++) {
+          var greenOptionsDropdown = fleetEntries[i].querySelector(
+            ".green-options-dropdown"
+          );
+          if (greenOptionsDropdown.value === "") {
+            // Green option not selected for this entry
+            return false;
+          }
         }
         // All green options are selected
         return true;
-        }
-        // Back button functionality
-        document.getElementById('backButton').addEventListener('click', function () {
-            window.history.back();
+      }
+      // Back button functionality
+      document
+        .getElementById("backButton")
+        .addEventListener("click", function () {
+          window.history.back();
         });
     </script>
-</body>
-
+  </body>
 </html>
