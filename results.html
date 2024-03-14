@@ -111,7 +111,7 @@
     padding: 0;
     display: flex;
     justify-content: space-evenly;
-    margin: 0; /* Removes default margin */
+    margin-top: 10px; /* Removes default margin */
 }
 
 .progress-bar li {
@@ -175,6 +175,11 @@
 .progress-bar li.completed:after {
     background-color: #aaa; /* Color for completed line */
 }
+#pdfContent{
+            width:70%;
+            margin:auto;
+           
+        }
     </style>
   </head>
 
@@ -217,7 +222,7 @@
     </div>
 
     <div class="actionsavings">
-      <h1>Action Savings</h1>
+      <h2>Action Savings</h2>
       <table id="entryTable" border="1">
         <thead>
           <tr>
@@ -295,18 +300,29 @@
                       datasets: [{
                           label: 'Total Emissions (gCO2e)',
                           data: chartData.totalEmissions,
-                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                          borderColor: 'rgba(75, 192, 192, 1)',
+                          backgroundColor: 'rgba(50, 205, 50, 0.5)',
+                          borderColor: 'rgba(34, 160, 34, 1)',
                           borderWidth: 1
                       }]
                   },
                   options: {
-                      scales: {
-                          y: {
-                              beginAtZero: true
-                          }
-                      }
-                  }
+                    indexAxis: 'y', // Display bars horizontally
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Total Emissions (gCO2e)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Vehicle Description'
+                        }
+                    }
+                }
+            }
               });
 
               // Display Emissions Intensity chart
@@ -318,18 +334,29 @@
                       datasets: [{
                           label: 'Emissions Intensity (gCO2e/km)',
                           data: chartData.emissionsIntensity,
-                          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                          borderColor: 'rgba(255, 99, 132, 1)',
+                          backgroundColor: 'rgba(70, 130, 190, 0.5)',
+                          borderColor: 'rgba(0, 0, 250, 1)',
                           borderWidth: 1
                       }]
                   },
                   options: {
-                      scales: {
-                          y: {
-                              beginAtZero: true
-                          }
-                      }
-                  }
+                    indexAxis: 'y', // Display bars horizontally
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Emissions Intensity (gCO2e/km)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Vehicle Description'
+                        }
+                    }
+                }
+            }
               });
 
 
@@ -348,18 +375,29 @@
                       datasets: [{
                           label: 'Avg Emissions Intensity Fleet (gCO2e/km)',
                           data: chartData.avgEmissionsIntensityFleet,
-                          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                          backgroundColor: 'rgba(255, 99, 132, 0.5)',
                           borderColor: 'rgba(255, 99, 132, 1)',
                           borderWidth: 1
                       }]
                   },
                   options: {
-                      scales: {
-                          y: {
-                              beginAtZero: true
-                          }
-                      }
-                  }
+                    indexAxis: 'y', // Display bars horizontally
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Avg Emissions Intensity Fleet (gCO2e/km)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Vehicle Description'
+                        }
+                    }
+                }
+            }
               });
 
 
@@ -370,6 +408,7 @@
               {  //electrical efficiency for compact 2.9
                   //electrical efficiency for truck 3.24
                   province=formData[i].Province
+                  console.log(province)
                   switch (province) {
                       case 'Alberta':
                           provincialEmissionsCoefficient = 540;
@@ -405,6 +444,7 @@
                       provincialEmissionsCoefficient = 30; ; // Default value
                   }
               console.log(selectedOptions)
+              console.log(provincialEmissionsCoefficient)
 
               var electricalEfficiency; // Assuming this variable is declared in the scope
 

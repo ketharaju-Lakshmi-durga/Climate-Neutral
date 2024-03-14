@@ -79,6 +79,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 
 button:hover {
@@ -89,6 +90,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+  
 }
 
 #entryTable {
@@ -97,8 +99,10 @@ table {
     align-self: center;
     justify-self: center;
     margin-top: 20px;
+   
     /* box-sizing: content-box; */
 }
+
 
 thead th,
 tbody td {
@@ -112,7 +116,10 @@ tbody td {
     /* width: max-content; */
 
 }
-
+thead th{
+    background-color:   #45a049;
+    color:whitesmoke;
+}
 
 tbody tr:nth-child(even) {
     background-color: lightblue;
@@ -201,7 +208,7 @@ footer {
     padding: 0;
     display: flex;
     justify-content: space-evenly;
-    margin: 0; /* Removes default margin */
+    margin-top: 20px; /* Removes default margin */
 }
 
     .progress-bar li {
@@ -265,3 +272,17 @@ footer {
             .progress-bar li.completed:after {
                 background-color: #aaa; /* Color for completed line */
             }
+            #wrapper{
+                margin:auto;
+            }
+        #fleetForm{
+            background-color: lightblue;
+
+        }
+        #table-style{
+            margin:auto;
+            width:70%;
+               
+
+        }
+       

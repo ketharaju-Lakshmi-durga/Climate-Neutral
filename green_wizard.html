@@ -44,6 +44,8 @@
     margin-right: 20px;
     vertical-align: top;
     box-sizing: border-box;
+    border:2px solid green;
+    
 }
 
         .green-options-dropdown {
@@ -100,7 +102,11 @@
     justify-content: space-between; /* Add space between the stacks */
     max-width: 800px;
     margin: 20px auto;
+    
+   
 }
+
+
         footer {
             background-color: #333;
             padding: 10px;
@@ -130,7 +136,7 @@
     padding: 0;
     display: flex;
     justify-content: space-evenly;
-    margin: 0; /* Removes default margin */
+    margin-top: 20px; /* Removes default margin */
 }
 
 .progress-bar li {
@@ -194,6 +200,11 @@
 .progress-bar li.completed:after {
     background-color: #aaa; /* Color for completed line */
 }
+#wrapper{
+                margin:auto;
+                width:80%;
+            }
+            
 
     </style>
 </head>
@@ -213,13 +224,14 @@
 </div>
 
    <button id="backButton" class="button">🔙 Back</button>
-
+<div id="wrapper">
     <div id="fleetContainer">
         <div class="row" id="row1"></div>
         <!-- Content will be added dynamically based on user input -->
     </div>
 
     <button id="submitbutton" onclick="redirectToResults()">Submit</button>
+    </div>
     <footer>
         <p>&copy; 2024 Climate Neutral. All rights reserved.</p>
         <!-- Add any other footer content here -->
