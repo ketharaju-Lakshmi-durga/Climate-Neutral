@@ -32,19 +32,29 @@
             color: #333;
         }
 
-        .fleet-entry {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    display: inline-block;
-    width: calc(25% - 20px); /* 25% width for each element with 20px margin between elements */
-    margin-left: 20px;
-    margin-right: 20px;
-    vertical-align: top;
-    box-sizing: border-box;
-}
+         .fleet-entry {
+             background-color:#6bafca;
+             padding: 15px;
+             border-radius: 8px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+             margin-bottom: 20px;
+             display: inline-block;
+             width: calc(25% - 20px); /* 25% width for each element with 20px margin between elements */
+             margin-left: 20px;
+             margin-right: 20px;
+             vertical-align: top;
+             box-sizing: border-box;
+             color:#fff;
+         }
+         @keyframes fadeIn {
+             from { opacity: 0; transform: translateY(20px); }
+             to { opacity: 1; transform: translateY(0); }
+
+         }
+         .fleet-entry-animation {
+             animation: fadeIn 1s ease-out forwards;
+
+         }
 
         .green-options-dropdown {
             width: 100%;
@@ -52,7 +62,7 @@
             margin-top: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            background-color: #fff;
+            background-color:yellowgreen;
             box-sizing: border-box;
         }
 
@@ -247,6 +257,8 @@
         function createFleetEntry(data, index) {
             var fleetEntry = document.createElement('div');
             fleetEntry.classList.add('fleet-entry');
+            fleetEntry.classList.add('fleet-entry-animation'); // Add the animation class here
+            fleetEntry.style.animationDelay = `${index * 0.2}s`; // Staggered animation delay
 
             // Create HTML content for fleet details
             var fleetDetailsHTML = '<h2>Fleet Details</h2>';
