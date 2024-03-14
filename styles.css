@@ -5,28 +5,46 @@ nav {
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    text-align: center;
+    text-align:center;
 }
 
+#logo {
+    width: 100px;
+    margin-left: -20px;
+    margin-top: -15px;
+    margin-right: 12px;
+    height: auto;
+    float: left;
+    transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+#logo:hover {
+    transform: scale(1.1); /* Scale the logo by 10% on hover */
+}
 header {
-    width: 100%;
+    background: black;
+    
+    
 }
 
 header h1 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
-
+    margin-top: 1%;
+    margin-bottom: -10px;    
+    font-family: "Rowdies", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+font-size: 24px;
+    color:white;
+    text-align: left;
+    
 }
+
 
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     /* Set text color to white for better visibility */
+    background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
 }
 
 #wrapper {
@@ -42,7 +60,7 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     opacity: 0;
     /* Initially set opacity to 0 for fade-in effect */
     animation: fadeIn 1s ease-in-out forwards;
@@ -78,25 +96,37 @@ button {
     border-radius: 5px;
     background-color: #fff;
     box-sizing: border-box;
+    
 }
 
 button {
-    margin-top: 10px;
-    background-color: #4caf50;
+    margin-top: 0px;
+    background: #4caf50;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 5px;
+    width: 80px;
+    border-radius: 20px;
+    font-family: "Allerta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 button:hover {
-    background-color: #45a049;
+    /* background-color: #7d2ae8; */
+    background-color: brightness(#bbb5ff, 80%);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    
+  
 }
 
 #entryTable {
@@ -105,8 +135,10 @@ table {
     align-self: center;
     justify-self: center;
     margin-top: 20px;
-    /* box-sizing: content-box; */
+    box-sizing: border-box;
+    ;
 }
+
 
 thead th,
 tbody td {
@@ -114,30 +146,89 @@ tbody td {
     font-weight: normal;
     padding-right: 10px;
     padding-left: 10px;
-    border: 1px solid #ddd;
+    border: 3px solid darkblue;
     text-align: center;
     justify-content: center;
     /* width: max-content; */
 
 }
 
-.form-invalid .required:invalid {
-    border: 2px solid red;
+
+thead th {
+    background: linear-gradient(135deg, darkblue
+    , #11318a);
+    color: whitesmoke;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+   
+
+}
+
+/* Hover effect */
+thead th:hover {
+    background-color: #2681bd;
+  
 }
 
 tbody tr:nth-child(even) {
-    background-color: lightblue;
+    background-color:rgb(182, 178, 178);
 }
 
+#delete{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 1px;
+    padding-bottom: 2px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+    transition: transform 0.3s ease;
+    background-color:  #4caf50;
+}
+#submit{
+    width: 90px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+    transition: transform 0.3s ease;
+    background-color:  #4caf50;
+}
+#download{
+   width: 150px;
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+   transition: transform 0.3s ease;
+   background-color:  #4caf50;
+}
+#submit:hover {
+    transform: scale(1.1);
+    background-color:  #3da140;
+}
+#download:hover {
+    transform: scale(1.1);
+    background-color:  #3da140;
+}
+#delete:hover {
+    transform: scale(1.1);
+    background-color:  #3da140;
+
+}
+#add{
+    width: 100px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+    transition: transform 0.3s ease;
+
+
+}
+#add:hover {
+    transform: scale(1.1);
+    background-color:  #3da140;
+}
 footer {
-    background-color: #333;
+    background-color: black;
     padding: 10px;
     text-align: center;
-
     bottom: 0;
     width: 100%;
     color: #fff;
 }
+
 
 #fleetForm .two-fields {
 
@@ -171,12 +262,15 @@ footer {
 
 #entryTable {
     margin-top: 20px;
+    border-radius: 20px;
+    overflow: hidden; /* Ensure the border radius is applied correctly */
 }
 
 #drop-area {
     text-align: center;
     cursor: pointer;
     margin-bottom: 20px;
+   
 }
 
 #img-view {
@@ -186,28 +280,30 @@ footer {
     border-radius: 20px;
     border: 2px dashed #bbb5ff;
     background: #f7f8ff;
+     
 }
 
 #img-view img {
     width: 10%;
     margin-top: 25px;
+    transition: transform 0.3s ease;
 }
-
+#img-view img:hover {
+    transform: scale(1.1);
+}
 #img-view span {
     font-size: small;
     /* display: flex; */
     color: #b3b3b3;
     margin-bottom: 10px;
 }
-
 .progress-bar-container {
     padding: 5px 0;
-    background-color: #fff;
-    /* or any color that matches your design */
-    max-width: 600px;
-    /* You can adjust this as needed */
-    margin: auto;
-    /* This centers the progress bar */
+    background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
+    max-width: 700px; /* You can adjust this as needed */
+    margin: auto; /* This centers the progress bar */
+    margin-bottom: 10px;
+    border-radius: 50%;
 }
 
 .progress-bar {
@@ -216,84 +312,87 @@ footer {
     padding: 0;
     display: flex;
     justify-content: space-evenly;
-    margin: 0;
-    /* Removes default margin */
+    margin: 0; /* Removes default margin */
 }
 
-.progress-bar li {
-    position: relative;
-    flex-grow: 1;
-    text-align: center;
-    padding: 5px;
-    font-size: 0.8em;
-    /* Smaller font size */
-    color: floralwhite;
-    background-color: blue;
-    /* Inactive step color */
-}
 
-.progress-bar li:before {
-    counter-increment: step;
-    content: counter(step);
-    position: absolute;
-    top: -20px;
-    /* Adjusted for smaller circle size */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    width: 20px;
-    /* Smaller circle size */
-    height: 20px;
-    /* Smaller circle size */
-    text-align: center;
-    line-height: 20px;
-    /* Adjusted for smaller circle size */
-    border-radius: 50%;
-    font-size: 0.75em;
-    /* Smaller text in circle */
-}
+    .progress-bar li {
+        position: relative;
+        flex-grow: 1;
+        text-align: center;
+        padding: 5px;
+        font-size: 0.8em; /* Smaller font size */
+        color:floralwhite;
+        background-color:grey; /* Inactive step color */
+        border-radius: 15px;
+        margin-right: -25px;
+        
+    }
 
-.progress-bar li:after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    /* Adjusted for alignment with the smaller circle */
-    left: -50%;
-    /* Starts from the middle of the circle */
-    width: 100%;
-    height: 2px;
-    /* Thinner line to connect circles */
-    background-color: #333;
-    /* Connects steps */
-    z-index: -1;
-}
+        .progress-bar li:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            top: -20px; /* Adjusted for smaller circle size */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            width: 20px; /* Smaller circle size */
+            height: 20px; /* Smaller circle size */
+            text-align: center;
+            line-height: 20px; /* Adjusted for smaller circle size */
+            border-radius: 50%;
+            font-size: 0.75em; /* Smaller text in circle */
+            transition: transform 0.3s ease; /* Transition effect */
+        }
+        .progress-bar li:hover:before {
+            transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
+        }
+        .progress-bar li:after {
+            content: '';
+            position: absolute;
+            top: 8px; /* Adjusted for alignment with the smaller circle */
+            left: -50%; /* Starts from the middle of the circle */
+            width: 100%;
+            height: 2px; /* Thinner line to connect circles */
+            background-color:#333; /* Connects steps */
+            z-index: -1;
+        }
 
-.progress-bar li:first-child:after {
-    content: none;
-}
+        .progress-bar li:first-child:after {
+            content: none;
+        }
 
-.progress-bar li.current {
-    background-color: #4caf50;
-    /* Highlight for the current step */
-}
+        .progress-bar li.current {
+            background-color: #4caf50; /* Highlight for the current step */
+        }
 
-.progress-bar li.current:before {
-    background-color: #4caf50;
-    /* Highlight for the current step number */
-}
+            .progress-bar li.current:before {
+                background-color: #4caf50; /* Highlight for the current step number */
+            }
 
-.progress-bar li.completed {
-    background-color: #aaa;
-    /* Color for completed steps */
-}
+        .progress-bar li.completed {
+            background-color: #333; /* Color for completed steps */
+        }
 
-.progress-bar li.completed:before {
-    background-color: #aaa;
-    /* Color for completed step numbers */
-}
+            .progress-bar li.completed:before {
+                background-color: #333; /* Color for completed step numbers */
+            }
 
-.progress-bar li.completed:after {
-    background-color: #aaa;
-    /* Color for completed line */
-}
+            .progress-bar li.completed:after {
+                background-color: #333; /* Color for completed line */
+            }
+
+            #wrapper{
+                margin:auto;
+            }
+       
+        #table-style{
+            margin:auto;
+            width:70%;
+            
+               
+
+        }
+       
