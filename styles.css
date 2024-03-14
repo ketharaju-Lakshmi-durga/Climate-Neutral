@@ -113,6 +113,9 @@ tbody td {
 
 }
 
+.form-invalid .required:invalid {
+    border: 2px solid red;
+}
 
 tbody tr:nth-child(even) {
     background-color: lightblue;
