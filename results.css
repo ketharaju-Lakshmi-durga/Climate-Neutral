@@ -1,0 +1,248 @@
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
+      }
+
+      nav {
+        background-color: #0000001a;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+      }
+
+      #logo {
+        width: 100px;
+        margin-left: -20px;
+        margin-top: 49px;
+        margin-right: 12px;
+        height: auto;
+        float: left;
+        transition: transform 0.3s ease; /* Add transition for smooth effect */
+      }
+      #logo:hover {
+        transform: scale(1.1); /* Scale the logo by 10% on hover */
+      }
+      header {
+        background: black;
+      }
+
+      header h1 {
+        margin-right: 1050px;
+        margin-top: 1%;
+        margin-bottom: -10px;
+        font-family: "Rowdies", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 24px;
+        color: white;
+        text-align: left;
+      }
+
+      /* body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to right, #0c1c81, #2d479e);
+        } */
+
+      h1,
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+
+      .chart-container {
+        width: 40%;
+        height: 40%;
+        margin: 20px;
+        display: inline-block;
+      }
+
+      table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+        margin: auto;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        background-color: rgb(54, 191, 222);
+        text-align: center;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      tr:hover {
+        background-color: #ddd;
+      }
+
+      .button-container {
+        text-align: right;
+        margin: 20px;
+      }
+
+      .button {
+        margin-left: 10px;
+      }
+
+      #backButton {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+      }
+      .progress-bar-container {
+        padding: 5px 0;
+        background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
+        max-width: 700px; /* You can adjust this as needed */
+        margin: auto; /* This centers the progress bar */
+        margin-bottom: 10px;
+      }
+
+      .progress-bar {
+        counter-reset: step;
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: space-evenly;
+        margin: 0; /* Removes default margin */
+        background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
+      }
+
+      .progress-bar li {
+        position: relative;
+        flex-grow: 1;
+        text-align: center;
+        padding: 8px;
+        font-size: 0.8em; /* Smaller font size */
+        color: floralwhite;
+        background-color: grey; /* Inactive step color */
+        border-radius: 15px;
+        margin-right: -25px;
+      }
+
+      .progress-bar li:before {
+        counter-increment: step;
+        content: counter(step);
+        position: absolute;
+        top: -20px; /* Adjusted for smaller circle size */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        width: 20px; /* Smaller circle size */
+        height: 20px; /* Smaller circle size */
+        text-align: center;
+        line-height: 20px; /* Adjusted for smaller circle size */
+        border-radius: 50%;
+        font-size: 0.75em; /* Smaller text in circle */
+        transition: transform 0.3s ease; /* Transition effect */
+      }
+      .progress-bar li:hover:before {
+        transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
+      }
+      .progress-bar li:after {
+        content: "";
+        position: absolute;
+        top: 8px; /* Adjusted for alignment with the smaller circle */
+        left: -50%; /* Starts from the middle of the circle */
+        width: 100%;
+        height: 2px; /* Thinner line to connect circles */
+        background-color: #333; /* Connects steps */
+        z-index: -1;
+      }
+
+      .progress-bar li:first-child:after {
+        content: none;
+      }
+
+      .progress-bar li.current {
+        background-color: #4caf50; /* Highlight for the current step */
+      }
+
+      .progress-bar li.current:before {
+        background-color: #4caf50; /* Highlight for the current step number */
+      }
+
+      .progress-bar li.completed {
+        background-color: #aaa; /* Color for completed steps */
+      }
+
+      .progress-bar li.completed:before {
+        background-color: #333; /* Color for completed step numbers */
+      }
+
+      .progress-bar li.completed:after {
+        background-color: #333; /* Color for completed line */
+      }
+      #pdfContent {
+        width: 70%;
+        margin: auto;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 34px;
+      }
+
+      .button-container {
+        display: flex;
+      }
+
+      .button {
+        margin-left: 10px; /* Adjust as needed */
+      }
+
+      #printButton {
+        display: block;
+        margin: 2px;
+
+        padding: 3px 8px;
+        font-size: 13px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+        transition: transform 0.3s ease;
+        background-color: darkblue;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+      #saveButton {
+        display: block;
+        margin: 2px;
+
+        padding: 3px 8px;
+        font-size: 13px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+        transition: transform 0.3s ease;
+        background-color: darkblue;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+ 
