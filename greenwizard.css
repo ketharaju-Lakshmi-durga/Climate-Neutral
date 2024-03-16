@@ -232,8 +232,7 @@ header h1 {
   text-align: left;
 }
 
-      #wrapper {
-        margin: auto;
-        width: 80%;
-      }
-  
+#wrapper {
+  margin: auto;
+  width: 80%;
+}
