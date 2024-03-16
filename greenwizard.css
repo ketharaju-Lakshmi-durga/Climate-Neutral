@@ -1,236 +1,236 @@
 
-      body,
-      html {
-        font-family: "Poppins", sans-serif; /* Use your preferred font */
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
-      }
-      nav {
-        background-color: #0000001a;
-        padding-left: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        text-align: center;
-      }
+body,
+html {
+  font-family: "Poppins", sans-serif; /* Use your preferred font */
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
+}
+nav {
+  background-color: #0000001a;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
 
-      header h1 {
-        margin: 0;
-        font-size: 24px;
-        color: blue;
-      }
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: blue;
+}
 
-      h1,
-      h2 {
-        text-align: center;
-        color: #333;
-      }
+h1,
+h2 {
+  text-align: center;
+  color: #333;
+}
 
-      .fleet-entry {
-        background-color: #fff;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-        display: inline-block;
-        width: calc(
-          25% - 20px
-        ); /* 25% width for each element with 20px margin between elements */
-        margin-left: 20px;
-        margin-right: 20px;
-        vertical-align: top;
-        box-sizing: border-box;
-        border: 2px solid green;
-      }
+.fleet-entry {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: inline-block;
+  width: calc(
+    25% - 20px
+  ); /* 25% width for each element with 20px margin between elements */
+  margin-left: 20px;
+  margin-right: 20px;
+  vertical-align: top;
+  box-sizing: border-box;
+  border: 2px solid green;
+}
 
-      .green-options-dropdown {
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #fff;
-        box-sizing: border-box;
-      }
+.green-options-dropdown {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
 
-      select {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #fff;
-        box-sizing: border-box;
-      }
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
 
-      #submitbutton {
-        display: block;
-        margin: 20px auto;
-        padding: 10px 20px;
-        font-size: 16px;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
-        transition: transform 0.3s ease;
-        background-color: #4caf50;
-        color: #fff;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-      }
-      #submitbutton:hover {
-        background-color: #45a049;
-        transform: scale(1.1);
-      }
+#submitbutton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+  transition: transform 0.3s ease;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+#submitbutton:hover {
+  background-color: #45a049;
+  transform: scale(1.1);
+}
 
-      button:hover {
-        background-color: #45a049;
-      }
+button:hover {
+  background-color: #45a049;
+}
 
-      p {
-        margin: 5px 0;
-        color: #555;
-      }
+p {
+  margin: 5px 0;
+  color: #555;
+}
 
-      hr {
-        border: 0;
-        height: 1px;
-        background: #ddd;
-        margin: 15px 0;
-      }
-      .fleetContainer {
-        display: flex;
-        flex-wrap: wrap; /* Wrap content to the next row */
-        justify-content: space-between; /* Add space between the stacks */
-        max-width: 800px;
-        margin: 20px auto;
-      }
+hr {
+  border: 0;
+  height: 1px;
+  background: #ddd;
+  margin: 15px 0;
+}
+.fleetContainer {
+  display: flex;
+  flex-wrap: wrap; /* Wrap content to the next row */
+  justify-content: space-between; /* Add space between the stacks */
+  max-width: 800px;
+  margin: 20px auto;
+}
 
-      footer {
-        background-color: black;
-        padding: 10px;
-        text-align: center;
-        bottom: 0;
-        width: 100%;
-        color: #fff;
-      }
+footer {
+  background-color: black;
+  padding: 10px;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+}
 
-      #backButton {
-        position: absolute;
-        left: 20px;
-        top: 20px;
-        margin-left: 10px;
-      }
-      .progress-bar-container {
-        padding: 5px 0;
-        background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
-        max-width: 700px; /* You can adjust this as needed */
-        margin: auto; /* This centers the progress bar */
-        margin-bottom: 10px;
-      }
+#backButton {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  margin-left: 10px;
+}
+.progress-bar-container {
+  padding: 5px 0;
+  background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
+  max-width: 700px; /* You can adjust this as needed */
+  margin: auto; /* This centers the progress bar */
+  margin-bottom: 10px;
+}
 
-      .progress-bar {
-        counter-reset: step;
-        list-style: none;
-        padding: 0;
-        display: flex;
-        justify-content: space-evenly;
-        margin: 0; /* Removes default margin */
-      }
+.progress-bar {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0; /* Removes default margin */
+}
 
-      .progress-bar li {
-        position: relative;
-        flex-grow: 1;
-        text-align: center;
-        padding: 5px;
-        font-size: 0.8em; /* Smaller font size */
-        color: floralwhite;
-        background-color: grey; /* Inactive step color */
-        border-radius: 15px;
-        margin-right: -25px;
-      }
+.progress-bar li {
+  position: relative;
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px;
+  font-size: 0.8em; /* Smaller font size */
+  color: floralwhite;
+  background-color: grey; /* Inactive step color */
+  border-radius: 15px;
+  margin-right: -25px;
+}
 
-      .progress-bar li:before {
-        counter-increment: step;
-        content: counter(step);
-        position: absolute;
-        top: -20px; /* Adjusted for smaller circle size */
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #333;
-        color: #fff;
-        width: 20px; /* Smaller circle size */
-        height: 20px; /* Smaller circle size */
-        text-align: center;
-        line-height: 20px; /* Adjusted for smaller circle size */
-        border-radius: 50%;
-        font-size: 0.75em; /* Smaller text in circle */
-        transition: transform 0.3s ease; /* Transition effect */
-      }
-      .progress-bar li:hover:before {
-        transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
-      }
-      .progress-bar li:after {
-        content: "";
-        position: absolute;
-        top: 8px; /* Adjusted for alignment with the smaller circle */
-        left: -50%; /* Starts from the middle of the circle */
-        width: 100%;
-        height: 2px; /* Thinner line to connect circles */
-        background-color: #333; /* Connects steps */
-        z-index: -1;
-      }
+.progress-bar li:before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  top: -20px; /* Adjusted for smaller circle size */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  width: 20px; /* Smaller circle size */
+  height: 20px; /* Smaller circle size */
+  text-align: center;
+  line-height: 20px; /* Adjusted for smaller circle size */
+  border-radius: 50%;
+  font-size: 0.75em; /* Smaller text in circle */
+  transition: transform 0.3s ease; /* Transition effect */
+}
+.progress-bar li:hover:before {
+  transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
+}
+.progress-bar li:after {
+  content: "";
+  position: absolute;
+  top: 8px; /* Adjusted for alignment with the smaller circle */
+  left: -50%; /* Starts from the middle of the circle */
+  width: 100%;
+  height: 2px; /* Thinner line to connect circles */
+  background-color: #333; /* Connects steps */
+  z-index: -1;
+}
 
-      .progress-bar li:first-child:after {
-        content: none;
-      }
+.progress-bar li:first-child:after {
+  content: none;
+}
 
-      .progress-bar li.current {
-        background-color: #4caf50; /* Highlight for the current step */
-      }
+.progress-bar li.current {
+  background-color: #4caf50; /* Highlight for the current step */
+}
 
-      .progress-bar li.current:before {
-        background-color: #4caf50; /* Highlight for the current step number */
-      }
+.progress-bar li.current:before {
+  background-color: #4caf50; /* Highlight for the current step number */
+}
 
-      .progress-bar li.completed {
-        background-color: #aaa; /* Color for completed steps */
-      }
+.progress-bar li.completed {
+  background-color: #aaa; /* Color for completed steps */
+}
 
-      .progress-bar li.completed:before {
-        background-color: #333; /* Color for completed step numbers */
-      }
+.progress-bar li.completed:before {
+  background-color: #333; /* Color for completed step numbers */
+}
 
-      .progress-bar li.completed:after {
-        background-color: #333; /* Color for completed line */
-      }
+.progress-bar li.completed:after {
+  background-color: #333; /* Color for completed line */
+}
 
-      #logo {
-        width: 100px;
-        margin-left: -20px;
-        margin-top: -15px;
-        margin-right: 12px;
-        height: auto;
-        float: left;
-        transition: transform 0.3s ease; /* Add transition for smooth effect */
-      }
-      #logo:hover {
-        transform: scale(1.1); /* Scale the logo by 10% on hover */
-      }
-      header {
-        background: black;
-      }
+#logo {
+  width: 100px;
+  margin-left: -20px;
+  margin-top: -15px;
+  margin-right: 12px;
+  height: auto;
+  float: left;
+  transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+#logo:hover {
+  transform: scale(1.1); /* Scale the logo by 10% on hover */
+}
+header {
+  background: black;
+}
 
-      header h1 {
-        margin-top: 1%;
-        margin-bottom: -10px;
-        font-family: "Rowdies", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-        font-size: 24px;
-        color: white;
-        text-align: left;
-      }
+header h1 {
+  margin-top: 1%;
+  margin-bottom: -10px;
+  font-family: "Rowdies", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+  color: white;
+  text-align: left;
+}
 
       #wrapper {
         margin: auto;
