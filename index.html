@@ -204,6 +204,7 @@
       <!-- Add any other footer content here -->
     </footer>
     <script>
+        formData=[];
       document
         .getElementById("input-file")
         .addEventListener("change", handleFileUpload);
@@ -241,6 +242,7 @@
       }
 
       function addEntry() {
+        
         if (
           document.getElementById("vehicleDescription").value === "" ||
           document.getElementById("year").value === "" ||
@@ -307,7 +309,19 @@
 
         // Append the row to the table body
         document.getElementById("entryTableBody").appendChild(newRow);
-
+        formData.push({
+        Description: vehicleDescription,
+        VehicleType: vehicleType,
+        Year: year,
+        Make: make,
+        Model: model,
+        AnnualVKT: annualVKT,
+        AnnualFuel: annualFuel,
+        FuelType: fuelType,
+        FlexFuel: flexfuel,
+        VehicleQuantity: vehicleQuantity,
+        Province: Province
+    });
         // Reset the form fields to default values
         document.getElementById("Province").value = "";
         document.getElementById("vehicleDescription").value = "";
@@ -322,31 +336,7 @@
       }
       //begins here
 
-      function submitForm() {
-        // Collect data from the table
-        var tableRows = document
-          .getElementById("entryTableBody")
-          .getElementsByTagName("tr");
-        var formData = [];
-
-        for (var i = 0; i < tableRows.length; i++) {
-          var cells = tableRows[i].getElementsByTagName("td");
-          var rowData = {
-            Description: cells[0].innerText,
-            VehicleType: cells[1].innerText,
-            Year: cells[2].innerText,
-            Make: cells[3].innerText,
-            Model: cells[4].innerText,
-            AnnualVKT: cells[5].innerText,
-            AnnualFuel: cells[6].innerText,
-            FuelType: cells[7].innerText,
-            FlexFuel: cells[8].innerText,
-            VehicleQuantity: cells[9].innerText,
-          };
-
-          formData.push(rowData);
-        }
-
+      function submitForm() { 
         // Store the form data in localStorage
         localStorage.setItem("formData", JSON.stringify(formData));
 
