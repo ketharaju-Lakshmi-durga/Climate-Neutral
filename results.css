@@ -3,6 +3,29 @@ color: whitesmoke;
 background-color: linear-gradient(135deg, darkblue
 , #11318a);
 } */
+@media print {
+  /* Add this to preserve colors */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  
+  .chart-container {
+    margin-left: -200px;
+    width: 100% !important;
+    height: auto !important;
+    page-break-before: always;
+    
+  }
+  
+
+  #pdfContent {
+    margin: 0;
+    padding: 0;
+  }
+}
+
 
 .actionsavings {
   display: flex;
@@ -98,12 +121,13 @@ background-color: linear-gradient(135deg, darkblue
         display: inline-block;
         border-radius: 10px; /* Add border radius */
         overflow: hidden; /* Ensure content doesn't overflow rounded corners */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Add box shadow */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adjust shadow for equal distribution */
         animation-name: fadeInUp; /* Add animation */
         animation-duration: 1s; /* Animation duration */
         animation-delay: 0.5s; /* Delay before animation starts */
         animation-fill-mode: forwards; /* Keep element in its final state after animation */
         opacity: 0; /* Initially hide the element */
+        
       }
       
       @keyframes fadeInUp {
@@ -121,8 +145,7 @@ background-color: linear-gradient(135deg, darkblue
         width: 100%;
         height: 100%;
       }
-      
-      
+     
       
       table {
         width: 80%;

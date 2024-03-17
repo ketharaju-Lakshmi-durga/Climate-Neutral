@@ -29,6 +29,7 @@ h2 {
 }
 
 .fleet-entry {
+  
   background-color: #fff;
   padding: 15px;
   border-radius: 8px;
@@ -38,8 +39,8 @@ h2 {
   width: calc(
     25% - 20px
   ); /* 25% width for each element with 20px margin between elements */
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   vertical-align: top;
   box-sizing: border-box;
   border: 2px solid green;
@@ -234,5 +235,7 @@ header h1 {
 
 #wrapper {
   margin: auto;
+  margin-top: 40px;
   width: 80%;
 }
+
