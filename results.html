@@ -71,9 +71,20 @@
       <div class="chart-container">
         <canvas id="avgEmissionsIntensityFleetChart"></canvas>
       </div>
-      <!-- Container for the Comparison Graph -->
+
+      <!-- Container for the Comparison Graph - Replace w/ Biofuel E85 Light Duty Truck -->
       <div class="chart-container">
-        <canvas id="comparisonGraph"></canvas>
+        <canvas id="comparisonGraph_0"></canvas>
+      </div>
+
+      <!-- Container for the Comparison Graph - Right Size to Biofuel E85 Car -->
+      <div class="chart-container">
+        <canvas id="comparisonGraph_1"></canvas>
+      </div>
+
+      <!-- Container for the Comparison Graph - Right Size to Car -->
+      <div class="chart-container">
+        <canvas id="comparisonGraph_3"></canvas>
       </div>
 
       <div class="actionsavings">
@@ -408,7 +419,11 @@
                 rounderpercentageSavingsforrightsize
               );
               tableBody.appendChild(newRow);
-              createComparisonGraph(i, "Right Size to Car "); // Call function to create comparison graph
+              if (formData[i].FuelType && selectedOptions[i]) {
+                createComparisonGraph(i, "Right Size to Car ");
+
+                // Call function to create comparison graph
+              } // Call function to create comparison graph
               continue; // Skip the rest of the loop for this option
 
             // ------------------right size to biofuel e85 car
@@ -590,6 +605,8 @@
         }
 
         function createComparisonGraph(index, graphTitle) {
+          // Generate a unique ID for the canvas element
+          var canvasId = "comparisonGraph_" + index;
           // Retrieve data for the selected vehicle
           var selectedVehicleLabel = chartData.labels[index];
           var selectedVehicleEmissionsIntensity =
@@ -597,7 +614,7 @@
 
           // Create dummy data for comparison (replace this with actual data)
           var comparisonLabels = [
-            "Vehicle 1",
+            "Your Vehicle",
             "Audie A4",
             "Volvo S60",
             "Mercedes CLA 250",
@@ -620,14 +637,21 @@
             140,
             115,
           ];
-          console.log(
-            selectedVehicleEmissionsIntensity,
-            "selectedVehicleEmissionsIntensity"
-          );
-          // Display the comparison graph
-          var comparisonGraphCtx = document
-            .getElementById("comparisonGraph")
-            .getContext("2d");
+
+          // Check if canvas element already exists
+          var comparisonGraphCanvas = document.getElementById(canvasId);
+          if (!comparisonGraphCanvas) {
+            // If canvas element does not exist, create it
+            comparisonGraphCanvas = document.createElement("canvas");
+            comparisonGraphCanvas.id = canvasId;
+            comparisonGraphCanvas.classList.add("chart-container"); // Add class for styling
+            document
+              .getElementById("pdfContent")
+              .appendChild(comparisonGraphCanvas);
+          }
+
+          // Display the comparison graph in the canvas element
+          var comparisonGraphCtx = comparisonGraphCanvas.getContext("2d");
           var comparisonGraph = new Chart(comparisonGraphCtx, {
             type: "bar",
             data: {
@@ -662,10 +686,11 @@
             },
           });
         }
-
         // ----------comaparison graph for biofuel e85 light duty truck
         // Function to create a comparison graph for "Replace w/ Biofuel E85 Light Duty Truck"
         function createComparisonGraphForBiofuel(index, graphTitle) {
+          // Generate a unique ID for the canvas element
+          var canvasId = "comparisonGraph_" + index;
           // Retrieve data for the selected vehicle
           var selectedVehicleLabel = chartData.labels[index];
           var selectedVehicleEmissionsIntensity =
@@ -690,10 +715,16 @@
             293,
             293,
           ];
-
-          // Display the comparison graph
+          // Create a new canvas element with the unique ID
+          // var comparisonGraphCanvas = document.createElement("canvas");
+          // comparisonGraphCanvas.id = canvasId;
+          // comparisonGraphCanvas.classList.add("chart-container"); // Add class for styling
+          // document
+          //   .getElementById("pdfContent")
+          //   .appendChild(comparisonGraphCanvas);
+          // // Display the comparison graph in the canvas element
           var comparisonGraphCtx = document
-            .getElementById("comparisonGraph")
+            .getElementById(canvasId)
             .getContext("2d");
           var comparisonGraph = new Chart(comparisonGraphCtx, {
             type: "bar",
