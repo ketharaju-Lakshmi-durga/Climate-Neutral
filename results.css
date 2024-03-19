@@ -245,4 +245,49 @@
         border-radius: 20px;
         cursor: pointer;
       }
+@media print {
+    /* Hide unnecessary elements */
+    nav {
+        display: none;
+    }
+
+    .button-container {
+        display: none;
+    }
+
+    .progress-bar-container {
+        display: none;
+    }
+
+    /* Adjust chart container width for better printing */
+    .chart-container {
+        width: 100%;
+        margin: 10px auto; /* Adjust margin as needed */
+    }
+
+    body {
+        margin: 10px; /* Adjust as needed */
+    }
+
+    /* Reduce font size for better fit */
+    table {
+        font-size: 12px; /* Adjust as needed */
+        width: 100%;
+        margin: auto;
+    }
+
+    /* Adjust font size for better printing */
+    body,
+    h1,
+    h2,
+    th,
+    td {
+        font-size: 14px; /* Adjust as needed */
+    }
+    .actionsavings {
+        display: block !important;
+        page-break-before: always;
+    }
+}
+
  
