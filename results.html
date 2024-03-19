@@ -42,9 +42,9 @@
           <button id="printButton" class="button">
             <i class="fa-solid fa-print"></i> PRINT
           </button>
-          <button id="saveButton" class="button">
+          <!-- <button id="saveButton" class="button">
             <i class="fa-solid fa-floppy-disk"></i> SAVE
-          </button>
+          </button> -->
         </div>
       </nav>
     </header>
@@ -71,9 +71,20 @@
       <div class="chart-container">
         <canvas id="avgEmissionsIntensityFleetChart"></canvas>
       </div>
-      <!-- Container for the Comparison Graph -->
+
+      <!-- Container for the Comparison Graph - Replace w/ Biofuel E85 Light Duty Truck -->
       <div class="chart-container">
-        <canvas id="comparisonGraph"></canvas>
+        <canvas id="comparisonGraph_0"></canvas>
+      </div>
+
+      <!-- Container for the Comparison Graph - Right Size to Biofuel E85 Car -->
+      <div class="chart-container">
+        <canvas id="comparisonGraph_1"></canvas>
+      </div>
+
+      <!-- Container for the Comparison Graph - Right Size to Car -->
+      <div class="chart-container">
+        <canvas id="comparisonGraph_3"></canvas>
       </div>
 
       <div class="actionsavings">
@@ -98,153 +109,78 @@
       function goBack() {
         window.history.go(-1); // Go back one page
       }
+      document.addEventListener("DOMContentLoaded", function () {
+        // Retrieve the form data from localStorage
+        var formData = JSON.parse(localStorage.getItem("formData"));
+        var selectedOptions = JSON.parse(
+          localStorage.getItem("selectedGreenOptions")
+        );
 
-      // Retrieve the form data from localStorage
-      var formData = JSON.parse(localStorage.getItem("formData"));
-      var selectedOptions = JSON.parse(
-        localStorage.getItem("selectedGreenOptions")
-      );
+        // Calculate emissions and build chart data
+        var chartData = {
+          labels: [],
+          totalEmissions: [],
+          emissionsIntensity: [],
+          avgEmissionsIntensityFleet: [],
+        };
+        var selEmin;
 
-      // Calculate emissions and build chart data
-      var chartData = {
-        labels: [],
-        totalEmissions: [],
-        emissionsIntensity: [],
-        avgEmissionsIntensityFleet: [],
-      };
-      var selEmin;
+        for (var i = 0; i < formData.length; i++) {
+          var annualFuelConsumption = formData[i].AnnualFuel;
+          var annualVKT = formData[i].AnnualVKT;
+          var fuelType = formData[i].FuelType;
+          var vehicleQuantity = parseInt(formData[i].VehicleQuantity);
+          console.log("Vehicle Quantity");
+          console.log(vehicleQuantity);
 
-      for (var i = 0; i < formData.length; i++) {
-        var annualFuelConsumption = formData[i].AnnualFuel;
-        var annualVKT = formData[i].AnnualVKT;
-        var fuelType = formData[i].FuelType;
-        var vehicleQuantity = parseInt(formData[i].VehicleQuantity);
-        console.log("Vehicle Quantity");
-        console.log(vehicleQuantity);
+          var fuelEmissionsCoefficient;
 
-        var fuelEmissionsCoefficient;
+          // Determine fuel emissions coefficient based on fuel type
+          switch (fuelType) {
+            case "Gasoline":
+              fuelEmissionsCoefficient = 2299;
+              break;
+            case "E10 Gasoline":
+              fuelEmissionsCoefficient = 2071;
+              break;
+            case "Diesel":
+              fuelEmissionsCoefficient = 2730;
+              break;
 
-        // Determine fuel emissions coefficient based on fuel type
-        switch (fuelType) {
-          case "Gasoline":
-            fuelEmissionsCoefficient = 2299;
-            break;
-          case "E10 Gasoline":
-            fuelEmissionsCoefficient = 2071;
-            break;
-          case "Diesel":
-            fuelEmissionsCoefficient = 2730;
-            break;
+            default:
+              fuelEmissionsCoefficient = 0; // Default value if fuel type not recognized
+          }
 
-          default:
-            fuelEmissionsCoefficient = 0; // Default value if fuel type not recognized
+          var annualEmissions =
+            annualFuelConsumption * fuelEmissionsCoefficient;
+          console.log("annuail emission:", annualEmissions);
+
+          var emissionsIntensity = annualEmissions / annualVKT;
+          console.log("emission intensity:", emissionsIntensity);
+          var avgEmissionsIntensityFleet = emissionsIntensity * vehicleQuantity;
+
+          var selEmin = emissionsIntensity;
+          // Add data to chartData
+          chartData.labels.push(formData[i].Description);
+          chartData.totalEmissions.push(annualEmissions);
+          chartData.emissionsIntensity.push(emissionsIntensity);
+          chartData.avgEmissionsIntensityFleet.push(avgEmissionsIntensityFleet);
         }
 
-        var annualEmissions = annualFuelConsumption * fuelEmissionsCoefficient;
-        var emissionsIntensity = annualEmissions / annualVKT;
-        var avgEmissionsIntensityFleet = emissionsIntensity * vehicleQuantity;
-        var selEmin = emissionsIntensity;
-        // Add data to chartData
-        chartData.labels.push(formData[i].Description);
-        chartData.totalEmissions.push(annualEmissions);
-        chartData.emissionsIntensity.push(emissionsIntensity);
-        chartData.avgEmissionsIntensityFleet.push(avgEmissionsIntensityFleet);
-      }
-
-      // Display Total Emissions chart
-      var totalEmissionsCtx = document
-        .getElementById("totalEmissionsChart")
-        .getContext("2d");
-      var totalEmissionsChart = new Chart(totalEmissionsCtx, {
-        type: "bar",
-        data: {
-          labels: chartData.labels,
-          datasets: [
-            {
-              label: "Total Emissions (gCO2e)",
-              data: chartData.totalEmissions,
-              backgroundColor: "rgba(50, 205, 50, 0.5)",
-              borderColor: "rgba(34, 160, 34, 1)",
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          indexAxis: "y", // Display bars horizontally
-          scales: {
-            x: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: "Total Emissions (gCO2e)",
-              },
-            },
-            y: {
-              title: {
-                display: true,
-                text: "Vehicle Description",
-              },
-            },
-          },
-        },
-      });
-
-      // Display Emissions Intensity chart
-      var emissionsIntensityCtx = document
-        .getElementById("emissionsIntensityChart")
-        .getContext("2d");
-      var emissionsIntensityChart = new Chart(emissionsIntensityCtx, {
-        type: "bar",
-        data: {
-          labels: chartData.labels,
-          datasets: [
-            {
-              label: "Emissions Intensity (gCO2e/km)",
-              data: chartData.emissionsIntensity,
-              backgroundColor: "rgba(70, 130, 190, 0.5)",
-              borderColor: "rgba(0, 0, 250, 1)",
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          indexAxis: "y", // Display bars horizontally
-          scales: {
-            x: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: "Emissions Intensity (gCO2e/km)",
-              },
-            },
-            y: {
-              title: {
-                display: true,
-                text: "Vehicle Description",
-              },
-            },
-          },
-        },
-      });
-
-      //AVERAGE EMISSIONS NOT WORKING
-
-      // Display Avg Emissions Intensity Fleet chart
-      var avgEmissionsIntensityFleetCtx = document
-        .getElementById("avgEmissionsIntensityFleetChart")
-        .getContext("2d");
-      var avgEmissionsIntensityFleetChart = new Chart(
-        avgEmissionsIntensityFleetCtx,
-        {
+        // Display Total Emissions chart
+        var totalEmissionsCtx = document
+          .getElementById("totalEmissionsChart")
+          .getContext("2d");
+        var totalEmissionsChart = new Chart(totalEmissionsCtx, {
           type: "bar",
           data: {
             labels: chartData.labels,
             datasets: [
               {
-                label: "Avg Emissions Intensity Fleet (gCO2e/km)",
-                data: chartData.avgEmissionsIntensityFleet,
-                backgroundColor: "rgba(255, 99, 132, 0.5)",
-                borderColor: "rgba(255, 99, 132, 1)",
+                label: "Total Emissions (gCO2e)",
+                data: chartData.totalEmissions,
+                backgroundColor: "rgba(50, 205, 50, 0.5)",
+                borderColor: "rgba(34, 160, 34, 1)",
                 borderWidth: 1,
               },
             ],
@@ -256,294 +192,609 @@
                 beginAtZero: true,
                 title: {
                   display: true,
-                  text: "Avg Emissions Intensity Fleet (gCO2e/km)",
+                  text: "Total Emissions (gCO2e)",
+                  font: {
+                    size: 16, // Increase font size
+                    weight: "bold", // Make the font bold
+                  },
+                  color: "black", // Set font color
+                },
+                ticks: {
+                  color: "black", // Set color for the X-axis ticks
+                  text: "bold",
                 },
               },
               y: {
                 title: {
                   display: true,
                   text: "Vehicle Description",
+                  font: {
+                    size: 16, // Increase font size
+                    weight: "bold", // Make the font bold
+                  },
+                  color: "black", // Set font color
+                },
+                ticks: {
+                  color: "black", // Set color for the X-axis ticks
+                  text: "bold",
                 },
               },
             },
           },
-        }
-      );
+        });
 
-      var tableBody = document.getElementById("entryTableBody");
-      //Result Actions Savings
-      for (var i = 0; i < formData.length; i++) {
-        //electrical efficiency for compact 2.9
-        //electrical efficiency for truck 3.24
-        province = formData[i].Province;
-        console.log(province);
-        switch (province) {
-          case "Alberta":
-            provincialEmissionsCoefficient = 540;
-            break;
-          case "British Columbia":
-            provincialEmissionsCoefficient = 15;
-            break;
-          case "Ontario":
-            provincialEmissionsCoefficient = 30;
-            break;
-          case "New Foundland & Labrador":
-            provincialEmissionsCoefficient = 17;
-            break;
-          case "Prince Edaward Island":
-            provincialEmissionsCoefficient = 300;
-            break;
-          case "Nova Scotia":
-            provincialEmissionsCoefficient = 690;
-            break;
-          case "New Brunswick":
-            provincialEmissionsCoefficient = 300;
-            break;
-          case "Quebec":
-            provincialEmissionsCoefficient = 1.7;
-            break;
-          case "Manitoba":
-            provincialEmissionsCoefficient = 2.0;
-            break;
-          case "Saskatchewan":
-            provincialEmissionsCoefficient = 730;
-            break;
-          default:
-            provincialEmissionsCoefficient = 30; // Default value
-        }
-        console.log(selectedOptions);
-        console.log(provincialEmissionsCoefficient);
+        // Display Emissions Intensity chart
+        var emissionsIntensityCtx = document
+          .getElementById("emissionsIntensityChart")
+          .getContext("2d");
+        var emissionsIntensityChart = new Chart(emissionsIntensityCtx, {
+          type: "bar",
+          data: {
+            labels: chartData.labels,
+            datasets: [
+              {
+                label: "Emissions Intensity (gCO2e/km)",
+                data: chartData.emissionsIntensity,
+                backgroundColor: "rgba(70, 130, 190, 0.5)",
+                borderColor: "rgba(0, 0, 250, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            indexAxis: "y", // Display bars horizontally
+            scales: {
+              x: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: "Emissions Intensity (gCO2e/km)",
+                  font: {
+                    size: 16, // Increase font size
+                    weight: "bold", // Make the font bold
+                  },
+                  color: "black", // Set font color
+                },
+                ticks: {
+                  color: "black", // Set color for the X-axis ticks
+                  text: "bold",
+                },
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: "Vehicle Description",
+                  font: {
+                    size: 16, // Increase font size
+                    weight: "bold", // Make the font bold
+                  },
+                  color: "black", // Set font color
+                },
+                ticks: {
+                  color: "black", // Set color for the X-axis ticks
+                  text: "bold",
+                },
+              },
+            },
+          },
+        });
 
-        var electricalEfficiency; // Assuming this variable is declared in the scope
+        //AVERAGE EMISSIONS NOT WORKING
 
-        // Check the selected green option
-        switch (selectedOptions[i]) {
-          case "Replace w/ EV Light Duty Truck":
-            electricalEfficiency = 3.3 * 8.9;
-            break;
-          case "Replace w/ EV Car":
-            // Code for 'Replace w/ EV Car' option
-            electricalEfficiency = 3 * 8.9; // Update with appropriate value
-            break;
-          case "Replace w/ EV Vehicle":
-            // Code for 'Replace w/ EV Vehicle' option
-            electricalEfficiency = 3.2 * 8.9; // Update with appropriate value
-            break;
-          case "Right Size to Car":
-            // Code for 'Right Size to Car' option
-            console.log("selemin");
-            console.log(selEmin);
-            var avgICEintensityDatabase = 3;
-            var percentageSavings =
-              ((selEmin - avgICEintensityDatabase) / selEmin) * 100;
-            var totalEmissionSavings =
-              (annualEmissions * percentageSavings) / 1000000;
-            // Display the result in the table
-            var newRow = createTableRow(
-              formData[i],
-              selectedOptions[i],
-              totalEmissionSavings,
-              percentageSavings
-            );
-            tableBody.appendChild(newRow);
-            createComparisonGraph(i); // Call function to create comparison graph
-            continue; // Skip the rest of the loop for this option
-
-          case "E85 Ethanol Usage":
-            var percentageSavings = 79;
-            var totalEmissionSavings = (annualEmissions * 0.8) / 1000000;
-
-            // Display the result in the table
-            var newRow = createTableRow(
-              formData[i],
-              selectedOptions[i],
-              totalEmissionSavings,
-              percentageSavings
-            );
-            tableBody.appendChild(newRow);
-
-            // Skip the rest of the loop for this option
-            continue;
-
-          case "B20 Diesel Usage":
-            var percentageSavings = 15;
-            var totalEmissionSavings = ""; // Blank for B20 Diesel Option
-
-            // Display the result in the table
-            var newRow = createTableRow(
-              formData[i],
-              selectedOptions[i],
-              totalEmissionSavings,
-              percentageSavings
-            );
-            tableBody.appendChild(newRow);
-
-            // Skip the rest of the loop for this option
-            continue;
-
-          // Add more cases for other green options if needed
-
-          default:
-            electricalEfficiency = 0; // Default value if green option not recognized
-        }
-        console.log(provincialEmissionsCoefficient);
-        console.log(electricalEfficiency);
-        // Calculate EV Emissions Intensity (gCO2e/km) for electric vehicles
-        var evEmissionIntensity =
-          (electricalEfficiency / 100) * provincialEmissionsCoefficient;
-        console.log(evEmissionIntensity);
-        console.log(emissionsIntensity);
-        // Calculate % Savings
-        var intialpercentageSavings =
-          (emissionsIntensity - evEmissionIntensity) / emissionsIntensity;
-        var percentageSavings = intialpercentageSavings * 100;
-        console.log(percentageSavings);
-        // Calculate Total Emissions Savings
-        var totalEmissionSavings =
-          (intialpercentageSavings * annualEmissions) / 1000000;
-        var roundedtotalEmissionSavings = totalEmissionSavings.toFixed(2); // Round off to the nearest whole number
-        // Display the result in the table
-        var newRow = createTableRow(
-          formData[i],
-          selectedOptions[i],
-          roundedtotalEmissionSavings,
-          percentageSavings
+        // Display Avg Emissions Intensity Fleet chart
+        var avgEmissionsIntensityFleetCtx = document
+          .getElementById("avgEmissionsIntensityFleetChart")
+          .getContext("2d");
+        var avgEmissionsIntensityFleetChart = new Chart(
+          avgEmissionsIntensityFleetCtx,
+          {
+            type: "bar",
+            data: {
+              labels: chartData.labels,
+              datasets: [
+                {
+                  label: "Avg Emissions Intensity Fleet (gCO2e/km)",
+                  data: chartData.avgEmissionsIntensityFleet,
+                  backgroundColor: "rgba(255, 99, 132, 0.5)",
+                  borderColor: "rgba(255, 99, 132, 1)",
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              indexAxis: "y", // Display bars horizontally
+              scales: {
+                x: {
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: "Avg Emissions Intensity Fleet (gCO2e/km)",
+                    font: {
+                      size: 16, // Increase font size
+                      weight: "bold", // Make the font bold
+                    },
+                    color: "black", // Set font color
+                  },
+                  ticks: {
+                    color: "black", // Set color for the X-axis ticks
+                    text: "bold",
+                  },
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: "Vehicle Description",
+                    font: {
+                      size: 16, // Increase font size
+                      weight: "bold", // Make the font bold
+                    },
+                    color: "black", // Set font color
+                  },
+                  ticks: {
+                    color: "black", // Set color for the X-axis ticks
+                    text: "bold",
+                  },
+                },
+              },
+            },
+          }
         );
-        tableBody.appendChild(newRow);
-      }
 
-      // Function to create a table row
-      function createTableRow(
-        formData,
-        action,
-        emissionSavings,
-        percentageSavings
-      ) {
-        var fleetDetail =
-          "<p>" +
-          formData.Description +
-          " - " +
-          formData.FuelType +
-          " - " +
-          formData.Year +
-          " - " +
-          formData.Make +
-          " - " +
-          formData.Model +
-          "</p>";
+        var tableBody = document.getElementById("entryTableBody");
+        //Result Actions Savings
+        for (var i = 0; i < formData.length; i++) {
+          //electrical efficiency for compact 2.9
+          //electrical efficiency for truck 3.24
+          province = formData[i].Province;
+          console.log(province, "province");
+          switch (province) {
+            case "Alberta":
+              provincialEmissionsCoefficient = 540;
+              break;
+            case "British Columbia":
+              provincialEmissionsCoefficient = 15;
+              break;
+            case "Ontario":
+              provincialEmissionsCoefficient = 30;
+              break;
+            case "New Foundland & Labrador":
+              provincialEmissionsCoefficient = 17;
+              break;
+            case "Prince Edaward Island":
+              provincialEmissionsCoefficient = 300;
+              break;
+            case "Nova Scotia":
+              provincialEmissionsCoefficient = 690;
+              break;
+            case "New Brunswick":
+              provincialEmissionsCoefficient = 300;
+              break;
+            case "Quebec":
+              provincialEmissionsCoefficient = 1.7;
+              break;
+            case "Manitoba":
+              provincialEmissionsCoefficient = 2.0;
+              break;
+            case "Saskatchewan":
+              provincialEmissionsCoefficient = 730;
+              break;
+            default:
+              provincialEmissionsCoefficient = 30; // Default value
+          }
+          console.log(selectedOptions, "selected Green Options");
+          console.log(
+            provincialEmissionsCoefficient,
+            "provincialEmissionsCoefficient"
+          );
 
-        var rowData = {
-          Fleetvehicle: fleetDetail,
-          Actionapplied: action,
-          EmissionSavings: emissionSavings,
-          PercentageSavings: percentageSavings,
-        };
+          var electricalEfficiency; // Assuming this variable is declared in the scope
 
-        // Create a new row
-        var newRow = document.createElement("tr");
+          // Check the selected green option
+          switch (selectedOptions[i]) {
+            case "Replace w/ EV Light Duty Truck":
+              electricalEfficiency = 3.3 * 8.9;
+              break;
+            case "Replace w/ EV Car":
+              // Code for 'Replace w/ EV Car' option
+              electricalEfficiency = 3 * 8.9; // Update with appropriate value
+              break;
 
-        // Populate the row with data
-        newRow.innerHTML = `
+            case "Right Size to Car":
+              // Code for 'Right Size to Car' option
+
+              console.log(selEmin);
+              var avgICEintensityDatabase = 155;
+              var percentageSavings =
+                ((selEmin - avgICEintensityDatabase) / selEmin) * 100;
+              var rounderpercentageSavingsforrightsize =
+                percentageSavings.toFixed(2); // Round off to the nearest whole number
+              var totalEmissionSavings =
+                (annualEmissions * percentageSavings) / 1000000;
+              var totalEmissionSavings = totalEmissionSavings.toFixed(2);
+              // Display the result in the table
+              var newRow = createTableRow(
+                formData[i],
+                selectedOptions[i],
+                totalEmissionSavings,
+                rounderpercentageSavingsforrightsize
+              );
+              tableBody.appendChild(newRow);
+              if (formData[i].FuelType && selectedOptions[i]) {
+                createComparisonGraph(i, "Right Size to Car ");
+
+                // Call function to create comparison graph
+              } // Call function to create comparison graph
+              continue; // Skip the rest of the loop for this option
+
+            // ------------------right size to biofuel e85 car
+            case "Right Size to Biofuel E85 Car":
+              console.log(selEmin);
+              var avgICEintensityDatabase = 155;
+              var percentageSavings =
+                ((selEmin - avgICEintensityDatabase) / selEmin) * 100;
+              var rounderpercentageSavingsBioECar =
+                percentageSavings.toFixed(2); // Round off to the nearest whole number
+              var totalEmissionSavingsBioECar =
+                (annualEmissions * percentageSavings) / 1000000;
+              var totalEmissionSavingsBioECar =
+                totalEmissionSavingsBioECar.toFixed(2);
+              // Display the result in the table
+              var newRow = createTableRow(
+                formData[i],
+                selectedOptions[i],
+                totalEmissionSavingsBioECar,
+                rounderpercentageSavingsBioECar
+              );
+              tableBody.appendChild(newRow);
+              createComparisonGraph(i, "Right Size to Biofuel E85 Car "); // Call function to create comparison graph
+              continue;
+            // ------------------------right size to e85 light duty truck
+            case "Replace w/ Biofuel E85 Light Duty Truck":
+              console.log(selEmin);
+              var avgICEintensityDatabase = 309;
+              var percentageSavings =
+                ((selEmin - avgICEintensityDatabase) / selEmin) * 100;
+              var rounderpercentageSavingsBioLDT = percentageSavings.toFixed(2);
+              var totalEmissionSavingsBioLDT =
+                (annualEmissions * percentageSavings) / 1000000;
+              var totalEmissionSavingsBioLDT =
+                totalEmissionSavingsBioLDT.toFixed(2);
+              // Display the result in the table
+              var newRow = createTableRow(
+                formData[i],
+                selectedOptions[i],
+                totalEmissionSavingsBioLDT,
+                rounderpercentageSavingsBioLDT
+              );
+              tableBody.appendChild(newRow);
+              createComparisonGraphForBiofuel(
+                i,
+                "Replace w/ Biofuel E85 Light Duty Truck "
+              ); // Call function to create comparison graph
+              continue;
+
+            case "E85 Biofuel Usage":
+              var percentageSavingse85 = 79;
+              var totalEmissionSavings = (annualEmissions * 0.8) / 1000000;
+              var totalEmissionSavingse85 = totalEmissionSavings.toFixed(2); // Round off to the nearest whole number
+              console.log(totalEmissionSavingse85, "totalEmissionSavingse85");
+              console.log(percentageSavingse85, "percentageSavingse85");
+              // Display the result in the table
+              var newRow = createTableRow(
+                formData[i],
+                selectedOptions[i],
+                totalEmissionSavingse85,
+                percentageSavingse85
+              );
+              tableBody.appendChild(newRow);
+
+              // Skip the rest of the loop for this option
+              continue;
+
+            case "E85 Ethanol Usage":
+              var percentageSavingse85 = 79;
+              var totalEmissionSavings = (annualEmissions * 0.8) / 1000000;
+              var totalEmissionSavingse85 = totalEmissionSavings.toFixed(2); // Round off to the nearest whole number
+              console.log(totalEmissionSavingse85, "totalEmissionSavingse85");
+              console.log(percentageSavingse85, "percentageSavingse85");
+              // Display the result in the table
+              var newRow = createTableRow(
+                formData[i],
+                selectedOptions[i],
+                totalEmissionSavingse85,
+                percentageSavingse85
+              );
+              tableBody.appendChild(newRow);
+
+              // Skip the rest of the loop for this option
+              continue;
+            case "B20 Diesel Usage":
+              var percentageSavings = 15;
+              var totalEmissionSavings = (annualEmissions * 0.15) / 1000000;
+              var totalEmissionSavings = totalEmissionSavings.toFixed(2);
+
+              // Display the result in the table
+              var newRow = createTableRow(
+                formData[i],
+                selectedOptions[i],
+                totalEmissionSavings,
+                percentageSavings
+              );
+              tableBody.appendChild(newRow);
+
+              // Skip the rest of the loop for this option
+              continue;
+
+            // Add more cases for other green options if needed
+
+            default:
+              electricalEfficiency = 0; // Default value if green option not recognized
+          }
+
+          console.log(electricalEfficiency, "electricalEfficiency");
+          // Calculate EV Emissions Intensity (gCO2e/km) for electric vehicles
+          var evEmissionIntensity =
+            (electricalEfficiency / 100) * provincialEmissionsCoefficient;
+          console.log(evEmissionIntensity, "evEmissionIntensity");
+          console.log(emissionsIntensity, "emissionsIntensity");
+          // Calculate % Savings
+          var intialpercentageSavings =
+            (emissionsIntensity - evEmissionIntensity) / emissionsIntensity;
+          var percentageSavings = intialpercentageSavings * 100;
+          var rounderpercentageSavings = percentageSavings.toFixed(2); // Round off to the nearest whole number
+          console.log(percentageSavings, "percentageSavings");
+          // Calculate Total Emissions Savings
+          var totalEmissionSavings =
+            (intialpercentageSavings * annualEmissions) / 1000000;
+          var roundedtotalEmissionSavings = totalEmissionSavings.toFixed(2); // Round off to the nearest whole number
+          // Display the result in the table
+          console.log(
+            roundedtotalEmissionSavings,
+            "roundedtotalEmissionSavings"
+          );
+          var newRow = createTableRow(
+            formData[i],
+            selectedOptions[i],
+            roundedtotalEmissionSavings,
+            rounderpercentageSavings
+          );
+          tableBody.appendChild(newRow);
+        }
+
+        // Function to create a table row
+        function createTableRow(
+          formData,
+          action,
+          emissionSavings,
+          percentageSavings
+        ) {
+          var fleetDetail =
+            "<p>" +
+            formData.Description +
+            " - " +
+            formData.FuelType +
+            " - " +
+            formData.Year +
+            " - " +
+            formData.Make +
+            " - " +
+            formData.Model +
+            "</p>";
+
+          var rowData = {
+            Fleetvehicle: fleetDetail,
+            Actionapplied: action,
+            EmissionSavings: emissionSavings,
+            PercentageSavings: percentageSavings,
+          };
+
+          // Create a new row
+          var newRow = document.createElement("tr");
+
+          // Populate the row with data
+          newRow.innerHTML = `
               <td>${rowData.Fleetvehicle}</td>
               <td>${rowData.Actionapplied}</td>
               <td>${rowData.EmissionSavings}</td>
               <td>${rowData.PercentageSavings}</td>
           `;
 
-        return newRow;
+          return newRow;
 
-        // Function to create a comparison graph
-      }
+          // Function to create a comparison graph
+        }
 
-      function createComparisonGraph(index) {
-        // Retrieve data for the selected vehicle
-        var selectedVehicleLabel = chartData.labels[index];
-        var selectedVehicleEmissionsIntensity =
-          chartData.emissionsIntensity[index];
+        function createComparisonGraph(index, graphTitle) {
+          // Generate a unique ID for the canvas element
+          var canvasId = "comparisonGraph_" + index;
+          // Retrieve data for the selected vehicle
+          var selectedVehicleLabel = chartData.labels[index];
+          var selectedVehicleEmissionsIntensity =
+            chartData.emissionsIntensity[index];
 
-        // Create dummy data for comparison (replace this with actual data)
-        var comparisonLabels = [
-          "Vehicle 1",
-          "Vehicle 2",
-          "Vehicle 3",
-          "Vehicle 4",
-          "Vehicle 5",
-          "Vehicle 6",
-          "Vehicle 7",
-          "Vehicle 8",
-          "Vehicle 9",
-          "Vehicle 10",
-        ];
-        var comparisonData = [
-          selectedVehicleEmissionsIntensity,
-          2.5,
-          3.0,
-          3.2,
-          2.8,
-          3.5,
-          2.9,
-          3.1,
-          2.7,
-          3.3,
-        ];
-        console.log(
-          selectedVehicleEmissionsIntensity,
-          "selectedVehicleEmissionsIntensity"
-        );
-        // Display the comparison graph
-        var comparisonGraphCtx = document
-          .getElementById("comparisonGraph")
-          .getContext("2d");
-        var comparisonGraph = new Chart(comparisonGraphCtx, {
-          type: "bar",
-          data: {
-            labels: comparisonLabels,
-            datasets: [
-              {
-                label: "Emissions Intensity Comparison (gCO2e/km)",
-                data: comparisonData,
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 1,
+          // Create dummy data for comparison (replace this with actual data)
+          var comparisonLabels = [
+            "Your Vehicle",
+            "Audie A4",
+            "Volvo S60",
+            "Mercedes CLA 250",
+            "Mazda 3",
+            "Volkswagen Jetta",
+            "Nissan Versa",
+            "Mitshubishi Mirage",
+            "Lexus UX 250h",
+            "Toyota Corolla",
+          ];
+          var comparisonData = [
+            selectedVehicleEmissionsIntensity,
+            208,
+            196,
+            194,
+            175,
+            162,
+            148,
+            143,
+            140,
+            115,
+          ];
+
+          // Check if canvas element already exists
+          var comparisonGraphCanvas = document.getElementById(canvasId);
+          if (!comparisonGraphCanvas) {
+            // If canvas element does not exist, create it
+            comparisonGraphCanvas = document.createElement("canvas");
+            comparisonGraphCanvas.id = canvasId;
+            comparisonGraphCanvas.classList.add("chart-container"); // Add class for styling
+            document
+              .getElementById("pdfContent")
+              .appendChild(comparisonGraphCanvas);
+          }
+
+          // Display the comparison graph in the canvas element
+          var comparisonGraphCtx = comparisonGraphCanvas.getContext("2d");
+          var comparisonGraph = new Chart(comparisonGraphCtx, {
+            type: "bar",
+            data: {
+              labels: comparisonLabels,
+              datasets: [
+                {
+                  label: "Emissions Intensity Comparison (gCO2e/km)",
+                  data: comparisonData,
+                  backgroundColor: "rgba(75, 192, 192, 0.2)",
+                  borderColor: "rgba(75, 192, 192, 1)",
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
               },
-            ],
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
+              plugins: {
+                title: {
+                  display: true,
+                  text: graphTitle, // Set the title dynamically
+                  color: "black",
+                  font: {
+                    size: 16,
+                    weight: "bold",
+                  },
+                },
               },
             },
-          },
-        });
-      }
-      // Print button functionality
-      document
-        .getElementById("printButton")
-        .addEventListener("click", function () {
-          window.print();
-        });
-      document
-        .getElementById("saveButton")
-        .addEventListener("click", function () {
-          var element = document.getElementById("pdfContent");
-          var opt = {
-            margin: [10, 20, 10, 20],
-            filename: "results.pdf",
-            image: { type: "jpeg", quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true, backgroundColor: null },
-            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-          };
+          });
+        }
+        // ----------comaparison graph for biofuel e85 light duty truck
+        // Function to create a comparison graph for "Replace w/ Biofuel E85 Light Duty Truck"
+        function createComparisonGraphForBiofuel(index, graphTitle) {
+          // Generate a unique ID for the canvas element
+          var canvasId = "comparisonGraph_" + index;
+          // Retrieve data for the selected vehicle
+          var selectedVehicleLabel = chartData.labels[index];
+          var selectedVehicleEmissionsIntensity =
+            chartData.emissionsIntensity[index];
 
-          html2pdf().from(element).set(opt).save();
-        });
+          // Create dummy data for comparison (replace this with actual data)
+          var comparisonLabels = [
+            "Vehicle 1",
+            "GMC Sierra Mud Terrain",
+            "GMC Sierra 4WD FFV",
+            "Chevrolet Silverado Mud Terrain",
+            "Chevrolet Silverado 4WD FFV",
+            "GMC Sierra FFV",
+            "Chevrolet Silverado FFV",
+          ];
+          var comparisonData = [
+            selectedVehicleEmissionsIntensity,
+            318,
+            318,
+            318,
+            318,
+            293,
+            293,
+          ];
+          // Create a new canvas element with the unique ID
+          // var comparisonGraphCanvas = document.createElement("canvas");
+          // comparisonGraphCanvas.id = canvasId;
+          // comparisonGraphCanvas.classList.add("chart-container"); // Add class for styling
+          // document
+          //   .getElementById("pdfContent")
+          //   .appendChild(comparisonGraphCanvas);
+          // // Display the comparison graph in the canvas element
+          var comparisonGraphCtx = document
+            .getElementById(canvasId)
+            .getContext("2d");
+          var comparisonGraph = new Chart(comparisonGraphCtx, {
+            type: "bar",
+            data: {
+              labels: comparisonLabels,
+              datasets: [
+                {
+                  label: "Emissions Intensity Comparison (gCO2e/km)",
+                  data: comparisonData,
+                  backgroundColor: "rgba(75, 192, 192, 0.2)",
+                  borderColor: "rgba(75, 192, 192, 1)",
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
+              },
+              plugins: {
+                title: {
+                  display: true,
+                  text: graphTitle, // Set the title dynamically
+                  color: "black",
+                  font: {
+                    size: 16,
+                    weight: "bold",
+                  },
+                },
+              },
+            },
+          });
+        }
 
-      // Back button functionality
-      document
-        .getElementById("backButton")
-        .addEventListener("click", function () {
-          window.history.back();
-        });
+        // Print button functionality
+        document
+          .getElementById("printButton")
+          .addEventListener("click", function () {
+            window.print();
+          });
+        // document
+        //   .getElementById("saveButton")
+        //   .addEventListener("click", function () {
+        //     console.log("Save button clicked");
+        //     var element = document.getElementById("pdfContent");
+        //     var opt = {
+        //       margin: [10, 20, 10, 20],
+        //       filename: "results.pdf",
+        //       image: { type: "jpeg", quality: 0.98 },
+        //       html2canvas: {
+        //         scale: 2,
+        //         useCORS: true,
+        //         backgroundColor: "#ffffff",
+        //       }, // Set background color to white
+        //       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        //     };
+
+        //     html2pdf().from(element).set(opt).save();
+        //     console.log("PDF generation complete");
+        //   });
+
+        // // Back button functionality
+        // document
+        //   .getElementById("backButton")
+        //   .addEventListener("click", function () {
+        //     window.history.back();
+        //   });
+      });
     </script>
   </body>
 </html>
