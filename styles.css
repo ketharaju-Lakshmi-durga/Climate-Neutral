@@ -85,6 +85,16 @@ body {
     min-height: 100vh;
 }
 
+<<<<<<< HEAD
+=======
+#wrapper {
+    max-width: 600px;
+    margin: 20px 100px;
+    align-content: center;
+    align-items: center;
+    
+}
+>>>>>>> durganew
 
 form {
     background-color: rgba(255, 255, 255);
@@ -140,6 +150,12 @@ button::selection {
     border-bottom: 1px solid #b3b3b3;
     background-color: #fff;
     box-sizing: border-box;
+<<<<<<< HEAD
+=======
+    width:40%;
+    
+    
+>>>>>>> durganew
 }
 
 button {
@@ -151,10 +167,18 @@ button {
     margin-bottom: 5px;
     border-radius: 5px;
     font-family: "Allerta", sans-serif;
+<<<<<<< HEAD
     font-weight: 400;
     font-style: normal;
     padding-top: 7px;
     padding-bottom: 7px;
+=======
+  font-weight: 400;
+  font-style: normal;
+  padding-top: 7px;
+  padding-bottom: 7px;
+    
+>>>>>>> durganew
 }
 
 button:hover {
@@ -294,8 +318,15 @@ tbody tr:nth-child(even) {
 
 #add:hover {
     transform: scale(1.1);
+<<<<<<< HEAD
     background-color: #3da140;
 }
+=======
+    background-color:  #3da140;
+}
+    background-color:rgb(182, 178, 178);
+
+>>>>>>> durganew
 
 background-color:rgb(182, 178, 178);
 }
@@ -377,7 +408,7 @@ footer {
 
 
 
-#fleetForm .two-fields {
+/* #fleetForm .two-fields {
 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -394,6 +425,9 @@ footer {
     grid-row-gap: 10px;
     margin-bottom: 20px;
 
+} */
+i{
+    color:#3da140;
 }
 
 #fleetForm label {
@@ -404,7 +438,7 @@ footer {
 #fleetForm select,
 #fleetForm input[type="text"],
 #fleetForm input[type="number"] {
-    width: 100%;
+    width: 50%;
 }
 
 #entryTable {
@@ -420,15 +454,28 @@ footer {
 #drop-area {
     text-align: center;
     cursor: pointer;
+<<<<<<< HEAD
     margin-bottom: 20px;
 
 
+=======
+    margin: 20px 20px 20px 20px;
+  
+   
+   
+>>>>>>> durganew
 }
 
 #img-view {
     object-fit: cover;
+<<<<<<< HEAD
     border-radius: 0 10px 10px 0;
     border: 2px dashed #bbb5ff;
+=======
+    border-radius: 20px;
+    border-right:10px;
+    border: 2px solid #bbb5ff;
+>>>>>>> durganew
     background: #f7f8ff;
     display: flex;
     flex-direction: column;
@@ -565,6 +612,7 @@ footer {
     content: none;
 }
 
+<<<<<<< HEAD
 .progress-bar li.current {
     background-color: #4caf50;
     /* Highlight for the current step */
@@ -623,3 +671,26 @@ footer {
     grid-template-columns: auto auto;
     grid-gap: 20px;
 }
+=======
+            #wrapper{
+                margin:auto;
+                width:100%;
+            }
+       
+        #table-style{
+            margin:auto;
+            width:70%;
+            
+               
+
+        }
+       
+        #wrapper .left{
+            width:50%;
+            float:left;
+          }
+          #wrapper .right{
+            width:50%;
+            float:right;
+          }
+>>>>>>> durganew
