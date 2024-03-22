@@ -47,6 +47,7 @@
     align-items: center;
     margin-bottom: 10px;
     flex-wrap: wrap;
+    width:80%;
   }
 
   .field-container label {
@@ -113,14 +114,14 @@
     </div>
     <div id="wrapper">
       <form id="fleetForm">
-        <label for="input-file" id="drop-area">
+        <!-- <label for="input-file" id="drop-area">
           <input type="file" accept="file/*" id="input-file" hidden />
           <div id="img-view">
             <i class="fas fa-folder-open" style='font-size:48px;color:blue'></i>
             <p>Drag and drop or click here to upload files</p>
             <span>Upload .csv format file</span>
           </div>
-        </label>
+        </label> -->
 
 
 
@@ -209,12 +210,19 @@
           <input type="number" id="vehicleQuantity" name="vehicleQuantity" required>
         </div>
        
-    
+        <label for="input-file" id="drop-area">
+          <input type="file" accept="file/*" id="input-file" hidden />
+          <div id="img-view">
+            <i class="fas fa-folder-open" style='font-size:48px;color:blue'></i>
+            <p>Drag and drop or click here to upload files</p>
+            <span>Upload .csv format file</span>
+          </div>
+        </label>
 </form>
       <button id="add" type="button" onclick="addEntry()">
         <i class="fa-solid fa-plus"></i> ADD
       </button>
-      <!-- <button type="button" value="Reset" onclick="resetForm()">Reset</button> -->
+      <button type="button" value="Reset" onclick="resetForm()">Reset</button> 
     </div>
     <!-- Display table for selected entries -->
     <div id="table-style">
@@ -450,7 +458,7 @@
         link.click(); // Simulate a click on the link to trigger the download
       }
     </script>
-                                   <li class="nav-item dropdown main-navbar">
+                                   <!-- <li class="nav-item dropdown main-navbar"> -->
                                    
   </body>
 </html>

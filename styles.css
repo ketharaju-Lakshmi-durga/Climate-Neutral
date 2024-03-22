@@ -81,6 +81,7 @@ body {
     margin: 20px 100px;
     align-content: center;
     align-items: center;
+    
 }
 
 form {
@@ -126,6 +127,7 @@ button {
     border-radius: 5px;
     background-color: #fff;
     box-sizing: border-box;
+    width:40%;
     
     
 }
@@ -147,14 +149,7 @@ button {
   font-style: normal;
   padding-top: 7px;
   padding-bottom: 7px;
-    margin-bottom: 5px;
-    width: 80px;
-    border-radius: 20px;
-    font-family: "Allerta", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  padding-top: 7px;
-  padding-bottom: 7px;
+    
 }
 
 button:hover {
@@ -376,7 +371,7 @@ i{
 #fleetForm select,
 #fleetForm input[type="text"],
 #fleetForm input[type="number"] {
-    width: 100%;
+    width: 50%;
 }
 
 #entryTable {
@@ -390,7 +385,8 @@ i{
 #drop-area {
     text-align: center;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin: 20px 20px 20px 20px;
+  
    
    
 }
@@ -400,7 +396,8 @@ i{
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
-    border: 2px dashed #bbb5ff;
+    border-right:10px;
+    border: 2px solid #bbb5ff;
     background: #f7f8ff;
      
      
