@@ -287,7 +287,7 @@ tbody tr:nth-child(even) {
     background-color:  #3da140;
 }
     background-color:rgb(182, 178, 178);
-}
+
 
 #delete{
     margin-top: 5px;
@@ -346,7 +346,7 @@ footer {
 
 
 
-#fleetForm .two-fields {
+/* #fleetForm .two-fields {
 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -363,6 +363,9 @@ footer {
     grid-row-gap: 10px;
     margin-bottom: 20px;
 
+} */
+i{
+    color:#3da140;
 }
 
 #fleetForm label {
@@ -525,6 +528,7 @@ footer {
 
             #wrapper{
                 margin:auto;
+                width:100%;
             }
        
         #table-style{
@@ -535,3 +539,11 @@ footer {
 
         }
        
+        #wrapper .left{
+            width:50%;
+            float:left;
+          }
+          #wrapper .right{
+            width:50%;
+            float:right;
+          }
