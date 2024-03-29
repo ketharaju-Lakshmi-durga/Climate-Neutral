@@ -1,173 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Climate Neutral :: Index</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allerta&family=Anton&family=Black+Ops+One&family=Calistoga&family=DM+Serif+Display:ital@0;1&family=Luckiest+Guy&family=Noto+Sans+Lao+Looped:wght@100..900&family=Ojuju:wght@200..800&family=Patua+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rammetto+One&family=Rowdies:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allerta&family=Anton&family=Calistoga&family=Luckiest+Guy&family=Noto+Sans+Lao+Looped:wght@100..900&family=Patua+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rammetto+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
 
-<head>
-  <title>Climate Neutral :: Index</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Allerta&family=Anton&family=Black+Ops+One&family=Calistoga&family=DM+Serif+Display:ital@0;1&family=Luckiest+Guy&family=Noto+Sans+Lao+Looped:wght@100..900&family=Ojuju:wght@200..800&family=Patua+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rammetto+One&family=Rowdies:wght@300;400;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Allerta&family=Anton&family=Calistoga&family=Luckiest+Guy&family=Noto+Sans+Lao+Looped:wght@100..900&family=Patua+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rammetto+One&display=swap"
-    rel="stylesheet" />
-</head>
-<header>
-  <nav>
-    <img src="static/image/logo.png" alt="Logo" id="logo" />
-    <h1>Climate<span>Neutral</span></h1>
-  </nav>
-</header>
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 
-<body>
-  <div class="progress-bar-container">
-    <ol class="progress-bar">
-      <li class="current">Input Wizard</li>
-      <li class="greenwizard">Green Options Wizard</li>
-      <li class="finalresults">Final Results</li>
-    </ol>
-  </div>
-  <div id="wrapper" style="transform: translateX(-5.5%);">
-    <form id="fleetForm">
+  .field-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
 
-      <div>
-        <label for="Province">Province</label>
-        <select id="Province" name="Province">
-          <option value="Alberta">Alberta</option>
-          <option value="British Columbia">British Columbia</option>
-          <option value="Ontario">Ontario</option>
-          <option value="New Foundland & Labrador">
-            New Foundland & Labrador
-          </option>
-          <option value="Prince Edaward Island">
-            Prince Edaward Island
-          </option>
-          <option value="Nova Scotia">Nova Scotia</option>
-          <option value="New Brunswick">New Brunswick</option>
-          <option value="Quebec">Quebec</option>
-          <option value="Manitoba">Manitoba</option>
-          <option value="Saskatchewan">Saskatchewan</option>
-        </select>
-      </div>
-      <div>
-        <label for="vehicleDescription">Vehicle Description</label>
-        <input type="text" id="vehicleDescription" name="vehicleDescription" required />
-      </div>
+  .field-container label {
+    flex-basis: 150px;
+    margin-right: 10px;
+  }
 
-      <div>
-        <label for="vehicleType">Vehicle Type</label>
-        <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type" required>
-          <option value="LightDutyTruck">Light Duty Truck</option>
-          <option value="Car">Car</option>
-        </select>
-      </div>
+  .field-container input,
+  .field-container select {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
 
-      <div>
-        <label for="Year">Year</label>
-        <input type="number" id="year" name="year" min="1900" max="2100" placeholder="YYYY" required />
-      </div>
+  /* .field-container i {
+    margin-right: 5px;
+  } */
 
-      <div>
-        <label for="make">Make</label>
-        <input type="text" id="make" name="make" required />
-      </div>
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
 
-
-      <div>
-        <label for="model">Model</label>
-        <input type="text" id="model" name="model" required />
-      </div>
-      <div>
-        <label for="annual_vkt">Annual VKT</label>
-        <input type="number" id="annual_vkt" name="annual_vkt" required />
-      </div>
-      <div>
-        <label for="annual_fuel">Annual Fuel</label>
-        <input type="number" id="annual_fuel" name="annual_fuel" required />
-      </div>
-
-
-
-      <div>
-        <label for="fuelType">Fuel Type</label>
-        <select id="fuelType" name="fuelType" aria-placeholder="Fuel type">
-          <option value="Gasoline">Gasoline</option>
-          <option value="E10 Gasoline">E10 Gasoline</option>
-          <option value="Diesel">Diesel</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="flex_fuel">Flex Fuel</label>
-        <select name="flex_fuel" id="flex_fuel">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-
-
-      <div>
-        <label for="vehicleQuantity">Vehicle Quantity</label>
-        <input type="number" id="vehicleQuantity" name="vehicleQuantity" required />
-      </div>
-
-      <div class="btn-ctr"><button id="add" type="button" onclick="addEntry()">
-          <i class="fa-solid fa-plus"></i> ADD
-        </button></div>
-
-      <!-- Add button for adding entries to a table -->
-
-    </form>
-
-    <h3 style="font-size:1.2rem;text-align: center; padding: 0;margin: 0; color: white;display: flex;
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  .field-container i {
+    display: inline-block;
+     /* Border color */
+    border-radius: 3px 0 0 3px; /* Make the border circular for this example */
+    padding: 5px; /* Adjust padding as needed */
+    margin-top: 5px;
+    background-color: rgb(215, 207, 207);
     
-    align-items: center;">
-      OR
+  }
+  .field-container i {
+     margin-right: 0px;
+}
+</style>
 
-    </h3>
+  </head>
+  <header>
+    <nav>
+      <img src="static/image/logo.png" alt="Logo" id="logo" />
+      <h1>Climate<span>Neutral</span></h1>
+    </nav>
+  </header>
 
-    <label for="input-file" id="drop-area">
-      <input type="file" accept="file/*" id="input-file" hidden />
-      <div id="img-view">
-        <img src="static/image/upload_icon.png" />
-        <p>Click here to upload files</p>
-        <span>Upload .csv format file</span>
-      </div>
-    </label>
-    <!-- <button type="button" value="Reset" onclick="resetForm()">Reset</button> -->
-  </div>
-  <!-- Display table for selected entries -->
-  <div id="table-style">
-    <table id="entryTable" border="1">
-      <thead>
-        <tr>
-          <th>Description</th>
-          <th>Vehicle Type</th>
-          <th>Year</th>
-          <th>Make</th>
-          <th>Model</th>
-          <th>Annual VKT</th>
-          <th>Annual Fuel</th>
-          <th>Fuel Type</th>
-          <th>Flex Fuel</th>
-          <th>Vehicle Quantity</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="entryTableBody"></tbody>
-    </table>
-    <br />
+  <body>
+    <div class="progress-bar-container">
+      <ol class="progress-bar">
+        <li class="current">Input Wizard</li>
+        <li class="greenwizard">Green Options Wizard</li>
+        <li class="finalresults">Final Results</li>
+      </ol>
+    </div>
+    <div id="wrapper">
+      <form id="fleetForm">
+        <label for="input-file" id="drop-area">
+          <input type="file" accept="file/*" id="input-file" hidden />
+          <div id="img-view">
+            <i class="fas fa-folder-open" style='font-size:48px;color:blue'></i>
+            <p>Drag and drop or click here to upload files</p>
+            <span>Upload .csv format file</span>
+          </div>
+        </label>
 
-    <div class="btn-ctr"><!-- Move the submit button below the table -->
+
+
+        <div class="two-fields">
+          <div class="field-container">
+            <label for="Province">Province</label>
+    <i class="fas fa-map-marked-alt"></i>
+            <select id="Province" name="Province">
+              <option value="Alberta">Alberta</option>
+              <option value="British Columbia">British Columbia</option>
+              <option value="Ontario">Ontario</option>
+              <option value="New Foundland & Labrador">New Foundland & Labrador</option>
+              <option value="Prince Edaward Island">Prince Edaward Island</option>
+              <option value="Nova Scotia">Nova Scotia</option>
+              <option value="New Brunswick">New Brunswick</option>
+              <option value="Quebec">Quebec</option>
+              <option value="Manitoba">Manitoba</option>
+              <option value="Saskatchewan">Saskatchewan</option>
+            </select>
+          </div>
+          <div class="field-container">
+            <label for="vehicleDescription">Vehicle Description</label>
+            <i class="fas fa-pencil-alt"></i>
+            <input type="text" id="vehicleDescription" name="vehicleDescription" required>
+          </div>
+        </div>
+        <div class="three-fields">
+          <div class="field-container">
+            <label for="vehicleType">Vehicle Type</label>
+            <i class="fas fa-car-side"></i>
+            <select id="vehicleType" name="vehicleType" aria-placeholder="Vehicle type" required>
+              <option value="LightDutyTruck">Light Duty Truck</option>
+              <option value="Car">Car</option>
+            </select>
+          </div>
+          <div class="field-container">
+            <label for="Year">Year</label>
+            <i class="fas fa-calendar-alt"></i>
+            <input type="number" id="year" name="year" min="1900" max="2100" placeholder="YYYY" required>
+          </div>
+          <div class="field-container">
+            <label for="make">Make</label>
+            <i class="fas fa-cogs"></i>
+            <input type="text" id="make" name="make" required>
+          </div>
+        </div>
+        <div class="three-fields">
+          <div class="field-container">
+            <label for="model">Model</label>
+            <i class="fas fa-car-alt"></i>
+            <input type="text" id="model" name="model" required>
+          </div>
+          <div class="field-container">
+            <label for="annual_vkt">Annual VKT</label>
+            <i class="fas fa-road"></i>
+            <input type="number" id="annual_vkt" name="annual_vkt" required>
+          </div>
+          <div class="field-container">
+            <label for="annual_fuel">Annual Fuel</label>
+            <i class="fas fa-gas-pump"></i>
+            <input type="number" id="annual_fuel" name="annual_fuel" required>
+          </div>
+        </div>
+        <div class="two-fields">
+          <div class="field-container">
+            <label for="fuelType">Fuel Type</label>
+            <i class="fas fa-flask"></i>
+            <select id="fuelType" name="fuelType" aria-placeholder="Fuel type">
+              <option value="Gasoline">Gasoline</option>
+              <option value="E10 Gasoline">E10 Gasoline</option>
+              <option value="Diesel">Diesel</option>
+            </select>
+          </div>
+          <div class="field-container">
+            <label for="flex_fuel">Flex Fuel</label>
+            <i class="fas fa-tint"></i>
+            <select name="flex_fuel" id="flex_fuel">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-container">
+          <label for="vehicleQuantity">Vehicle Quantity</label>
+          <i class="fas fa-calculator"></i>
+          <input type="number" id="vehicleQuantity" name="vehicleQuantity" required>
+        </div>
+       
+    
+</form>
+      <button id="add" type="button" onclick="addEntry()">
+        <i class="fa-solid fa-plus"></i> ADD
+      </button>
+      <!-- <button type="button" value="Reset" onclick="resetForm()">Reset</button> -->
+    </div>
+    <!-- Display table for selected entries -->
+    <div id="table-style">
+      <table id="entryTable" border="1">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Vehicle Type</th>
+            <th>Year</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Annual VKT</th>
+            <th>Annual Fuel</th>
+            <th>Fuel Type</th>
+            <th>Flex Fuel</th>
+            <th>Vehicle Quantity</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="entryTableBody"></tbody>
+      </table>
+      <br />
+
+      <!-- Move the submit button below the table -->
       <button id="submit" type="button" onclick="submitForm()">
         <i class="fa-solid fa-check"></i> SUBMIT
       </button>
@@ -324,73 +395,9 @@
 
         formData.push(rowData);
       }
-
-      // Store the form data in localStorage
-      localStorage.setItem("formData", JSON.stringify(formData));
-
-      // Redirect to another page (e.g., green_wizard.html)
-      window.location.href = "green_wizard.html";
-    }
-    function resetForm() {
-      document.getElementById("fleetForm").reset();
-    }
-    function editRow(button) {
-      let row = button.parentNode.parentNode;
-      console.log(row);
-      let description = row.cells[0].innerText;
-      let vehicleType = row.cells[1].innerText;
-      let year = row.cells[2].innerText;
-      let make = row.cells[3].innerText;
-      let model = row.cells[4].innerText;
-      let annualVKT = row.cells[5].innerText;
-      let annualFuel = row.cells[6].innerText;
-      let fuelType = row.cells[7].innerText;
-      let flexFuel = row.cells[8].innerText;
-      let vehicleQuantity = row.cells[9].innerText;
-
-      let province = document.getElementById("Province").innerText;
-
-      document.getElementById("Province").value = province;
-      document.getElementById("vehicleDescription").value = description;
-      document.getElementById("vehicleType").value = vehicleType;
-      document.getElementById("year").value = year;
-      document.getElementById("make").value = make;
-      document.getElementById("model").value = model;
-      document.getElementById("annual_vkt").value = annualVKT;
-      document.getElementById("vehicleQuantity").value = vehicleQuantity;
-      document.getElementById("flex_fuel").value = flexFuel;
-      document.getElementById("annual_fuel").value = annualFuel;
-      document.getElementById("Province").value = province;
-      row.remove();
-    }
-
-    function deleteRow(button) {
-      let row = button.parentNode.parentNode;
-      row.remove();
-    }
-    function downloadFormData() {
-      // Get form data from localStorage
-      var formData = JSON.parse(localStorage.getItem("formData"));
-
-      // Create CSV content
-      var csvContent = "data:text/csv;charset=utf-8,";
-      csvContent +=
-        "Description,VehicleType,Year,Make,Model,AnnualVKT,AnnualFuel,FuelType,FlexFuel,VehicleQuantity\n";
-
-      // Iterate over form data and append each row to CSV content
-      formData.forEach((row) => {
-        csvContent += `${row.Description},${row.VehicleType},${row.Year},${row.Make},${row.Model},${row.AnnualVKT},${row.AnnualFuel},${row.FuelType},${row.FlexFuel},${row.VehicleQuantity}\n`;
-      });
-
-      // Create a download link
-      var encodedUri = encodeURI(csvContent);
-      var link = document.createElement("a");
-      link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "form_data.csv");
-      document.body.appendChild(link); // Append the link to the body
-      link.click(); // Simulate a click on the link to trigger the download
-    }
-  </script>
-</body>
-
+    </script>
+                                   <li class="nav-item dropdown main-navbar">
+                                   
+  </body>
 </html>
+

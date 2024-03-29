@@ -296,9 +296,9 @@ tbody tr:nth-child(even) {
     transform: scale(1.1);
     background-color: #3da140;
 }
+    background-color:rgb(182, 178, 178);
 
-background-color:rgb(182, 178, 178);
-}
+
 
 #delete {
     margin-top: 5px;
@@ -377,7 +377,7 @@ footer {
 
 
 
-#fleetForm .two-fields {
+/* #fleetForm .two-fields {
 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -394,6 +394,9 @@ footer {
     grid-row-gap: 10px;
     margin-bottom: 20px;
 
+} */
+i{
+    color:#3da140;
 }
 
 #fleetForm label {
@@ -612,14 +615,88 @@ footer {
 #table-style {
     margin: auto;
     width: 70%;
-
-
-
 }
 
+      .progress-bar li:before {
+          counter-increment: step;
+          content: counter(step);
+          position: absolute;
+          top: -20px; /* Adjusted for smaller circle size */
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #333;
+          color: #fff;
+          width: 20px; /* Smaller circle size */
+          height: 20px; /* Smaller circle size */
+          text-align: center;
+          line-height: 20px; /* Adjusted for smaller circle size */
+          border-radius: 50%;
+          font-size: 0.75em; /* Smaller text in circle */
+          transition: transform 0.3s ease; /* Transition effect */
+      }
+      .progress-bar li:hover:before {
+          transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
+          transition: transform 0.3s ease; /* Transition effect */
+      }
+      .progress-bar li:hover:before {
+          transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
+      }
+      .progress-bar li:after {
+          content: '';
+          position: absolute;
+          top: 8px; /* Adjusted for alignment with the smaller circle */
+          left: -50%; /* Starts from the middle of the circle */
+          width: 100%;
+          height: 2px; /* Thinner line to connect circles */
+          background-color:#333; /* Connects steps */
+          z-index: -1;
+      }
 
-#fleetForm {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 20px;
-}
+      .progress-bar li:first-child:after {
+          content: none;
+      }
+
+      .progress-bar li.current {
+          background-color: #4caf50; /* Highlight for the current step */
+      }
+
+          .progress-bar li.current:before {
+              background-color: #4caf50; /* Highlight for the current step number */
+          }
+
+      .progress-bar li.completed {
+          background-color: #333; /* Color for completed steps */
+          background-color: #333; /* Color for completed steps */
+      }
+
+          .progress-bar li.completed:before {
+              background-color: #333; /* Color for completed step numbers */
+              background-color: #333; /* Color for completed step numbers */
+          }
+
+          .progress-bar li.completed:after {
+              background-color: #333; /* Color for completed line */
+          }
+
+          #wrapper{
+              margin:auto;
+              width:100%;
+          }
+
+      #table-style{
+          margin:auto;
+          width:70%;
+
+
+
+      }
+
+      #wrapper .left{
+          width:50%;
+          float:left;
+        }
+        #wrapper .right{
+          width:50%;
+          float:right;
+        }
+
