@@ -82,16 +82,23 @@ body {
     /* Set text color to white for better visibility */
     background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
     background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
-    min-height: 100vh;
 }
 
+#wrapper {
+    max-width: 600px;
+    margin: 20px 100px;
+    align-content: center;
+    align-items: center;
+}
 
 form {
-    background-color: rgba(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.8);
     /* Glass appearance background */
     padding: 20px;
-    border-radius: 8px 0 0 8px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    margin-bottom: 10px;
     opacity: 0;
     /* Initially set opacity to 0 for fade-in effect */
     animation: fadeIn 1s ease-in-out forwards;
@@ -123,33 +130,34 @@ input,
 button {
     padding: 10px;
     margin-top: 5px;
-    /* border-radius: 5px; */
-    border: none;
-    border-bottom: 1px solid #b3b3b3;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     background-color: #fff;
     box-sizing: border-box;
-}
 
-select,
-input,
-button::selection {
-    padding: 10px;
-    margin-top: 5px;
-    /* border-radius: 5px; */
-    border: none;
-    border-bottom: 1px solid #b3b3b3;
-    background-color: #fff;
-    box-sizing: border-box;
+
 }
 
 button {
-
+    margin-top: 0px;
+    background: #4caf50;
+    margin-top: 0px;
     background: #4caf50;
     color: #fff;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
     margin-bottom: 5px;
-    border-radius: 5px;
+    width: 80px;
+    border-radius: 20px;
+    font-family: "Allerta", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-bottom: 5px;
+    width: 80px;
+    border-radius: 20px;
     font-family: "Allerta", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -287,7 +295,6 @@ tbody tr:nth-child(even) {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     /* Add shadow */
     transition: transform 0.3s ease;
-    border-radius: 0.5rem;
 
 
 }
@@ -296,8 +303,8 @@ tbody tr:nth-child(even) {
     transform: scale(1.1);
     background-color: #3da140;
 }
-    background-color:rgb(182, 178, 178);
 
+/* background-color:rgb(182, 178, 178); */
 
 
 #delete {
@@ -343,13 +350,6 @@ tbody tr:nth-child(even) {
 
 }
 
-.btn-ctr {
-
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-}
-
 #add {
     width: 100px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
@@ -372,7 +372,6 @@ footer {
     bottom: 0;
     width: 100%;
     color: #fff;
-    position: fixed;
 }
 
 
@@ -395,8 +394,8 @@ footer {
     margin-bottom: 20px;
 
 } */
-i{
-    color:#3da140;
+i {
+    color: #3da140;
 }
 
 #fleetForm label {
@@ -429,22 +428,18 @@ i{
 }
 
 #img-view {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 0 10px 10px 0;
+    border-radius: 20px;
     border: 2px dashed #bbb5ff;
     background: #f7f8ff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 103.3%;
-    background-color: rgba(255, 255, 255, 0.9);
-    width: 250px;
+
 
 }
 
 #img-view img {
-    width: 15%;
+    width: 10%;
     margin-top: 25px;
     transition: transform 0.3s ease;
 }
@@ -598,105 +593,24 @@ i{
 }
 
 #wrapper {
-    border-radius: 10px;
     margin: auto;
-    background-color: whitesmoke;
-    display: flex;
-    gap: 15px;
-    max-width: 950px;
-    align-content: center;
-    align-items: stretch;
-    /* justify-self: ; */
-    background-image: url("https://images.carexpert.com.au/resize/3000/-/app/uploads/2020/08/Mini-Cooper-60-Yeared-Edition-British-Racing-Green.jpg");
-    background-size: cover;
-
+    width: 100%;
 }
 
 #table-style {
     margin: auto;
     width: 70%;
+
+
+
 }
 
-      .progress-bar li:before {
-          counter-increment: step;
-          content: counter(step);
-          position: absolute;
-          top: -20px; /* Adjusted for smaller circle size */
-          left: 50%;
-          transform: translateX(-50%);
-          background-color: #333;
-          color: #fff;
-          width: 20px; /* Smaller circle size */
-          height: 20px; /* Smaller circle size */
-          text-align: center;
-          line-height: 20px; /* Adjusted for smaller circle size */
-          border-radius: 50%;
-          font-size: 0.75em; /* Smaller text in circle */
-          transition: transform 0.3s ease; /* Transition effect */
-      }
-      .progress-bar li:hover:before {
-          transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
-          transition: transform 0.3s ease; /* Transition effect */
-      }
-      .progress-bar li:hover:before {
-          transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
-      }
-      .progress-bar li:after {
-          content: '';
-          position: absolute;
-          top: 8px; /* Adjusted for alignment with the smaller circle */
-          left: -50%; /* Starts from the middle of the circle */
-          width: 100%;
-          height: 2px; /* Thinner line to connect circles */
-          background-color:#333; /* Connects steps */
-          z-index: -1;
-      }
+#wrapper .left {
+    width: 50%;
+    float: left;
+}
 
-      .progress-bar li:first-child:after {
-          content: none;
-      }
-
-      .progress-bar li.current {
-          background-color: #4caf50; /* Highlight for the current step */
-      }
-
-          .progress-bar li.current:before {
-              background-color: #4caf50; /* Highlight for the current step number */
-          }
-
-      .progress-bar li.completed {
-          background-color: #333; /* Color for completed steps */
-          background-color: #333; /* Color for completed steps */
-      }
-
-          .progress-bar li.completed:before {
-              background-color: #333; /* Color for completed step numbers */
-              background-color: #333; /* Color for completed step numbers */
-          }
-
-          .progress-bar li.completed:after {
-              background-color: #333; /* Color for completed line */
-          }
-
-          #wrapper{
-              margin:auto;
-              width:100%;
-          }
-
-      #table-style{
-          margin:auto;
-          width:70%;
-
-
-
-      }
-
-      #wrapper .left{
-          width:50%;
-          float:left;
-        }
-        #wrapper .right{
-          width:50%;
-          float:right;
-        }
-
+#wrapper .right {
+    width: 50%;
+    float: right;
+}
