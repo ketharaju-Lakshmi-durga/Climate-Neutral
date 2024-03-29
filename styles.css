@@ -5,7 +5,7 @@ nav {
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    text-align:center;
+    text-align: center;
 }
 
 #logo {
@@ -15,15 +15,19 @@ nav {
     margin-right: 12px;
     height: auto;
     float: left;
-    transition: transform 0.3s ease; /* Add transition for smooth effect */
+    transition: transform 0.3s ease;
+    /* Add transition for smooth effect */
 }
+
 #logo:hover {
-    transform: scale(1.1); /* Scale the logo by 10% on hover */
+    transform: scale(1.1);
+    /* Scale the logo by 10% on hover */
 }
+
 header {
     background: black;
-    
-    
+
+
 }
 
 #logo {
@@ -33,36 +37,40 @@ header {
     margin-right: 12px;
     height: auto;
     float: left;
-    transition: transform 0.3s ease; /* Add transition for smooth effect */
+    transition: transform 0.3s ease;
+    /* Add transition for smooth effect */
 }
+
 #logo:hover {
-    transform: scale(1.1); /* Scale the logo by 10% on hover */
+    transform: scale(1.1);
+    /* Scale the logo by 10% on hover */
 }
+
 header {
     background: black;
-    
-    
+
+
 }
 
 header h1 {
     margin-top: 1%;
-    margin-bottom: -10px;    
+    margin-bottom: -10px;
     font-family: "Rowdies", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-font-size: 24px;
-    color:white;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 24px;
+    color: white;
     text-align: left;
-    
+
     margin-top: 1%;
-    margin-bottom: -10px;    
+    margin-bottom: -10px;
     font-family: "Rowdies", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-font-size: 24px;
-    color:white;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 24px;
+    color: white;
     text-align: left;
-    
+
 }
 
 
@@ -74,23 +82,16 @@ body {
     /* Set text color to white for better visibility */
     background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
     background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
+    min-height: 100vh;
 }
 
-#wrapper {
-    max-width: 600px;
-    margin: 20px 100px;
-    align-content: center;
-    align-items: center;
-}
 
 form {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255);
     /* Glass appearance background */
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 8px 0 0 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-    margin-bottom: 10px;
     opacity: 0;
     /* Initially set opacity to 0 for fade-in effect */
     animation: fadeIn 1s ease-in-out forwards;
@@ -122,39 +123,38 @@ input,
 button {
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    border: none;
+    border-bottom: 1px solid #b3b3b3;
     background-color: #fff;
     box-sizing: border-box;
-    
-    
+}
+
+select,
+input,
+button::selection {
+    padding: 10px;
+    margin-top: 5px;
+    /* border-radius: 5px; */
+    border: none;
+    border-bottom: 1px solid #b3b3b3;
+    background-color: #fff;
+    box-sizing: border-box;
 }
 
 button {
-    margin-top: 0px;
-    background: #4caf50;
-    margin-top: 0px;
+
     background: #4caf50;
     color: #fff;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     margin-bottom: 5px;
-    width: 80px;
-    border-radius: 20px;
+    border-radius: 5px;
     font-family: "Allerta", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  padding-top: 7px;
-  padding-bottom: 7px;
-    margin-bottom: 5px;
-    width: 80px;
-    border-radius: 20px;
-    font-family: "Allerta", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  padding-top: 7px;
-  padding-bottom: 7px;
+    font-weight: 400;
+    font-style: normal;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 button:hover {
@@ -168,10 +168,10 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    
-  
-    
-  
+
+
+
+
 }
 
 #entryTable {
@@ -204,136 +204,166 @@ tbody td {
 
 
 thead th {
-    background: linear-gradient(135deg, darkblue
-    , #11318a);
+    background: linear-gradient(135deg, darkblue, #11318a);
     color: whitesmoke;
     padding-top: 10px;
     padding-bottom: 10px;
-    
-   
+
+
 
 }
 
 /* Hover effect */
 thead th:hover {
     background-color: #2681bd;
-  
+
 }
 
 thead th {
-    background: linear-gradient(135deg, darkblue
-    , #11318a);
+    background: linear-gradient(135deg, darkblue, #11318a);
     color: whitesmoke;
     padding-top: 10px;
     padding-bottom: 10px;
-    
-   
+
+
 
 }
 
 /* Hover effect */
 thead th:hover {
     background-color: #2681bd;
-  
+
 }
 
 tbody tr:nth-child(even) {
-    background-color:rgb(182, 178, 178);
+    background-color: rgb(182, 178, 178);
 }
 
-#delete{
+#delete {
     margin-top: 5px;
     margin-bottom: 5px;
     padding-top: 1px;
     padding-bottom: 2px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Add shadow */
     transition: transform 0.3s ease;
-    background-color:  #4caf50;
+    background-color: #4caf50;
 }
-#submit{
+
+#submit {
     width: 90px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Add shadow */
     transition: transform 0.3s ease;
-    background-color:  #4caf50;
+    background-color: #4caf50;
 }
-#download{
-   width: 150px;
-   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
-   transition: transform 0.3s ease;
-   background-color:  #4caf50;
+
+#download {
+    width: 150px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Add shadow */
+    transition: transform 0.3s ease;
+    background-color: #4caf50;
 }
+
 #submit:hover {
     transform: scale(1.1);
-    background-color:  #3da140;
+    background-color: #3da140;
 }
+
 #download:hover {
     transform: scale(1.1);
-    background-color:  #3da140;
+    background-color: #3da140;
 }
+
 #delete:hover {
     transform: scale(1.1);
-    background-color:  #3da140;
+    background-color: #3da140;
 
 }
-#add{
+
+#add {
     width: 100px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Add shadow */
     transition: transform 0.3s ease;
+    border-radius: 0.5rem;
 
 
 }
+
 #add:hover {
     transform: scale(1.1);
-    background-color:  #3da140;
+    background-color: #3da140;
 }
     background-color:rgb(182, 178, 178);
 
 
-#delete{
+
+#delete {
     margin-top: 5px;
     margin-bottom: 5px;
     padding-top: 1px;
     padding-bottom: 2px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Add shadow */
     transition: transform 0.3s ease;
-    background-color:  #4caf50;
+    background-color: #4caf50;
 }
-#submit{
+
+#submit {
     width: 90px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Add shadow */
     transition: transform 0.3s ease;
-    background-color:  #4caf50;
+    background-color: #4caf50;
 }
-#download{
-   width: 150px;
-   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
-   transition: transform 0.3s ease;
-   background-color:  #4caf50;
+
+#download {
+    width: 150px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Add shadow */
+    transition: transform 0.3s ease;
+    background-color: #4caf50;
 }
+
 #submit:hover {
     transform: scale(1.1);
-    background-color:  #3da140;
+    background-color: #3da140;
 }
+
 #download:hover {
     transform: scale(1.1);
-    background-color:  #3da140;
+    background-color: #3da140;
 }
+
 #delete:hover {
     transform: scale(1.1);
-    background-color:  #3da140;
+    background-color: #3da140;
 
 }
-#add{
+
+.btn-ctr {
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+#add {
     width: 100px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add shadow */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Add shadow */
     transition: transform 0.3s ease;
 
 
 }
+
 #add:hover {
     transform: scale(1.1);
-    background-color:  #3da140;
+    background-color: #3da140;
 }
+
 footer {
     background-color: black;
     background-color: black;
@@ -342,6 +372,7 @@ footer {
     bottom: 0;
     width: 100%;
     color: #fff;
+    position: fixed;
 }
 
 
@@ -382,55 +413,68 @@ i{
 #entryTable {
     margin-top: 20px;
     border-radius: 20px;
-    overflow: hidden; /* Ensure the border radius is applied correctly */
+    overflow: hidden;
+    /* Ensure the border radius is applied correctly */
     border-radius: 20px;
-    overflow: hidden; /* Ensure the border radius is applied correctly */
+    overflow: hidden;
+    /* Ensure the border radius is applied correctly */
 }
 
 #drop-area {
     text-align: center;
     cursor: pointer;
     margin-bottom: 20px;
-   
-   
+
+
 }
 
 #img-view {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 0 10px 10px 0;
     border: 2px dashed #bbb5ff;
     background: #f7f8ff;
-     
-     
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 103.3%;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 250px;
+
 }
 
 #img-view img {
-    width: 10%;
+    width: 15%;
     margin-top: 25px;
     transition: transform 0.3s ease;
 }
+
 #img-view img:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease;
 }
+
 #img-view img:hover {
     transform: scale(1.1);
 }
+
 #img-view span {
     font-size: small;
     /* display: flex; */
     color: #b3b3b3;
     margin-bottom: 10px;
 }
+
 .progress-bar-container {
     padding: 5px 0;
     background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
-    max-width: 700px; /* You can adjust this as needed */
+    max-width: 700px;
+    /* You can adjust this as needed */
     background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
-    max-width: 700px; /* You can adjust this as needed */
-    margin: auto; /* This centers the progress bar */
+    max-width: 700px;
+    /* You can adjust this as needed */
+    margin: auto;
+    /* This centers the progress bar */
     margin-bottom: 10px;
     border-radius: 50%;
     margin-bottom: 10px;
@@ -443,107 +487,216 @@ i{
     padding: 0;
     display: flex;
     justify-content: space-evenly;
-    margin: 0; /* Removes default margin */
+    margin: 0;
+    /* Removes default margin */
 }
 
 
 
-    .progress-bar li {
-        position: relative;
-        flex-grow: 1;
-        text-align: center;
-        padding: 5px;
-        font-size: 0.8em; /* Smaller font size */
-        color:floralwhite;
-        background-color:grey; /* Inactive step color */
-        border-radius: 15px;
-        margin-right: -25px;
-        
-        background-color:grey; /* Inactive step color */
-        border-radius: 15px;
-        margin-right: -25px;
-        
-    }
+.progress-bar li {
+    position: relative;
+    flex-grow: 1;
+    text-align: center;
+    padding: 5px;
+    font-size: 0.8em;
+    /* Smaller font size */
+    color: floralwhite;
+    background-color: grey;
+    /* Inactive step color */
+    border-radius: 15px;
+    margin-right: -25px;
 
-        .progress-bar li:before {
-            counter-increment: step;
-            content: counter(step);
-            position: absolute;
-            top: -20px; /* Adjusted for smaller circle size */
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: #fff;
-            width: 20px; /* Smaller circle size */
-            height: 20px; /* Smaller circle size */
-            text-align: center;
-            line-height: 20px; /* Adjusted for smaller circle size */
-            border-radius: 50%;
-            font-size: 0.75em; /* Smaller text in circle */
-            transition: transform 0.3s ease; /* Transition effect */
-        }
-        .progress-bar li:hover:before {
-            transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
-            transition: transform 0.3s ease; /* Transition effect */
-        }
-        .progress-bar li:hover:before {
-            transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
-        }
-        .progress-bar li:after {
-            content: '';
-            position: absolute;
-            top: 8px; /* Adjusted for alignment with the smaller circle */
-            left: -50%; /* Starts from the middle of the circle */
-            width: 100%;
-            height: 2px; /* Thinner line to connect circles */
-            background-color:#333; /* Connects steps */
-            z-index: -1;
-        }
+    background-color: grey;
+    /* Inactive step color */
+    border-radius: 15px;
+    margin-right: -25px;
 
-        .progress-bar li:first-child:after {
-            content: none;
-        }
+}
 
-        .progress-bar li.current {
-            background-color: #4caf50; /* Highlight for the current step */
-        }
+.progress-bar li:before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    top: -20px;
+    /* Adjusted for smaller circle size */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    width: 20px;
+    /* Smaller circle size */
+    height: 20px;
+    /* Smaller circle size */
+    text-align: center;
+    line-height: 20px;
+    /* Adjusted for smaller circle size */
+    border-radius: 50%;
+    font-size: 0.75em;
+    /* Smaller text in circle */
+    transition: transform 0.3s ease;
+    /* Transition effect */
+}
 
-            .progress-bar li.current:before {
-                background-color: #4caf50; /* Highlight for the current step number */
-            }
+.progress-bar li:hover:before {
+    transform: translate(-50%, -50%) scale(1.2);
+    /* Zoom effect */
+    transition: transform 0.3s ease;
+    /* Transition effect */
+}
 
-        .progress-bar li.completed {
-            background-color: #333; /* Color for completed steps */
-            background-color: #333; /* Color for completed steps */
-        }
+.progress-bar li:hover:before {
+    transform: translate(-50%, -50%) scale(1.2);
+    /* Zoom effect */
+}
 
-            .progress-bar li.completed:before {
-                background-color: #333; /* Color for completed step numbers */
-                background-color: #333; /* Color for completed step numbers */
-            }
+.progress-bar li:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    /* Adjusted for alignment with the smaller circle */
+    left: -50%;
+    /* Starts from the middle of the circle */
+    width: 100%;
+    height: 2px;
+    /* Thinner line to connect circles */
+    background-color: #333;
+    /* Connects steps */
+    z-index: -1;
+}
 
-            .progress-bar li.completed:after {
-                background-color: #333; /* Color for completed line */
-            }
+.progress-bar li:first-child:after {
+    content: none;
+}
 
-            #wrapper{
-                margin:auto;
-                width:100%;
-            }
-       
-        #table-style{
-            margin:auto;
-            width:70%;
-            
-               
+.progress-bar li.current {
+    background-color: #4caf50;
+    /* Highlight for the current step */
+}
 
-        }
-       
-        #wrapper .left{
-            width:50%;
-            float:left;
+.progress-bar li.current:before {
+    background-color: #4caf50;
+    /* Highlight for the current step number */
+}
+
+.progress-bar li.completed {
+    background-color: #333;
+    /* Color for completed steps */
+    background-color: #333;
+    /* Color for completed steps */
+}
+
+.progress-bar li.completed:before {
+    background-color: #333;
+    /* Color for completed step numbers */
+    background-color: #333;
+    /* Color for completed step numbers */
+}
+
+.progress-bar li.completed:after {
+    background-color: #333;
+    /* Color for completed line */
+}
+
+#wrapper {
+    border-radius: 10px;
+    margin: auto;
+    background-color: whitesmoke;
+    display: flex;
+    gap: 15px;
+    max-width: 950px;
+    align-content: center;
+    align-items: stretch;
+    /* justify-self: ; */
+    background-image: url("https://images.carexpert.com.au/resize/3000/-/app/uploads/2020/08/Mini-Cooper-60-Yeared-Edition-British-Racing-Green.jpg");
+    background-size: cover;
+
+}
+
+#table-style {
+    margin: auto;
+    width: 70%;
+}
+
+      .progress-bar li:before {
+          counter-increment: step;
+          content: counter(step);
+          position: absolute;
+          top: -20px; /* Adjusted for smaller circle size */
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #333;
+          color: #fff;
+          width: 20px; /* Smaller circle size */
+          height: 20px; /* Smaller circle size */
+          text-align: center;
+          line-height: 20px; /* Adjusted for smaller circle size */
+          border-radius: 50%;
+          font-size: 0.75em; /* Smaller text in circle */
+          transition: transform 0.3s ease; /* Transition effect */
+      }
+      .progress-bar li:hover:before {
+          transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
+          transition: transform 0.3s ease; /* Transition effect */
+      }
+      .progress-bar li:hover:before {
+          transform: translate(-50%, -50%) scale(1.2); /* Zoom effect */
+      }
+      .progress-bar li:after {
+          content: '';
+          position: absolute;
+          top: 8px; /* Adjusted for alignment with the smaller circle */
+          left: -50%; /* Starts from the middle of the circle */
+          width: 100%;
+          height: 2px; /* Thinner line to connect circles */
+          background-color:#333; /* Connects steps */
+          z-index: -1;
+      }
+
+      .progress-bar li:first-child:after {
+          content: none;
+      }
+
+      .progress-bar li.current {
+          background-color: #4caf50; /* Highlight for the current step */
+      }
+
+          .progress-bar li.current:before {
+              background-color: #4caf50; /* Highlight for the current step number */
           }
-          #wrapper .right{
-            width:50%;
-            float:right;
+
+      .progress-bar li.completed {
+          background-color: #333; /* Color for completed steps */
+          background-color: #333; /* Color for completed steps */
+      }
+
+          .progress-bar li.completed:before {
+              background-color: #333; /* Color for completed step numbers */
+              background-color: #333; /* Color for completed step numbers */
           }
+
+          .progress-bar li.completed:after {
+              background-color: #333; /* Color for completed line */
+          }
+
+          #wrapper{
+              margin:auto;
+              width:100%;
+          }
+
+      #table-style{
+          margin:auto;
+          width:70%;
+
+
+
+      }
+
+      #wrapper .left{
+          width:50%;
+          float:left;
+        }
+        #wrapper .right{
+          width:50%;
+          float:right;
+        }
+

@@ -247,97 +247,97 @@
         DOWNLOAD CSV
       </button>
     </div>
-    <footer>
-      <p>&copy; 2024 Climate Neutral. All rights reserved.</p>
-      <!-- Add any other footer content here -->
-    </footer>
-    <script>
-      formData = [];
-      document
-        .getElementById("input-file")
-        .addEventListener("change", handleFileUpload);
+  </div>
+  <footer>
+    <p>&copy; 2024 Climate Neutral. All rights reserved.</p>
+    <!-- Add any other footer content here -->
+  </footer>
+  <script>
+    document
+      .getElementById("input-file")
+      .addEventListener("change", handleFileUpload);
 
-      function handleFileUpload(event) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
 
-        reader.onload = function (e) {
-          const contents = e.target.result;
-          const lines = contents.split("\n");
+      reader.onload = function (e) {
+        const contents = e.target.result;
+        const lines = contents.split("\n");
 
-          // Assuming the CSV format is consistent and each line corresponds to a record
-          lines.forEach((line) => {
-            const fields = line.split(",");
+        // Assuming the CSV format is consistent and each line corresponds to a record
+        lines.forEach((line) => {
+          const fields = line.split(",");
 
-            // Populate form fields based on CSV data
-            document.getElementById("Province").value = fields[0].trim();
-            document.getElementById("vehicleDescription").value =
-              fields[1].trim();
-            document.getElementById("vehicleType").value = fields[2].trim();
-            document.getElementById("year").value = fields[3].trim();
-            document.getElementById("make").value = fields[4].trim();
-            document.getElementById("model").value = fields[5].trim();
-            document.getElementById("annual_vkt").value = fields[6].trim();
-            document.getElementById("annual_fuel").value = fields[7].trim();
-            document.getElementById("fuelType").value = fields[8].trim();
-            document.getElementById("flex_fuel").value = fields[9].trim();
-            document.getElementById("vehicleQuantity").value =
-              fields[10].trim();
-          });
-        };
+          // Populate form fields based on CSV data
+          document.getElementById("Province").value = fields[0].trim();
+          document.getElementById("vehicleDescription").value =
+            fields[1].trim();
+          document.getElementById("vehicleType").value = fields[2].trim();
+          document.getElementById("year").value = fields[3].trim();
+          document.getElementById("make").value = fields[4].trim();
+          document.getElementById("model").value = fields[5].trim();
+          document.getElementById("annual_vkt").value = fields[6].trim();
+          document.getElementById("annual_fuel").value = fields[7].trim();
+          document.getElementById("fuelType").value = fields[8].trim();
+          document.getElementById("flex_fuel").value = fields[9].trim();
+          document.getElementById("vehicleQuantity").value =
+            fields[10].trim();
+        });
+      };
 
-        reader.readAsText(file);
+      reader.readAsText(file);
+    }
+
+    function addEntry() {
+      if (
+        document.getElementById("vehicleDescription").value === "" ||
+        document.getElementById("year").value === "" ||
+        document.getElementById("make").value === "" ||
+        document.getElementById("model").value === "" ||
+        document.getElementById("annual_vkt").value === "" ||
+        document.getElementById("annual_fuel").value === "" ||
+        document.getElementById("vehicleQuantity").value === ""
+      ) {
+        // If any required field is empty, alert the user and return without adding the row
+        alert("Please fill in all required fields.");
+        return;
       }
 
-      function addEntry() {
-        if (
-          document.getElementById("vehicleDescription").value === "" ||
-          document.getElementById("year").value === "" ||
-          document.getElementById("make").value === "" ||
-          document.getElementById("model").value === "" ||
-          document.getElementById("annual_vkt").value === "" ||
-          document.getElementById("annual_fuel").value === "" ||
-          document.getElementById("vehicleQuantity").value === ""
-        ) {
-          // If any required field is empty, alert the user and return without adding the row
-          alert("Please fill in all required fields.");
-          return;
-        }
+      var vehicleDescription =
+        document.getElementById("vehicleDescription").value;
+      var vehicleType = document.getElementById("vehicleType").value;
+      var year = document.getElementById("year").value;
+      var make = document.getElementById("make").value;
+      var model = document.getElementById("model").value;
+      var annualVKT = document.getElementById("annual_vkt").value;
+      var annualFuel = document.getElementById("annual_fuel").value;
+      var vehicleQuantity = document.getElementById("vehicleQuantity").value;
+      var flexfuel = document.getElementById("flex_fuel").value;
+      var fuelType = document.getElementById("fuelType").value;
+      var Province = document.getElementById("Province").value;
 
-        var vehicleDescription =
-          document.getElementById("vehicleDescription").value;
-        var vehicleType = document.getElementById("vehicleType").value;
-        var year = document.getElementById("year").value;
-        var make = document.getElementById("make").value;
-        var model = document.getElementById("model").value;
-        var annualVKT = document.getElementById("annual_vkt").value;
-        var annualFuel = document.getElementById("annual_fuel").value;
-        var vehicleQuantity = document.getElementById("vehicleQuantity").value;
-        var flexfuel = document.getElementById("flex_fuel").value;
-        var fuelType = document.getElementById("fuelType").value;
-        var Province = document.getElementById("Province").value;
+      // https://www.youtube.com/watch?v=5Fws9daTtIs&t=168s
+      // const dropArea = document.getElementById('drop-area');
+      // const inpuFile = document.getElementById('inpt-file');
+      // const imageiew = document.getElementById(img - view);
 
-        // https://www.youtube.com/watch?v=5Fws9daTtIs&t=168s
-        // const dropArea = document.getElementById('drop-area');
-        // const inpuFile = document.getElementById('inpt-file');
-        // const imageiew = document.getElementById(img - view);
+      // inputFile.addEventListener('change', (e) => {
+      //     if (inputFile.files.length) {
+      //         const reader = new FileReader();
+      //         reader.onload = (e) => {
+      //             const file = e.target.result;
+      //             imageiew.innerHTML = `<img src="${file}" alt="">`;
+      //         };
+      //         reader.readAsDataURL(inputFile.files[0]);
+      //     }
+      // });
 
-        // inputFile.addEventListener('change', (e) => {
-        //     if (inputFile.files.length) {
-        //         const reader = new FileReader();
-        //         reader.onload = (e) => {
-        //             const file = e.target.result;
-        //             imageiew.innerHTML = `<img src="${file}" alt="">`;
-        //         };
-        //         reader.readAsDataURL(inputFile.files[0]);
-        //     }
-        // });
+      // Create a new row for the table
+      var newRow = document.createElement("tr");
 
-        // Create a new row for the table
-        var newRow = document.createElement("tr");
-
-        // Populate the row with data
-        newRow.innerHTML = `
+      // Populate the row with data
+      newRow.innerHTML = `
                 <td>${vehicleDescription}</td>
                 <td>${vehicleType}</td>
                 <td>${year}</td>
@@ -354,103 +354,50 @@
                 </td>
             `;
 
-        // Append the row to the table body
-        document.getElementById("entryTableBody").appendChild(newRow);
-        formData.push({
-          Description: vehicleDescription,
-          VehicleType: vehicleType,
-          Year: year,
-          Make: make,
-          Model: model,
-          AnnualVKT: annualVKT,
-          AnnualFuel: annualFuel,
-          FuelType: fuelType,
-          FlexFuel: flexfuel,
-          VehicleQuantity: vehicleQuantity,
-          Province: Province,
-        });
-        // Reset the form fields to default values
-        document.getElementById("Province").value = "";
-        document.getElementById("vehicleDescription").value = "";
-        document.getElementById("vehicleType").value = "Light Duty Truck";
-        document.getElementById("year").value = "";
-        document.getElementById("make").value = "";
-        document.getElementById("model").value = "";
-        document.getElementById("annual_vkt").value = "";
-        document.getElementById("vehicleQuantity").value = "";
-        document.getElementById("flex_fuel").value = "Yes";
-        document.getElementById("annual_fuel").value = "";
-      }
-      //begins here
+      // Append the row to the table body
+      document.getElementById("entryTableBody").appendChild(newRow);
 
-      function submitForm() {
-        // Store the form data in localStorage
-        localStorage.setItem("formData", JSON.stringify(formData));
+      // Reset the form fields to default values
+      document.getElementById("Province").value = "";
+      document.getElementById("vehicleDescription").value = "";
+      document.getElementById("vehicleType").value = "Light Duty Truck";
+      document.getElementById("year").value = "";
+      document.getElementById("make").value = "";
+      document.getElementById("model").value = "";
+      document.getElementById("annual_vkt").value = "";
+      document.getElementById("vehicleQuantity").value = "";
+      document.getElementById("flex_fuel").value = "Yes";
+      document.getElementById("annual_fuel").value = "";
+    }
+    //begins here
 
-        // Redirect to another page (e.g., green_wizard.html)
-        window.location.href = "green_wizard.html";
-      }
-      function resetForm() {
-        document.getElementById("fleetForm").reset();
-      }
-      function editRow(button) {
-        let row = button.parentNode.parentNode;
-        console.log(row);
-        let description = row.cells[0].innerText;
-        let vehicleType = row.cells[1].innerText;
-        let year = row.cells[2].innerText;
-        let make = row.cells[3].innerText;
-        let model = row.cells[4].innerText;
-        let annualVKT = row.cells[5].innerText;
-        let annualFuel = row.cells[6].innerText;
-        let fuelType = row.cells[7].innerText;
-        let flexFuel = row.cells[8].innerText;
-        let vehicleQuantity = row.cells[9].innerText;
+    function submitForm() {
+      // Collect data from the table
+      var tableRows = document
+        .getElementById("entryTableBody")
+        .getElementsByTagName("tr");
+      var formData = [];
 
-        let province = document.getElementById("Province").innerText;
+      for (var i = 0; i < tableRows.length; i++) {
+        var cells = tableRows[i].getElementsByTagName("td");
+        var rowData = {
+          Description: cells[0].innerText,
+          VehicleType: cells[1].innerText,
+          Year: cells[2].innerText,
+          Make: cells[3].innerText,
+          Model: cells[4].innerText,
+          AnnualVKT: cells[5].innerText,
+          AnnualFuel: cells[6].innerText,
+          FuelType: cells[7].innerText,
+          FlexFuel: cells[8].innerText,
+          VehicleQuantity: cells[9].innerText,
+        };
 
-        document.getElementById("Province").value = province;
-        document.getElementById("vehicleDescription").value = description;
-        document.getElementById("vehicleType").value = vehicleType;
-        document.getElementById("year").value = year;
-        document.getElementById("make").value = make;
-        document.getElementById("model").value = model;
-        document.getElementById("annual_vkt").value = annualVKT;
-        document.getElementById("vehicleQuantity").value = vehicleQuantity;
-        document.getElementById("flex_fuel").value = flexFuel;
-        document.getElementById("annual_fuel").value = annualFuel;
-        document.getElementById("Province").value = province;
-        row.remove();
-      }
-
-      function deleteRow(button) {
-        let row = button.parentNode.parentNode;
-        row.remove();
-      }
-      function downloadFormData() {
-        // Get form data from localStorage
-        var formData = JSON.parse(localStorage.getItem("formData"));
-
-        // Create CSV content
-        var csvContent = "data:text/csv;charset=utf-8,";
-        csvContent +=
-          "Description,VehicleType,Year,Make,Model,AnnualVKT,AnnualFuel,FuelType,FlexFuel,VehicleQuantity\n";
-
-        // Iterate over form data and append each row to CSV content
-        formData.forEach((row) => {
-          csvContent += `${row.Description},${row.VehicleType},${row.Year},${row.Make},${row.Model},${row.AnnualVKT},${row.AnnualFuel},${row.FuelType},${row.FlexFuel},${row.VehicleQuantity}\n`;
-        });
-
-        // Create a download link
-        var encodedUri = encodeURI(csvContent);
-        var link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "form_data.csv");
-        document.body.appendChild(link); // Append the link to the body
-        link.click(); // Simulate a click on the link to trigger the download
+        formData.push(rowData);
       }
     </script>
                                    <li class="nav-item dropdown main-navbar">
                                    
   </body>
 </html>
+
