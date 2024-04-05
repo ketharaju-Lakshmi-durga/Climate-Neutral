@@ -88,7 +88,7 @@
       fleetEntry.classList.add("fleet-entry");
 
       // Create HTML content for fleet details
-      var fleetDetailsHTML = "<h2>Fleet Details</h2>";
+      var fleetDetailsHTML = "<h2>Fleet Details: "+ (index+1)+"</h2>";
       fleetDetailsHTML += "<p><strong>" + data.Description + "</strong></p>";
       fleetDetailsHTML += "<p>Vehicle Type: " + data.VehicleType + "</p>";
       fleetDetailsHTML += "<p>Year: " + data.Year + "</p>";
@@ -239,12 +239,32 @@
       // All green options are selected
       return true;
     }
+    
     // Back button functionality
     document
       .getElementById("backButton")
       .addEventListener("click", function () {
         window.history.back();
       });
+
+  
+    // Event listener for green options dropdown change
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.green-options-dropdown').forEach(function(dropdown) {
+        dropdown.addEventListener('change', function() {
+          var selectedValue = this.value;
+          if (selectedValue === 'Replace w/ EV Car' || selectedValue === 'E85 Ethanol Usage' || selectedValue === 'E85 Biofuel Usage' || selectedValue === 'B20 Diesel Usage' || selectedValue === 'Right Size to Car' || selectedValue === 'Right Size to Biofuel E85 Car') {
+            // Find the parent fleet entry
+            var fleetEntry = this.closest('.fleet-entry');
+            // Change the background color of the fleet entry
+            fleetEntry.style.backgroundColor = 'lightgreen'; // You can change the color as per your preference
+          } else {
+            var fleetEntry = this.closest('.fleet-entry');
+            fleetEntry.style.backgroundColor = ''; // Reset background color if option not matched
+          }
+        });
+      });
+    });
   </script>
 </body>
 

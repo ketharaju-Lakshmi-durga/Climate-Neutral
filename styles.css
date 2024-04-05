@@ -1,7 +1,7 @@
 /* styles.css */
 
 nav {
-    background-color: #0000001a;
+    background-color: #0F0F0F;
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -82,7 +82,8 @@ body {
     /* Set text color to white for better visibility */
     /* background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
     background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0); */
-    background: rgba(0, 150, 136);
+    /* background: rgba(0, 150, 136); */
+    background: rgb(34, 95, 69);
 }
 
 #wrapper {
@@ -97,13 +98,14 @@ form {
     /* Glass appearance background */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgb(245, 250, 112);
     margin-bottom: 10px;
     margin-bottom: 10px;
     opacity: 0;
     /* Initially set opacity to 0 for fade-in effect */
     animation: fadeIn 1s ease-in-out forwards;
     /* Animation properties */
+    width: 100%;
 }
 
 /* Keyframes for fade-in animation */
@@ -218,7 +220,7 @@ tbody td {
     padding-right: 10px;
     padding-left: 10px;
     /* border: 3px solid rgb(255, 255, 255); */
-    border: 2px solid silver;
+    border: 4px solid #232D3F;
     text-align: center;
     justify-content: center;
     /* width: max-content; */
@@ -227,7 +229,7 @@ tbody td {
 
 
 thead th {
-    background: linear-gradient(135deg, darkblue, #11318a);
+    background: linear-gradient(135deg, #232D3F, #232D3F);
     color: whitesmoke;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -243,7 +245,7 @@ thead th:hover {
 }
 
 thead th {
-    background: linear-gradient(135deg, darkblue, #11318a);
+    background: linear-gradient(135deg, #232D3F, #232D3F);
     color: whitesmoke;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -480,18 +482,18 @@ i {
 }
 
 .progress-bar-container {
-    padding: 5px 0;
-    background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
+    padding: 12px 0;
+    /* background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0); */
     max-width: 700px;
     /* You can adjust this as needed */
-    background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0);
-    max-width: 700px;
+    /* background: linear-gradient(to bottom right, #f2f2f2, #e0e0e0); */
+    
     /* You can adjust this as needed */
     margin: auto;
     /* This centers the progress bar */
     margin-bottom: 10px;
     border-radius: 50%;
-    margin-bottom: 10px;
+    
     border-radius: 50%;
 }
 
@@ -512,7 +514,7 @@ i {
     flex-grow: 1;
     text-align: center;
     padding: 5px;
-    font-size: 0.8em;
+    font-size: 0.99em;
     /* Smaller font size */
     color: floralwhite;
     background-color: grey;
@@ -583,12 +585,12 @@ i {
 }
 
 .progress-bar li.current {
-    background-color: #4caf50;
+    background-color: #232D3F;
     /* Highlight for the current step */
 }
 
 .progress-bar li.current:before {
-    background-color: #4caf50;
+    background-color: #232D3F;
     /* Highlight for the current step number */
 }
 
@@ -855,7 +857,7 @@ i {
         transform: translateX(-2000px);
     }
 }
-
+/* 
 .ripple-background {
     bottom: 25%;
     position: absolute;
@@ -936,4 +938,5 @@ i {
     100% {
         transform: scale(0.8);
     }
-}
+} */
+

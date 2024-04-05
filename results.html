@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -381,26 +381,18 @@
 
           case "Right Size to Car":
             // Code for 'Right Size to Car' option
+// Calculate the emission savings and percentage savings for "Right Size to Car" option
+var avgICEintensityDatabase = 155; // Assuming this is the average ICE intensity from the database
+var percentageSavings = ((emissionsIntensity - avgICEintensityDatabase) / emissionsIntensity) * 100;
+var roundedPercentageSavings = percentageSavings.toFixed(2);
+var totalEmissionSavings = (annualEmissions * percentageSavings) / 1000000;
+var roundedTotalEmissionSavings = totalEmissionSavings.toFixed(2);
+// Display the result in the table
+var newRow = createTableRow(formData[i], selectedOptions[i], roundedTotalEmissionSavings, roundedPercentageSavings);
+tableBody.appendChild(newRow);
+if (formData[i].FuelType && selectedOptions[i]) {
+    createComparisonGraph(i, "Right Size to Car ");
 
-            console.log(selEmin);
-            var avgICEintensityDatabase = 155;
-            var percentageSavings =
-              ((selEmin - avgICEintensityDatabase) / selEmin) * 100;
-            var rounderpercentageSavingsforrightsize =
-              percentageSavings.toFixed(2); // Round off to the nearest whole number
-            var totalEmissionSavings =
-              (annualEmissions * percentageSavings) / 1000000;
-            var totalEmissionSavings = totalEmissionSavings.toFixed(2);
-            // Display the result in the table
-            var newRow = createTableRow(
-              formData[i],
-              selectedOptions[i],
-              totalEmissionSavings,
-              rounderpercentageSavingsforrightsize
-            );
-            tableBody.appendChild(newRow);
-            if (formData[i].FuelType && selectedOptions[i]) {
-              createComparisonGraph(i, "Right Size to Car ");
 
               // Call function to create comparison graph
             } // Call function to create comparison graph
@@ -408,30 +400,22 @@
 
           // ------------------right size to biofuel e85 car
           case "Right Size to Biofuel E85 Car":
-            console.log(selEmin);
-            var avgICEintensityDatabase = 155;
-            var percentageSavings =
-              ((selEmin - avgICEintensityDatabase) / selEmin) * 100;
-            var rounderpercentageSavingsBioECar =
-              percentageSavings.toFixed(2); // Round off to the nearest whole number
-            var totalEmissionSavingsBioECar =
-              (annualEmissions * percentageSavings) / 1000000;
-            var totalEmissionSavingsBioECar =
-              totalEmissionSavingsBioECar.toFixed(2);
-            // Display the result in the table
-            var newRow = createTableRow(
-              formData[i],
-              selectedOptions[i],
-              totalEmissionSavingsBioECar,
-              rounderpercentageSavingsBioECar
-            );
-            tableBody.appendChild(newRow);
-            createComparisonGraph(i, "Right Size to Biofuel E85 Car "); // Call function to create comparison graph
+        
+// Calculate the emission savings and percentage savings for "Right Size to Biofuel E85 Car" option
+var avgICEintensityDatabaseBioECar = 100; // Assuming this is the average ICE intensity from the database for biofuel E85 car
+var percentageSavingsBioECar = ((emissionsIntensity - avgICEintensityDatabaseBioECar) / emissionsIntensity) * 100;
+var roundedPercentageSavingsBioECar = percentageSavingsBioECar.toFixed(2);
+var totalEmissionSavingsBioECar = (annualEmissions * percentageSavingsBioECar) / 1000000;
+var roundedTotalEmissionSavingsBioECar = totalEmissionSavingsBioECar.toFixed(2);
+// Display the result in the table
+var newRowBioECar = createTableRow(formData[i], selectedOptions[i], roundedTotalEmissionSavingsBioECar, roundedPercentageSavingsBioECar);
+tableBody.appendChild(newRowBioECar);
+createComparisonGraph(i, "Right Size to Biofuel E85 Car "); // Call function to create comparison graph
             continue;
           // ------------------------right size to e85 light duty truck
           case "Replace w/ Biofuel E85 Light Duty Truck":
             console.log(selEmin);
-            var avgICEintensityDatabase = 309;
+            var avgICEintensityDatabase = 150;
             var percentageSavings =
               ((selEmin - avgICEintensityDatabase) / selEmin) * 100;
             var rounderpercentageSavingsBioLDT = percentageSavings.toFixed(2);
@@ -594,8 +578,8 @@
 
         // Create dummy data for comparison (replace this with actual data)
         var comparisonLabels = [
-          "Your Vehicle",
-          "Audie A4",
+          "Your fleet",
+          "Audi A4",
           "Volvo S60",
           "Mercedes CLA 250",
           "Mazda 3",
@@ -649,18 +633,38 @@
               {
                 label: "Emissions Intensity Comparison (gCO2e/km)",
                 data: comparisonData,
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                borderColor: "rgba(75, 192, 192, 1)",
+                backgroundColor: "rgba(255, 159, 64, 0.3)", // Adjust alpha to make it darker, for example, 0.5
+                  borderColor: "rgba(255, 159, 64, 1)", // Keep alpha as 1 for the border color
                 borderWidth: 1,
               },
             ],
           },
           options: {
             scales: {
-              y: {
-                beginAtZero: true,
+                x: {
+                  title: {
+                    display: true,
+                    text: "Vehicle Description", // X-axis description
+                    color: "black",
+                    font: {
+                      size: 14,
+                      weight: "bold",
+                    },
+                  },
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: "Emissions Intensity (gCO2e/km)", // Y-axis description
+                    color: "black",
+                    font: {
+                      size: 14,
+                      weight: "bold",
+                    },
+                  },
+                  beginAtZero: true,
+                },
               },
-            },
             plugins: {
               title: {
                 display: true,
